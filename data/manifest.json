@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "generated_date": "2026-10-04",
+  "statistics_source": "官方赛题说明；行数、股票数、日期范围尚未完整审计。size_bytes 和 sha256 来自实际本地文件。",
+  "files": [
+    {
+      "path": "data/raw/训练集.csv",
+      "role": "train",
+      "size_bytes": 946832276,
+      "sha256": "e9d23e87f7e1f9439f28f7dd951d129ea49eaacda5ad650da8576a830a6deac9",
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "vol",
+        "amount",
+        "flag_limit_up",
+        "flag_limit_down",
+        "y_ret_1d"
+      ],
+      "official_row_count": 7900350,
+      "official_stock_count": 4650,
+      "official_date_start": 20180102,
+      "official_date_end": 20241231,
+      "included_in_git": false
+    },
+    {
+      "path": "data/raw/测试集_X.csv",
+      "role": "test_x",
+      "size_bytes": 168825396,
+      "sha256": "dceffbf68bbab07a254bc6caa4d8a1e33de8de9c15489d936c5d15020dbfa90f",
+      "columns": [
+        "ts_code",
+        "trade_date",
+        "open",
+        "high",
+        "low",
+        "close",
+        "vol",
+        "amount",
+        "flag_limit_up",
+        "flag_limit_down"
+      ],
+      "official_row_count": 1599600,
+      "official_stock_count": 4650,
+      "official_date_start": 20250102,
+      "official_date_end": 20260608,
+      "included_in_git": false
+    }
+  ]
+}

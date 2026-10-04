@@ -1,0 +1,13 @@
+# Initial development dependencies; lock exact versions after environment setup.
+numpy
+pandas
+scipy
+loguru
+pyarrow
+scikit-learn
+lightgbm
+matplotlib
+seaborn
+PyYAML
+jupyterlab
+ipykernel

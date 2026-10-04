@@ -1,0 +1,33 @@
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# Local data and generated artifacts; keep documentation and directory markers
+data/raw/*
+!data/raw/README.md
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/README.md
+outputs/models/*
+!outputs/models/.gitkeep
+outputs/figures/*
+!outputs/figures/.gitkeep
+outputs/submissions/*
+!outputs/submissions/.gitkeep
+outputs/metrics/*
+!outputs/metrics/.gitkeep
+
+# Local temporary files and credentials
+tmp/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,1 @@
+exp_id,date,owner,git_commit,config_path,features,model,params,train_period,valid_period,ic_mean,ic_std,icir,ic_positive_ratio,annual_excess,top1_annual_ret,mean_turnover,final_score,artifact_path,notes

@@ -1,0 +1,31 @@
+project:
+  name: fintech
+  stage: scaffold
+  repository: https://github.com/xxawa66/fintech.git
+
+# Resolve all paths from the repository root.
+paths:
+  train: data/raw/训练集.csv
+  test_x: data/raw/测试集_X.csv
+  processed: data/processed
+  models: outputs/models
+  figures: outputs/figures
+  metrics: outputs/metrics
+  submissions: outputs/submissions
+  experiment_log: experiments/experiment_log.csv
+
+data:
+  key_columns: [ts_code, trade_date]
+  target_column: y_ret_1d
+  prediction_column: pred
+  raw_feature_columns: [open, high, low, close, vol, amount, flag_limit_up, flag_limit_down]
+
+evaluation:
+  official_python: evaluate.py
+  official_r: evaluate.R
+  annualization_days: 252
+  top_fraction: 0.1
+  weights:
+    rank_ic: 0.4
+    annual_excess: 0.3
+    stability: 0.3

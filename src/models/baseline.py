@@ -19,7 +19,6 @@ import time
 import traceback
 from pathlib import Path
 
-import lightgbm as lgb
 import numpy as np
 import pandas as pd
 import psutil
@@ -32,7 +31,7 @@ from src.evaluation.baseline_checks import check_predictions, compare_official
 from src.evaluation.official_eval import OFFICIAL_METRICS, daily_metrics, evaluate_frame, load_validation_frame
 from src.evaluation.validation import get_folds, split_train_valid
 from src.features.build_features import build_features
-from src.models.lightgbm_model import train_model
+from src.models.lightgbm_model import load_model, save_model, train_model
 from src.utils.experiments import append_record, check_experiment_id
 from src.utils.project import ROOT, git_state, load_config, project_path, sha256, timestamp, write_json
 
@@ -141,7 +140,7 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
         rounds = cfg["baseline"]["smoke_rounds"] if smoke else model_cfg["num_boost_round"]
         model = train_model(x_train, y_train, model_cfg["params"], rounds, log)
         model_path = directories["models"] / "model.txt"
-        model.save_model(str(model_path))
+        save_model(model, model_path)
         info["model"] = {"params": model_cfg["params"], "num_boost_round": rounds,
                          "actual_iterations": model.current_iteration()}
         del x_train, y_train
@@ -153,7 +152,7 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
         x_valid = valid.loc[eligible, columns]
         predictions = np.full(len(valid), cfg["baseline"]["fallback_prediction"], dtype="float64")
         predictions[eligible] = model.predict(x_valid, num_threads=model_cfg["params"]["num_threads"])
-        reloaded = lgb.Booster(model_file=str(model_path))
+        reloaded = load_model(model_path)
         loaded_pred = reloaded.predict(x_valid, num_threads=model_cfg["params"]["num_threads"])
         reload_difference = float(np.max(np.abs(predictions[eligible] - loaded_pred)))
         if reload_difference > 1e-12:

@@ -3,7 +3,6 @@ import tempfile
 import unittest
 from pathlib import Path
 
-import lightgbm as lgb
 import numpy as np
 import pandas as pd
 
@@ -15,7 +14,7 @@ from src.evaluation.official_eval import OFFICIAL_METRICS, evaluate_frame
 from src.evaluation.validation import Fold, split_train_valid
 from src.features.build_features import build_features
 from src.features.cross_section_features import percentile_rank
-from src.models.lightgbm_model import train_model
+from src.models.lightgbm_model import load_model, save_model, train_model
 from src.utils.experiments import FIELDS, append_record, check_experiment_id, read_records
 from src.utils.project import load_config
 
@@ -187,7 +186,7 @@ class PipelineContractTests(unittest.TestCase):
             differences = compare_official(path, frame, metrics, 1e-10)
         self.assertTrue(all(value <= 1e-10 for value in differences.values()))
 
-    def test_model_reload_and_repeatability(self):
+    def test_model_reload_repeatability_and_unicode_paths(self):
         cfg, _ = load_config()
         raw = history()
         features, columns = build_features(raw[KEYS + X_COLUMNS], cfg["features"])
@@ -197,9 +196,11 @@ class PipelineContractTests(unittest.TestCase):
         first = model1.predict(x, num_threads=2)
         np.testing.assert_allclose(first, model2.predict(x, num_threads=2), rtol=0, atol=1e-12)
         with tempfile.TemporaryDirectory() as temporary:
-            path = Path(temporary) / "model.txt"
-            model1.save_model(str(path))
-            loaded = lgb.Booster(model_file=str(path))
+            directory = Path(temporary) / "中文模型目录"
+            directory.mkdir()
+            path = directory / "基线模型.txt"
+            save_model(model1, path)
+            loaded = load_model(path)
             np.testing.assert_allclose(first, loaded.predict(x, num_threads=2), rtol=0, atol=1e-12)
 
     def test_log_header_preservation_duplicate_guard_and_path_guard(self):

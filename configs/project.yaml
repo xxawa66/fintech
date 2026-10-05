@@ -1,6 +1,6 @@
 project:
   name: fintech
-  stage: feature_research_implementation
+  stage: feature_research_confirmation_pending
   repository: https://github.com/xxawa66/fintech.git
 
 # Resolve all paths from the repository root.

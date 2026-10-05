@@ -11,3 +11,4 @@ seaborn
 PyYAML
 jupyterlab
 ipykernel
+psutil

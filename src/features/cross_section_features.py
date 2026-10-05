@@ -1,1 +1,7 @@
-"""待实现：按当日股票截面计算排名与标准化，不引入未来数据。"""
+"""Rank only current X; labels must never select the ranking universe."""
+import pandas as pd
+
+
+def percentile_rank(values: pd.Series, dates: pd.Series, eligible: pd.Series) -> pd.Series:
+    return values.where(eligible).groupby(dates, sort=False, observed=True).rank(
+        pct=True, method="average", na_option="keep")

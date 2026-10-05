@@ -22,6 +22,8 @@ outputs/submissions/*
 !outputs/submissions/.gitkeep
 outputs/metrics/*
 !outputs/metrics/.gitkeep
+outputs/predictions/*
+!outputs/predictions/.gitkeep
 
 # Local temporary files and credentials
 tmp/

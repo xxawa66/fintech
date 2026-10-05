@@ -1,6 +1,6 @@
 project:
   name: fintech
-  stage: baseline_completed
+  stage: feature_research_implementation
   repository: https://github.com/xxawa66/fintech.git
 
 # Resolve all paths from the repository root.
@@ -14,6 +14,9 @@ paths:
   predictions: outputs/predictions
   submissions: outputs/submissions
   experiment_log: experiments/experiment_log.csv
+  research_cache: data/processed/research_cache
+  research_studies: outputs/metrics/research_studies
+  research_reports: docs
 
 data:
   key_columns: [ts_code, trade_date]
@@ -90,3 +93,33 @@ baseline:
       use_missing: true
       zero_as_missing: false
       verbosity: -1
+
+# Day 5–8: fixed model; 2023 selection, one 2024 candidate confirmation.
+research:
+  pool_version: research_v2
+  study_fold: fold1
+  confirm_fold: fold2
+  reference_exp_id: E000_baseline_retry1
+  selection_tolerance: 1.0e-6
+  parity_tolerance: 1.0e-10
+  windows:
+    path: 20
+    correlation: 20
+    signed_volume: [5, 20]
+    volume_cv: 20
+    volatility_pairs: [[5, 20], [20, 60]]
+    risk_return: 20
+    atr: [5, 20]
+  groups:
+    T: [trend_efficiency_20, up_ratio_20, downside_rms_20, return_skew_20, return_kurt_20, rank_trend_efficiency_20]
+    V: [corr_ret_logvol_20, corr_price_vol_20, signed_vol_ratio_5, signed_vol_ratio_20, volume_cv_20, rank_signed_vol_ratio_20]
+    R: [volatility_ratio_5_20, volatility_ratio_20_60, risk_adj_ret_20, true_range_relative, atr_ratio_5_20, rank_risk_adj_ret_20]
+  presets:
+    - {name: base, groups: []}
+    - {name: trend, groups: [T]}
+    - {name: volume, groups: [V]}
+    - {name: risk, groups: [R]}
+    - {name: all, groups: [T, V, R]}
+    - {name: without_trend, groups: [V, R]}
+    - {name: without_volume, groups: [T, R]}
+    - {name: without_risk, groups: [T, V]}

@@ -29,14 +29,20 @@ def check_experiment_id(exp_id: str, log_path: Path, directories: list[Path]) ->
 
 
 def append_record(path: Path, record: dict) -> None:
-    records = read_records(path)
-    if any(row["exp_id"] == record["exp_id"] for row in records):
-        raise ValueError(f"Duplicate experiment ID: {record['exp_id']}")
     if set(record) != set(FIELDS):
         raise ValueError("Experiment record fields differ from the shared schema.")
     path.parent.mkdir(parents=True, exist_ok=True)
+    lock = path.with_name(path.name + ".lock")
+    try:
+        with lock.open("x", encoding="utf-8") as stream:
+            stream.write(str(os.getpid()))
+    except FileExistsError as error:
+        raise RuntimeError("Experiment log is locked by another writer; inspect before retrying.") from error
     temporary = path.with_name(path.name + ".tmp")
     try:
+        records = read_records(path)
+        if any(row["exp_id"] == record["exp_id"] for row in records):
+            raise ValueError(f"Duplicate experiment ID: {record['exp_id']}")
         with temporary.open("w", encoding="utf-8", newline="") as stream:
             writer = csv.DictWriter(stream, fieldnames=FIELDS)
             writer.writeheader()
@@ -47,3 +53,4 @@ def append_record(path: Path, record: dict) -> None:
     finally:
         if temporary.exists():
             temporary.unlink()
+        lock.unlink()

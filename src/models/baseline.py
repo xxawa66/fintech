@@ -17,6 +17,7 @@ import platform
 import sys
 import time
 import traceback
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -30,6 +31,7 @@ from src.data.make_dataset import attach_labels, training_arrays
 from src.evaluation.baseline_checks import check_predictions, compare_official
 from src.evaluation.official_eval import OFFICIAL_METRICS, daily_metrics, evaluate_frame, load_validation_frame
 from src.evaluation.validation import get_folds, split_train_valid
+from src.evaluation.research_diagnostics import monthly_metrics, portfolio_diagnostics
 from src.features.build_features import build_features
 from src.models.lightgbm_model import load_model, save_model, train_model
 from src.utils.experiments import append_record, check_experiment_id
@@ -72,8 +74,19 @@ class RunLog:
             stream.write(line + "\n")
 
 
+@dataclass
+class PreparedHistory:
+    dataset: pd.DataFrame
+    truth: pd.DataFrame
+    cleaning: dict
+    cache: dict
+    fold_name: str
+
+
 def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
-            provenance: dict, revision: dict, smoke: bool) -> dict:
+            provenance: dict, revision: dict, smoke: bool, *,
+            prepared: PreparedHistory | None = None, columns: list[str] | None = None,
+            context: dict | None = None, reference_metrics: dict | None = None) -> dict:
     directories = run_directories(cfg, exp_id)
     log_path = project_path(cfg["paths"]["experiment_log"])
     check_experiment_id(exp_id, log_path, list(directories.values()))
@@ -90,47 +103,61 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
             "artifacts": {name: path.relative_to(ROOT).as_posix() for name, path in directories.items()},
             "timings_seconds": {}}
     write_json(manifest_path, info)
+    if context:
+        info["research"] = context
     (directories["models"] / "config.yaml").write_text(
         yaml.safe_dump(cfg, allow_unicode=True, sort_keys=False), encoding="utf-8")
     try:
         step = time.perf_counter()
-        log(f"{exp_id}: reading data, {fold.describe()}")
-        raw = load_training_data(project_path(cfg["paths"]["train"]))
-        if not smoke and len(raw) != 7_900_350:
-            raise ValueError("Full baseline expects the complete supplied training dataset.")
-        if smoke:
-            stocks = sorted(raw["ts_code"].cat.categories.astype(str))[:cfg["baseline"]["smoke_stocks"]]
-            raw = raw[raw["ts_code"].isin(stocks)]
-        raw = raw[raw["trade_date"].between(fold.train_start, fold.valid_end)]
-        raw, cleaning = clean_history(raw)
-        truth = raw.loc[raw["trade_date"].between(fold.valid_start, fold.valid_end),
-                        KEYS + ["y_ret_1d", "flag_limit_up"]].copy()
-        info["cleaning"] = cleaning
-        info["timings_seconds"]["read_clean"] = time.perf_counter() - step
-        log(f"cleaned {len(raw):,} rows; preserved missing-price calendar rows")
-
-        step = time.perf_counter()
-        features, columns = build_features(raw[KEYS + X_COLUMNS], cfg["features"], log)
-        features.to_parquet(directories["processed"] / "features.parquet", index=False)
+        log(f"{exp_id}: {fold.describe()}")
+        if prepared is None:
+            raw = load_training_data(project_path(cfg["paths"]["train"]))
+            if not smoke and len(raw) != 7_900_350:
+                raise ValueError("Full baseline expects the complete supplied training dataset.")
+            if smoke:
+                stocks = sorted(raw["ts_code"].cat.categories.astype(str))[:cfg["baseline"]["smoke_stocks"]]
+                raw = raw[raw["ts_code"].isin(stocks)]
+            raw = raw[raw["trade_date"].between(fold.train_start, fold.valid_end)]
+            raw, cleaning = clean_history(raw)
+            truth = raw.loc[raw["trade_date"].between(fold.valid_start, fold.valid_end),
+                            KEYS + ["y_ret_1d", "flag_limit_up"]].copy()
+            info["cleaning"] = cleaning
+            info["timings_seconds"]["read_clean"] = time.perf_counter() - step
+            log(f"cleaned {len(raw):,} rows; preserved missing-price calendar rows")
+            step = time.perf_counter()
+            features, columns = build_features(raw[KEYS + X_COLUMNS], cfg["features"], log)
+            features.to_parquet(directories["processed"] / "features.parquet", index=False)
+            dataset = attach_labels(raw, features)
+            del raw, features
+        else:
+            if prepared.fold_name != fold.name or not columns:
+                raise ValueError("Prepared history fold/feature selection disagrees with the run.")
+            truth = prepared.truth
+            dataset = prepared.dataset[KEYS + columns + ["y_ret_1d", "quote_valid"]]
+            info["cleaning"] = prepared.cleaning
+            info["feature_cache"] = prepared.cache
+            write_json(directories["processed"] / "feature_cache.json", prepared.cache)
+            info["timings_seconds"]["read_clean"] = 0.
+            log(f"using verified shared cache; {len(columns)} selected features")
         write_json(directories["models"] / "features.json", columns)
-        info["feature_version"] = cfg["features"]["version"]
+        info["feature_version"] = context["feature_version"] if context else cfg["features"]["version"]
         info["feature_columns"] = columns
         info["timings_seconds"]["features"] = time.perf_counter() - step
         log(f"saved {len(columns)} historical features")
 
         step = time.perf_counter()
-        dataset = attach_labels(raw, features)
         train, valid, split_info = split_train_valid(dataset, fold)
-        del dataset, features, raw
+        del dataset
         x_train, y_train, training_info = training_arrays(train, columns)
         del train
         gc.collect()
         info["split"] = split_info
         info["training_samples"] = training_info
-        if not smoke and fold.name == "fold2":
+        if not smoke and fold.name in {"fold1", "fold2"}:
+            expected_boundary = 4280 if fold.name == "fold1" else 4522
             if (len(valid) != 1_125_300 or valid["trade_date"].nunique() != 242
-                    or split_info["n_boundary_labels_dropped"] != 4522):
-                raise ValueError("Full fold2 coverage/boundary counts differ from audited data.")
+                    or split_info["n_boundary_labels_dropped"] != expected_boundary):
+                raise ValueError("Full fold coverage/boundary counts differ from audited data.")
         info["timings_seconds"]["split"] = time.perf_counter() - step
         log(f"training {len(y_train):,} labeled rows; validation {len(valid):,}; "
             f"boundary labels dropped {split_info['n_boundary_labels_dropped']}")
@@ -141,6 +168,9 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
         model = train_model(x_train, y_train, model_cfg["params"], rounds, log)
         model_path = directories["models"] / "model.txt"
         save_model(model, model_path)
+        pd.DataFrame({"feature": columns, "gain": model.feature_importance(importance_type="gain"),
+                      "split_count": model.feature_importance(importance_type="split")}).sort_values(
+            "gain", ascending=False).to_csv(directories["metrics"] / "feature_importance.csv", index=False)
         info["model"] = {"params": model_cfg["params"], "num_boost_round": rounds,
                          "actual_iterations": model.current_iteration()}
         del x_train, y_train
@@ -180,7 +210,15 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
         scored = load_validation_frame(prediction_path, label_path)
         metrics = evaluate_frame(scored)
         differences = compare_official(prediction_path, truth, metrics, cfg["baseline"]["score_tolerance"])
-        daily_metrics(scored).to_csv(directories["metrics"] / "daily_metrics.csv", index=False)
+        daily = daily_metrics(scored)
+        daily.to_csv(directories["metrics"] / "daily_metrics.csv", index=False)
+        monthly_metrics(daily).to_csv(directories["metrics"] / "monthly_metrics.csv", index=False)
+        portfolio_diagnostics(scored).to_csv(directories["metrics"] / "portfolio_daily.csv", index=False)
+        if reference_metrics is not None:
+            parity = {name: abs(metrics[name] - reference_metrics[name]) for name in OFFICIAL_METRICS}
+            if max(parity.values()) > cfg["research"]["parity_tolerance"]:
+                raise AssertionError(f"V1 reproduction differs from the frozen reference: {parity}")
+            info["reference_metric_differences"] = parity
         write_json(directories["metrics"] / "metrics.json", metrics)
         info["metrics"] = metrics
         info["official_score_max_difference"] = max(differences.values())
@@ -202,7 +240,7 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
             append_record(log_path, {
                 "exp_id": exp_id, "date": info["finished_at"], "owner": owner,
                 "git_commit": revision["commit"], "config_path": config_path.relative_to(ROOT).as_posix(),
-                "features": cfg["features"]["version"] + f" ({len(columns)})", "model": "LightGBM",
+                "features": info["feature_version"] + f" ({len(columns)})", "model": "LightGBM",
                 "params": json.dumps(info["model"], sort_keys=True),
                 "train_period": f"{fold.train_start}-{fold.train_end}",
                 "valid_period": f"{fold.valid_start}-{fold.valid_end}",
@@ -210,7 +248,8 @@ def run_one(cfg: dict, config_path: Path, fold, exp_id: str, owner: str,
                 "artifact_path": manifest_path.relative_to(ROOT).as_posix(),
                 "notes": f"full baseline; seconds={info['duration_seconds']:.1f}; "
                          f"fallback={info['prediction']['fallback_rows']}; dirty={revision['dirty']}; "
-                         "fixed rounds, validation labels used only for scoring"})
+                         "fixed rounds, validation labels used only for scoring" +
+                         ("; research=" + json.dumps(context, sort_keys=True) if context else "")})
         log(f"PASS final_score={metrics['final_score']:.8f}; official difference={max(differences.values()):.2e}; "
             f"seconds={info['duration_seconds']:.1f}")
         return info

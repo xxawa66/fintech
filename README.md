@@ -74,7 +74,7 @@ python -m venv .venv
 在仓库根目录运行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E001_baseline_repeat --owner A
+.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E002_baseline_repeat --owner A
 ```
 
 入口会先执行独立保存的 256 只股票、10 轮训练检查，再执行全部股票、200 轮训练。流程为：读取训练 CSV → 清洗 → 40 个历史特征 → 2018–2023 训练 / 2024 验证 → LightGBM → 完整验证预测 → 官方评分核对 → 实验记录。轮数与参数固定，2024 标签只用于事后评分。
@@ -88,6 +88,12 @@ python -m venv .venv
 ```
 
 `notebooks/01_eda.ipynb` 已由成员 B 执行；其他 Notebook、模型融合、回测与正式提交模块仍为预留位置。
+
+## Day 5–8 特征研究
+
+原 V1 已由成员 B 以 `E001_baseline_repeat` 独立复现，8 项指标逐位相同。
+新增三组共 18 特征（完整池 58 列），固定原模型参数，先用 2023 八组筛选和删组消融，再锁定一个候选做 2024 确认。
+实现检查共 40 项通过；此处更新时真实研究实验尚待执行。命令、公式、选择规则和产物见 [特征研究说明](docs/feature_research_run.md)。
 
 ## 评分与交付
 

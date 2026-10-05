@@ -10,6 +10,7 @@ from src.features.cross_section_features import percentile_rank
 from src.features.price_features import price_features
 from src.features.technical_features import technical_features
 from src.features.volume_features import volume_features
+from src.features.research_features import research_names, stock_research_features
 
 CANDLES = ["intraday_ret", "high_low_range", "high_close", "close_low", "open_gap", "close_position"]
 STATES = ["flag_limit_up", "flag_limit_down", "zero_volume"]
@@ -28,13 +29,16 @@ def feature_names(settings: dict) -> list[str]:
 
 
 def build_features(x: pd.DataFrame, settings: dict,
-                   progress: Callable[[str], None] | None = None) -> tuple[pd.DataFrame, list[str]]:
+                   progress: Callable[[str], None] | None = None, *,
+                   research: dict | None = None) -> tuple[pd.DataFrame, list[str]]:
     if set(x.columns) != set(KEYS + X_COLUMNS):
         raise ValueError("Feature input must contain exactly keys and raw X, with no labels.")
     if x.duplicated(KEYS).any():
         raise ValueError("Feature input keys are not unique.")
     frame = x.sort_values(KEYS, kind="stable").reset_index(drop=True)
     names = feature_names(settings)
+    if research is not None:
+        names += research_names(research)
     positions = {name: i for i, name in enumerate(names)}
     matrix = np.full((len(frame), len(names)), np.nan, dtype="float32")
     groups = frame.groupby("ts_code", sort=False, observed=True)
@@ -43,6 +47,8 @@ def build_features(x: pd.DataFrame, settings: dict,
         values = price_features(stock, settings)
         values.update(volume_features(stock, settings))
         values.update(technical_features(stock, settings, values["ret_1"]))
+        if research is not None:
+            values.update(stock_research_features(stock, values, research))
         rows = stock.index.to_numpy()
         for name, series in values.items():
             matrix[rows, positions[name]] = series.to_numpy(dtype="float32")
@@ -52,7 +58,10 @@ def build_features(x: pd.DataFrame, settings: dict,
         matrix[:, positions[name]] = frame[name].to_numpy(dtype="float32")
     matrix[:, positions["zero_volume"]] = frame["vol"].eq(0).to_numpy(dtype="float32")
     eligible = valid_quote(frame)
-    for source in settings["rank_sources"]:
+    rank_sources = list(settings["rank_sources"])
+    if research is not None:
+        rank_sources += [name[5:] for name in research_names(research) if name.startswith("rank_")]
+    for source in rank_sources:
         rank = percentile_rank(pd.Series(matrix[:, positions[source]], index=frame.index),
                                frame["trade_date"], eligible)
         matrix[:, positions[f"rank_{source}"]] = rank.to_numpy(dtype="float32")

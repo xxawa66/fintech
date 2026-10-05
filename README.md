@@ -101,4 +101,4 @@ python -m venv .venv
 
 成员 A 主负责特征、模型、融合和报告模型部分；成员 B 主负责数据审计、时间验证、评估、提交检查和报告数据/应用部分。双方共同审核未来信息泄漏、官方评分口径及最终提交。
 
-开始前查看 `git status`，同步远端并读取项目依据；完成阶段后更新状态文档与实验记录。具体流程见 [docs/workflow.md](docs/workflow.md)。
+按用户最新约定，后续代码、配置、文档与实验记录直接在 `main` 提交并推送到 `origin/main`。开始前查看 `git status`，同步远端并读取项目依据；完成阶段后更新状态文档与实验记录。具体流程见 [docs/workflow.md](docs/workflow.md)。

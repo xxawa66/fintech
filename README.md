@@ -4,7 +4,7 @@
 
 赛题：基于原始量价数据预测股票未来一天收益率。每条预测对应一组 `ts_code + trade_date`。
 
-当前已完成成员 B 的数据审计、评分适配与时间切分，以及成员 A 的基础特征和 LightGBM 流程实现。15 项检查通过；首次全量训练正在准备，尚无正式模型实验结果。运行方式见 [基线说明](docs/baseline_run.md)，实际进度见 [项目状态](docs/project_status.md)。
+当前已完成成员 B 的数据审计、评分适配与时间切分，以及成员 A 的基础特征和 LightGBM 全量流程。15 项检查通过；实验 `E000_baseline_retry1` 已训练 5,659,954 条样本、预测完整 2024 验证集，官方综合分为 **0.197517**。运行方式见 [基线说明](docs/baseline_run.md)，实际结果见 [基线结果](docs/baseline_result.md)，进度见 [项目状态](docs/project_status.md)。
 
 ## 项目依据
 
@@ -74,12 +74,12 @@ python -m venv .venv
 在仓库根目录运行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E000_baseline --owner A
+.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E001_baseline_repeat --owner A
 ```
 
 入口会先执行独立保存的 256 只股票、10 轮训练检查，再执行全部股票、200 轮训练。流程为：读取训练 CSV → 清洗 → 40 个历史特征 → 2018–2023 训练 / 2024 验证 → LightGBM → 完整验证预测 → 官方评分核对 → 实验记录。轮数与参数固定，2024 标签只用于事后评分。
 
-每次运行使用新的 `--exp-id`；已有目录或记录会被拒绝，避免覆盖结果。成功的全量实验写入 `experiments/experiment_log.csv`；小规模检查不写入该表。模型、预测、配置快照、逐日指标、运行日志及来源信息保存在各自的实验目录，详见 [基线说明](docs/baseline_run.md)。
+每次运行使用新的 `--exp-id`；已有目录或记录会被拒绝，避免覆盖结果。上述示例为重复运行，已有成功实验编号为 `E000_baseline_retry1`。成功的全量实验写入 `experiments/experiment_log.csv`；小规模检查不写入该表。模型、预测、配置快照、逐日指标、运行日志及来源信息保存在各自的实验目录，详见 [基线说明](docs/baseline_run.md)。
 
 开发检查：
 

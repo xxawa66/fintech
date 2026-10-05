@@ -1,6 +1,6 @@
 project:
   name: fintech
-  stage: baseline_implementation
+  stage: baseline_completed
   repository: https://github.com/xxawa66/fintech.git
 
 # Resolve all paths from the repository root.

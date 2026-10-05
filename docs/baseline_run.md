@@ -1,20 +1,20 @@
 # 基础 LightGBM：运行与复现
 
-目的：打通训练 CSV → 清洗 → 特征 → 时间切分 → LightGBM → 2024 验证预测 → 官方评分 → 实验记录。当前只采用固定基础方案；首次全量结果完成后将记录在项目状态与本文件中。
+目的：打通训练 CSV → 清洗 → 特征 → 时间切分 → LightGBM → 2024 验证预测 → 官方评分 → 实验记录。固定基础方案已完成全量运行，实验为 `E000_baseline_retry1`；结果与检查证据见 [baseline_result.md](baseline_result.md)。
 
 ## 运行命令
 
 在仓库根目录、已配置的 Python 环境中运行：
 
 ```powershell
-.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E000_baseline --owner A
+.\.venv\Scripts\python.exe -m src.models.baseline --fold fold2 --exp-id E001_baseline_repeat --owner A
 ```
 
-默认配置为 `configs/project.yaml`。原始 CSV 按 `data/raw/README.md` 放置；入口检查文件是否与 `data/manifest.json` 一致。入口先跑 `E000_baseline__smoke`，固定取代码排序最前的 256 只股票、完整历史、10 轮训练；通过后跑正式全量实验。小规模数据仍有 2024 验证期，但其成绩仅用于运行检查。
+默认配置为 `configs/project.yaml`。原始 CSV 按 `data/raw/README.md` 放置；入口检查文件是否与 `data/manifest.json` 一致。入口先跑 `<exp_id>__smoke`，固定取代码排序最前的 256 只股票、完整历史、10 轮训练；通过后跑正式全量实验。小规模数据仍有 2024 验证期，但其成绩仅用于运行检查。
 
 重跑使用新编号，例如 `E001_baseline_repeat`。已有实验目录或 CSV 记录会拒绝覆盖。`--smoke-only` 可用于单独检查，但同一编号的后续全量执行也会被已有检查目录阻止，应使用新编号。
 
-本机首次检查 `E000_baseline__smoke` 遇到 LightGBM 原生文件接口的 Windows 中文路径问题，失败记录保留；现通过 Python 读写标准模型文本，保存和加载均支持中文路径。实际重试编号为 `E000_baseline_retry1`，运行时应相应替换示例中的 `--exp-id`。
+本机首次检查 `E000_baseline__smoke` 遇到 LightGBM 原生文件接口的 Windows 中文路径问题，失败记录保留；现通过 Python 读写标准模型文本，保存和加载均支持中文路径。成功重试编号为 `E000_baseline_retry1`；示例使用新编号，避免覆盖已有结果。
 
 ## 数据与清洗规则
 

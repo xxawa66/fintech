@@ -33,6 +33,10 @@ evaluation:
     rank_ic: 0.4
     annual_excess: 0.3
     stability: 0.3
+  # 留仓带换手层（docs/turnover_optimization.md）：2026-10-06 团队锁定 keep_q=0.1。
+  # model_analysis 模板默认叠加该层；0 表示分析时不叠加。
+  band:
+    keep_q: 0.1
 
 # 时间验证切分：闭区间，日期为 YYYYMMDD 整数。
 # 规则：训练标签不得跨验证边界——训练窗口最后一个交易日（其 y 使用验证期首个交易日

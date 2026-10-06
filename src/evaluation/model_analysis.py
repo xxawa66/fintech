@@ -164,7 +164,8 @@ def ic_analysis(scored: pd.DataFrame, metrics: dict) -> tuple[dict, pd.DataFrame
     quarterly = frame.groupby("quarter").apply(_grp, include_groups=False).apply(
         pd.Series).reset_index()
 
-    monthly_means = monthly["ic_mean"]
+    # Keep YYYYMM as the index so removing the strongest months matches dates.
+    monthly_means = monthly.set_index("month")["ic_mean"]
     top3_months = monthly_means.nlargest(3)
     top3_mask = frame["month"].isin(top3_months.index)
     total_mean = float(daily["ic"].mean())
@@ -478,7 +479,7 @@ def _render_report(s: dict) -> str:
         at = ref["attribution_raw"]
         lines += [
             "",
-            "## ⑤ 参照归因（相对参照实验，原始预测层）",
+            "## ⑤ 参照归因（相对参照实验，当前预测层）",
             "",
             f"参照 final_score = {_fmt(rom['final_score'])}。",
             "",

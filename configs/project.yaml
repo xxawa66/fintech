@@ -1,6 +1,9 @@
 project:
   name: fintech
-  stage: feature_research_complete_retain_v1
+  stage: model_research_complete_f025
+  current_model_study: S002
+  current_model_report: docs/model_research_S002.md
+  current_model_selection: docs/model_research_S002_selection.json
   repository: https://github.com/xxawa66/fintech.git
 
 # Resolve all paths from the repository root.

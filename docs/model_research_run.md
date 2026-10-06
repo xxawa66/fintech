@@ -2,6 +2,8 @@
 
 执行协议见 [计划书](model_research_plan.md)。使用 `src.models.model_research`，不改写 S001 的特征研究入口。
 
+S002 已完成，结果见 [S002 报告](model_research_S002.md)。下面记录本轮命令；已有研究不能覆盖，复跑使用新研究编号。候选在 `688bece` 先提交、推送后确认；确认结束后的月份索引修正只影响辅助分析，冻结的模型、选择和官方指标保持不变。
+
 ## 两阶段命令
 
 仓库 `main` 干净、原始数据和配置引用的本地基线产物齐备时，先运行 2023 筛选：
@@ -37,6 +39,7 @@
 - `outputs/metrics/research_studies/S002/`：对照表、缓存清单、无标签模型相关性、锁定文件与确认记录。
 - 研究目录下 `screen_analysis_raw/band`、`confirm_analysis_raw/band`：候选相对同层 V1 的 IC / Top / 换手分析及加权归因。分析已编码 band 文件时关闭默认再次 band。
 - `docs/model_research_S002.md`：真实研究摘要；`docs/model_research_S002_selection.json`：跨成员可读的锁定方案与产物 SHA。
+- `docs/model_research_S002_artifacts.json`：完整研究的最终审计、10 个新模型及 36 个原始 / band 预测的路径、SHA 和指标；对应本地 `audit_complete.json`、`post_run_diagnostics.json`。
 
 本地基线引用目前为 `S001_screen_base` 和 `S001_confirm_base`。Git 克隆不会带入模型 / 预测目录；新机器应交接这些可信产物与校验清单，或以独立编号复现基线后更新引用，再开启新研究，不覆盖旧实验。
 

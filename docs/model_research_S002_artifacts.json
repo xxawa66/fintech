@@ -1,0 +1,1484 @@
+{
+  "audit": {
+    "study_id": "S002",
+    "completed_at": "2026-10-07T00:17:37+08:00",
+    "status": "passed",
+    "screen_training_count": 8,
+    "confirm_training_count": 2,
+    "new_record_count": 36,
+    "total_shared_records": 51,
+    "original_15_records_unchanged": true,
+    "record_columns": 20,
+    "unique_ids": true,
+    "predictions_per_file": 1125300,
+    "trading_days_per_file": 242,
+    "feature_count": 40,
+    "frozen_artifact_sha_verified": true,
+    "selection_sha256": "b0c45e64c80b8bdc0272e9fd7261ab65a25a1323d389e668b05ec9781eff1c4a",
+    "protocol_sha256": "686f4172abd0e48ed2b6b76824453cb6a7d99f86b8c6264540f05df7c5d40348",
+    "official_max_difference": 0.0,
+    "new_fits_model_reload_max_difference": 0.0,
+    "reference_model_prediction_max_difference": 9.999054535747565e-17,
+    "all_model_prediction_max_difference": 9.999054535747565e-17,
+    "raw_files": [
+      {
+        "path": "data/raw/训练集.csv",
+        "sha256": "e9d23e87f7e1f9439f28f7dd951d129ea49eaacda5ad650da8576a830a6deac9",
+        "size_bytes": 946832276
+      },
+      {
+        "path": "data/raw/测试集_X.csv",
+        "sha256": "dceffbf68bbab07a254bc6caa4d8a1e33de8de9c15489d936c5d15020dbfa90f",
+        "size_bytes": 168825396
+      }
+    ],
+    "official_attachments": {
+      "evaluate.py": "72dc59987e92ba8ae6b506e114dfe8591b5608c9beccd0769d5d1f778f9189c2",
+      "evaluate.R": "9d5e8403dccf29983bcd35eccea4533f5dba79417248d2d724fbb4b34bbf3ed1",
+      "docs/赛题五-更新.pdf": "d471d467d5c385d750be59bb58ff96d3c10ca36fefc38c08bcb7e830a844c29f"
+    },
+    "recommended": "F025",
+    "member_b_independent_review": "pending",
+    "post_run_analysis_source_change": [
+      "src/evaluation/model_analysis.py"
+    ],
+    "post_run_diagnostics": {
+      "completed_at": "2026-10-07T00:14:48+08:00",
+      "analysis_code_sha256": "afb60c0e418d88004c86654ba381d21e035cc92ab99cbe7827416ad9f2944a31",
+      "scope": "Month index and current-layer report heading only; frozen model, selection and prediction artifacts unchanged; no additional training.",
+      "checks": {
+        "screen_raw": {
+          "official_max_difference": 0.0,
+          "best_month": "202302",
+          "worst_month": "202310",
+          "retained_mean_ratio": 0.762133198137314,
+          "positive_months": 12,
+          "top3_share": 0.4267530062280862,
+          "summary_sha256": "390f7a9c2e6807c7f54ff116b4976b933a3c0de318267e1100bf1df500aa1727"
+        },
+        "screen_band": {
+          "official_max_difference": 0.0,
+          "best_month": "202302",
+          "worst_month": "202309",
+          "retained_mean_ratio": 0.7810621608777951,
+          "positive_months": 12,
+          "top3_share": 0.4130568508822996,
+          "summary_sha256": "da579d77020a9763b8d64c472d31eb7b35eefb3eed2f9d998ac9ff1e2f096e6b"
+        },
+        "confirm_raw": {
+          "official_max_difference": 0.0,
+          "best_month": "202402",
+          "worst_month": "202409",
+          "retained_mean_ratio": 0.825508924115293,
+          "positive_months": 12,
+          "top3_share": 0.40195977962571544,
+          "summary_sha256": "30179176c26751ff842e4534eb95e45dfdf981f6c42e596f7e88245e9b11eda5"
+        },
+        "confirm_band": {
+          "official_max_difference": 0.0,
+          "best_month": "202402",
+          "worst_month": "202409",
+          "retained_mean_ratio": 0.8189798387421939,
+          "positive_months": 12,
+          "top3_share": 0.40685058476804237,
+          "summary_sha256": "0e3f500ba8a59bcfad4d99a961013cd1ee5caeb4cef2a3e5bd788731ca58d613"
+        }
+      }
+    }
+  },
+  "full_fits": [
+    {
+      "exp_id": "S002_screen_L1",
+      "model_path": "outputs/models/S002_screen_L1/model.txt",
+      "sha256": "a7184e9736a74c4696705c43056304d9d02675d6ce4b071a99e67b66542f54ee",
+      "size_bytes": 349957,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 42.108022600004915,
+      "peak_sampled_rss_bytes": 3521179648,
+      "boosting_rounds": 200
+    },
+    {
+      "exp_id": "S002_screen_L2",
+      "model_path": "outputs/models/S002_screen_L2/model.txt",
+      "sha256": "5db0c4f8ca22f5c32db33435bc291df5454d175f40586fbe3959745a6ee10565",
+      "size_bytes": 1317321,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 52.51429530000314,
+      "peak_sampled_rss_bytes": 3491180544,
+      "boosting_rounds": 200
+    },
+    {
+      "exp_id": "S002_screen_L3",
+      "model_path": "outputs/models/S002_screen_L3/model.txt",
+      "sha256": "c9146e1c35718e225b42cea39142d57896e71e8c1677d57d8f59854f61cd53c1",
+      "size_bytes": 675599,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 45.44175220001489,
+      "peak_sampled_rss_bytes": 3487715328,
+      "boosting_rounds": 200
+    },
+    {
+      "exp_id": "S002_screen_L4",
+      "model_path": "outputs/models/S002_screen_L4/model.txt",
+      "sha256": "59decbc70673e5a2c120c8012affa4fe6f2a766a42478bb4880d34622efbca95",
+      "size_bytes": 1345235,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 70.3821975000028,
+      "peak_sampled_rss_bytes": 3487559680,
+      "boosting_rounds": 400
+    },
+    {
+      "exp_id": "S002_screen_L5",
+      "model_path": "outputs/models/S002_screen_L5/model.txt",
+      "sha256": "f8f9c0f95ba795ea377bd0d6bf49b2653e59805a635a19869377a78085aa14e5",
+      "size_bytes": 1333311,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 93.38131050000084,
+      "peak_sampled_rss_bytes": 3487059968,
+      "boosting_rounds": 400
+    },
+    {
+      "exp_id": "S002_screen_R1",
+      "model_path": "outputs/models/S002_screen_R1/model.joblib",
+      "sha256": "26c6e077e92a37af09233f2906a2db6d2f625495eebf298793629a9dff83e9da",
+      "size_bytes": 3780,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 83.41170100000454,
+      "peak_sampled_rss_bytes": 4581076992,
+      "ridge_iterations": [
+        60
+      ]
+    },
+    {
+      "exp_id": "S002_screen_R2",
+      "model_path": "outputs/models/S002_screen_R2/model.joblib",
+      "sha256": "274fb46604ec8e47b7bcd105f3b3071a68c88b74b3f6b0b61697892350bed0c7",
+      "size_bytes": 3780,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 79.9374203000043,
+      "peak_sampled_rss_bytes": 4585181184,
+      "ridge_iterations": [
+        56
+      ]
+    },
+    {
+      "exp_id": "S002_screen_R3",
+      "model_path": "outputs/models/S002_screen_R3/model.joblib",
+      "sha256": "c3bdb026874e2939a46f6d8bb639a5aa7c72aec089bf17dce9ea9641af255d89",
+      "size_bytes": 3780,
+      "supervised_rows": 4597785,
+      "boundary_labels_masked": 4280,
+      "duration_seconds": 75.39199970001937,
+      "peak_sampled_rss_bytes": 4585181184,
+      "ridge_iterations": [
+        16
+      ]
+    },
+    {
+      "exp_id": "S002_confirm_L1",
+      "model_path": "outputs/models/S002_confirm_L1/model.txt",
+      "sha256": "b7afd3c7e5c24ec6ab15ad4878771aa5b7f2ef341388d8cde53a2b7305986c91",
+      "size_bytes": 350184,
+      "supervised_rows": 5659954,
+      "boundary_labels_masked": 4522,
+      "duration_seconds": 47.5898616000195,
+      "peak_sampled_rss_bytes": 4100239360,
+      "boosting_rounds": 200
+    },
+    {
+      "exp_id": "S002_confirm_R2",
+      "model_path": "outputs/models/S002_confirm_R2/model.joblib",
+      "sha256": "d4d7e564fe5f53d0fcfce3b2d73ea4a181f299b89ac2849fcd22394e6a3fbf60",
+      "size_bytes": 3780,
+      "supervised_rows": 5659954,
+      "boundary_labels_masked": 4522,
+      "duration_seconds": 82.43573269998888,
+      "peak_sampled_rss_bytes": 5378224128,
+      "ridge_iterations": [
+        54
+      ]
+    }
+  ],
+  "predictions": [
+    {
+      "exp_id": "S002_confirm_F025",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_F025/run.json",
+          "sha256": "0bfbc95a10b365b94c92a08b0fb4d82286ff3a264eab3eb3a7792605620d83e1",
+          "size_bytes": 14180
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_F025/valid_2024.csv",
+          "sha256": "ea45dda353591a6ea9c24ec57f4cc1aaee26c10dcb5af2b3da84b0d13dac7bcf",
+          "size_bytes": 44056905
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_F025/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.07878067518164561,
+        "ic_std": 0.15286441760340774,
+        "icir": 0.515363067591273,
+        "ic_positive_ratio": 0.71900826446281,
+        "annual_excess": 0.23751420525793315,
+        "top1_annual_ret": 0.22346955425763618,
+        "mean_turnover": 0.8084604590436795,
+        "final_score": 0.16022839393693433
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_confirm_F025_band",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_F025_band/run.json",
+          "sha256": "a66efe3f0f7232068cf4c7a7b982158b89ba06543c402e819fe436aea982e211",
+          "size_bytes": 17935
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_F025_band/valid_2024.csv",
+          "sha256": "5e3945f4875402a1c4f20cb96b9781d4ef6440fe53d971af12a34259c29cf8e5",
+          "size_bytes": 45139156
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_F025_band/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.07605713876641318,
+        "ic_std": 0.1407651485039622,
+        "icir": 0.5403122830810095,
+        "ic_positive_ratio": 0.7479338842975206,
+        "annual_excess": 0.1744881456781107,
+        "top1_annual_ret": 0.1604434946778136,
+        "mean_turnover": 0.09177896494350864,
+        "final_score": 0.35523560972694584
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_confirm_L0",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_L0/run.json",
+          "sha256": "568f96f0b8504ea2d350c380b770d5841882d867b98db956686ef654417c6ce7",
+          "size_bytes": 9403
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_L0/valid_2024.csv",
+          "sha256": "3844ef1d8292516b2187b2d4e8eeacbdff29c8d8b90844f2162d4130213c2970",
+          "size_bytes": 43946991
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_L0/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0907659471249103,
+        "ic_std": 0.13983621205461153,
+        "icir": 0.6490875703173555,
+        "ic_positive_ratio": 0.7727272727272727,
+        "annual_excess": 0.4013469789738205,
+        "top1_annual_ret": 0.38730232797352343,
+        "mean_turnover": 0.8639777959263704,
+        "final_score": 0.19751713376419916
+      },
+      "training_samples": {
+        "candidate_rows": 6775050,
+        "used_rows": 5659954,
+        "dropped_rows": 1115096
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 9.999054535747565e-17
+    },
+    {
+      "exp_id": "S002_confirm_L0_band",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_L0_band/run.json",
+          "sha256": "9edd9c48b4dc4ed2e69f937099a43f23539368f716b127936839dd81493fafe6",
+          "size_bytes": 13085
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_L0_band/valid_2024.csv",
+          "sha256": "7a6c35028e217011c78120b11400acd266e6e0caf92ae7a603cb4cbaf93e758e",
+          "size_bytes": 45146859
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_L0_band/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.08350760067135207,
+        "ic_std": 0.13176773387151838,
+        "icir": 0.6337484770951369,
+        "ic_positive_ratio": 0.7727272727272727,
+        "annual_excess": 0.15471677543990947,
+        "top1_annual_ret": 0.14067212443961252,
+        "mean_turnover": 0.10213352903880528,
+        "final_score": 0.3491780141888721
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_confirm_L1",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_L1/run.json",
+          "sha256": "fda0e7b746b5669af91d3ae98aaf8b50f239203056d7a6aa637477085557a5d1",
+          "size_bytes": 11149
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_L1/valid_2024.csv",
+          "sha256": "637b53fc552b8ba1206a719e623f66f1363a2922134278c1cd05999cd5bc549a",
+          "size_bytes": 46908227
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_L1/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.08760314765695638,
+        "ic_std": 0.14390545220626424,
+        "icir": 0.6087548895047563,
+        "ic_positive_ratio": 0.7644628099173554,
+        "annual_excess": 0.3352960850613399,
+        "top1_annual_ret": 0.3212514340610429,
+        "mean_turnover": 0.8626606186888031,
+        "final_score": 0.1768318989745436
+      },
+      "training_samples": {
+        "candidate_rows": 6775050,
+        "used_rows": 5659954,
+        "dropped_rows": 1115096
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_confirm_L1_band",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_L1_band/run.json",
+          "sha256": "78edee98642b9f71fe24e34d649f58d2e46842c2ff8df28413a2bed14c9a1d84",
+          "size_bytes": 8557
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_L1_band/valid_2024.csv",
+          "sha256": "c2cd9a0a4e66755bc420a4250ce8229669819465dd32f6f2dbe8e2187b78466e",
+          "size_bytes": 45145914
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_L1_band/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.08117899188631372,
+        "ic_std": 0.13422122223530447,
+        "icir": 0.6048148760260734,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.1550584202414558,
+        "top1_annual_ret": 0.14101376924115858,
+        "mean_turnover": 0.09527629108149097,
+        "final_score": 0.35040623550251493
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_confirm_R2",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_R2/run.json",
+          "sha256": "752703f3e53d1d7befd955826f0e4ece8cc53c599d4713a7ece61cb5ec11e6d2",
+          "size_bytes": 10243
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_R2/valid_2024.csv",
+          "sha256": "1ae78ba38934349dc49e9cf6a5577f4b6be5f6e6d1cb2886803076a672dd74af",
+          "size_bytes": 46876210
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_R2/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.07211973339052763,
+        "ic_std": 0.14999666777530946,
+        "icir": 0.4808089036921863,
+        "ic_positive_ratio": 0.71900826446281,
+        "annual_excess": 0.11953718738738411,
+        "top1_annual_ret": 0.10549253638708699,
+        "mean_turnover": 0.7830849851379671,
+        "final_score": 0.12978355403103614
+      },
+      "training_samples": {
+        "candidate_rows": 6775050,
+        "used_rows": 5659954,
+        "dropped_rows": 1115096
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_confirm_R2_band",
+      "git_commit": "688bece69df7b62a86d5fc2a26aef4116f125912",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_confirm_R2_band/run.json",
+          "sha256": "ff07bf4e0dfd1deffbfc25b9aa1a0eed620143011441018216809e6d3224706a",
+          "size_bytes": 7867
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_confirm_R2_band/valid_2024.csv",
+          "sha256": "c60db1ebf879694c9e5a5fc78862db7eb6056495525a0e7a2a1f452a8323abc5",
+          "size_bytes": 45141633
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_confirm_R2_band/validation_labels.csv",
+          "sha256": "3a0440c1ec9c518ad31427df4a9b7f793c807d59a3f96feb091da074e0c77703",
+          "size_bytes": 45483892
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0697960713422006,
+        "ic_std": 0.13765121610971995,
+        "icir": 0.5070501613771947,
+        "ic_positive_ratio": 0.7272727272727273,
+        "annual_excess": 0.15527601902866822,
+        "top1_annual_ret": 0.14123136802837105,
+        "mean_turnover": 0.10316221929997191,
+        "final_score": 0.34355256845548915
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F000",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F000/run.json",
+          "sha256": "b67318790eba4eccb34d7a167d5d278c2590bc5a4483b08e2b3e8eaa58a13115",
+          "size_bytes": 14161
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F000/valid_2023.csv",
+          "sha256": "5819b37c514312cbc1bff16de60efbad73320f7b10541596a0b843f10b56964d",
+          "size_bytes": 44043066
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F000/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0654929171320175,
+        "ic_std": 0.09556936380546294,
+        "icir": 0.685291965167124,
+        "ic_positive_ratio": 0.7644628099173554,
+        "annual_excess": 0.07563933631950151,
+        "top1_annual_ret": 0.09506257363961851,
+        "mean_turnover": 0.695173855757591,
+        "final_score": 0.14033681102138013
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F000_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F000_band/run.json",
+          "sha256": "c583ad318d614401acd0de2e4f63b63cad4d4025239d1e634a041828bcf99121",
+          "size_bytes": 17906
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F000_band/valid_2023.csv",
+          "sha256": "6dd574686004db27e1dad1a108e5c42d6abd19708fdefed9964d5e0fd1ce2f3b",
+          "size_bytes": 45152614
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F000_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06410313886231886,
+        "ic_std": 0.08996430327883691,
+        "icir": 0.712539713264232,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.12226530131442374,
+        "top1_annual_ret": 0.14168853863454076,
+        "mean_turnover": 0.0850402324710715,
+        "final_score": 0.3368087761979332
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F025",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F025/run.json",
+          "sha256": "1bd81ae6103396017895a98cb2d0a3ec9f0f9461f2d8758ac6647038bcd172f4",
+          "size_bytes": 14164
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F025/valid_2023.csv",
+          "sha256": "47d698423ed9abfaf743a74491a093150d2d06bfac72b4e0c99603607b986d23",
+          "size_bytes": 44058519
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F025/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0683446988420474,
+        "ic_std": 0.09492132723212009,
+        "icir": 0.7200141510339152,
+        "ic_positive_ratio": 0.78099173553719,
+        "annual_excess": 0.14789814678032875,
+        "top1_annual_ret": 0.1673213841004458,
+        "mean_turnover": 0.749882708323312,
+        "final_score": 0.14674251107392394
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F025_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F025_band/run.json",
+          "sha256": "fe1895198d867850196d83c27642eab2d2b5bc8ebbf89ea8eec0a048c74e50b9",
+          "size_bytes": 17907
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F025_band/valid_2023.csv",
+          "sha256": "20d0532bd5a864474a475b01c02d1c045e1cd2359679e7638ca0079f08de5591",
+          "size_bytes": 45145644
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F025_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06703974411325422,
+        "ic_std": 0.086852559053208,
+        "icir": 0.7718798944333239,
+        "ic_positive_ratio": 0.7851239669421488,
+        "annual_excess": 0.17427719199907582,
+        "top1_annual_ret": 0.19370042931919285,
+        "mean_turnover": 0.08716664323314627,
+        "final_score": 0.3529490622750806
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F050",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F050/run.json",
+          "sha256": "2fed62edeb95c7c9942720f796c45cd599537a5d170ddb2425d6bf4374d891de",
+          "size_bytes": 14163
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F050/valid_2023.csv",
+          "sha256": "9bbdd6ad9f3b8f8fc4e1bee261f528bc7e412ab4a75123e237445c53fef4c4ae",
+          "size_bytes": 44030949
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F050/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06829818813809216,
+        "ic_std": 0.09228187950526344,
+        "icir": 0.7401039998778597,
+        "ic_positive_ratio": 0.78099173553719,
+        "annual_excess": 0.18427332002279972,
+        "top1_annual_ret": 0.20369655734291667,
+        "mean_turnover": 0.8162105349986765,
+        "final_score": 0.13773811076247383
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F050_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F050_band/run.json",
+          "sha256": "28abc14feb8fc5a87f6dc7a9ef80ec18e9e24846fb6d67b7ebbb15d5f53ebb8b",
+          "size_bytes": 17910
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F050_band/valid_2023.csv",
+          "sha256": "c47ff8cc466bb60b23dad380a88955ebf4929e94dcafe75514a3cdca970a2017",
+          "size_bytes": 45146843
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F050_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06640112394863819,
+        "ic_std": 0.08328622042816904,
+        "icir": 0.7972642245893058,
+        "ic_positive_ratio": 0.7768595041322314,
+        "annual_excess": 0.1769022994046632,
+        "top1_annual_ret": 0.19632553672478023,
+        "mean_turnover": 0.09359094824739396,
+        "final_score": 0.35155385492663604
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F075",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F075/run.json",
+          "sha256": "83c5c9c477b4d31d075736b292f471d5f7edc935053c2266b4166b771692a558",
+          "size_bytes": 14167
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F075/valid_2023.csv",
+          "sha256": "1c4a481958b32d79d64fcb6e713f788da0f19d4c833c8396eccb8a2a5cf55bc5",
+          "size_bytes": 44042450
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F075/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06500934853030942,
+        "ic_std": 0.089424522616652,
+        "icir": 0.7269745102134192,
+        "ic_positive_ratio": 0.7727272727272727,
+        "annual_excess": 0.18990711320034803,
+        "top1_annual_ret": 0.20933035052046509,
+        "mean_turnover": 0.8596868089136581,
+        "final_score": 0.12506983069813074
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F075_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F075_band/run.json",
+          "sha256": "377be390941e1257a576119903d2bda46efee35829d364f82d62a4eac650cfc0",
+          "size_bytes": 17913
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F075_band/valid_2023.csv",
+          "sha256": "06e8ceed9fd790f7c3bd81be441552d71540c520b15c8569b485acf22a59a6ca",
+          "size_bytes": 45155604
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F075_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0631880406281272,
+        "ic_std": 0.07961096881144303,
+        "icir": 0.7937102332944447,
+        "ic_positive_ratio": 0.7727272727272727,
+        "annual_excess": 0.18322292207310245,
+        "top1_annual_ret": 0.2026461593932195,
+        "mean_turnover": 0.09792065817202242,
+        "final_score": 0.35086589542157487
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F100",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F100/run.json",
+          "sha256": "c1554069f7cb8085854f2f219615137d4a44135b17807fd985aab207f16c4342",
+          "size_bytes": 14164
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F100/valid_2023.csv",
+          "sha256": "9f1d1b50e60477681163866c34dc11c95cbbd80521591a3c7be7cf520527f8a3",
+          "size_bytes": 44045664
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F100/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05976805396494128,
+        "ic_std": 0.08649055110859685,
+        "icir": 0.6910356472338463,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.19805824693451374,
+        "top1_annual_ret": 0.2174814842546307,
+        "mean_turnover": 0.8845332926458858,
+        "final_score": 0.11796470787256491
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_F100_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_F100_band/run.json",
+          "sha256": "3edf684271b1ce0dc1eb4869f4faf7860349cb0a63ac036e16697fa574de8330",
+          "size_bytes": 17911
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_F100_band/valid_2023.csv",
+          "sha256": "24f07ded903f62e794c63f15acd2a31ab6c05266b23853129cbbda69d2d619ca",
+          "size_bytes": 45173775
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_F100_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05640951932511919,
+        "ic_std": 0.0738530088610533,
+        "icir": 0.7638080045086286,
+        "ic_positive_ratio": 0.7851239669421488,
+        "annual_excess": 0.17166592346005113,
+        "top1_annual_ret": 0.19108916078016822,
+        "mean_turnover": 0.10259317640104813,
+        "final_score": 0.3432856318477486
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L0",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L0/run.json",
+          "sha256": "5b8d76d89c6bea86d6a510bd4ee9bce1df63872466c088199a0e0c4517bda4dd",
+          "size_bytes": 9384
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L0/valid_2023.csv",
+          "sha256": "f4bdf71477ddd37b775581a587b906aea17896303bfb031105b45f46b43caef4",
+          "size_bytes": 43651611
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L0/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06068810896078165,
+        "ic_std": 0.08418176386286222,
+        "icir": 0.7209175262666946,
+        "ic_positive_ratio": 0.756198347107438,
+        "annual_excess": 0.2065716730965426,
+        "top1_annual_ret": 0.2259949104166596,
+        "mean_turnover": 0.8852827825448881,
+        "final_score": 0.120661910749809
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 9.999054535747565e-17
+    },
+    {
+      "exp_id": "S002_screen_L0_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L0_band/run.json",
+          "sha256": "16dd4e68e5842402658f719b7c49ffc2984418e5523ba567653e05f4faae82ef",
+          "size_bytes": 13053
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L0_band/valid_2023.csv",
+          "sha256": "a777c9a322071623c5d8c496c91c0fab3e42830686efc50649e84f95730e7116",
+          "size_bytes": 45169525
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L0_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.056202035403782546,
+        "ic_std": 0.07197253329311296,
+        "icir": 0.7808817174031655,
+        "ic_positive_ratio": 0.7892561983471075,
+        "annual_excess": 0.14240531209633894,
+        "top1_annual_ret": 0.16182854941645602,
+        "mean_turnover": 0.11351309197528235,
+        "final_score": 0.33114848019783
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L1",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L1/run.json",
+          "sha256": "99a69aa8e128d79838e0188cce8a72b9e0e6e5a416d1cdfb7694a12c5921a4fe",
+          "size_bytes": 11146
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L1/valid_2023.csv",
+          "sha256": "f4db17ab77c73f4d01edec3e6088e3b3c2e2daa27902970f970bfd2c4459c9c9",
+          "size_bytes": 46639151
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L1/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05976805396494128,
+        "ic_std": 0.08649055110859685,
+        "icir": 0.6910356472338463,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.19805824693451374,
+        "top1_annual_ret": 0.2174814842546307,
+        "mean_turnover": 0.8845332926458858,
+        "final_score": 0.11796470787256491
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_L1_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L1_band/run.json",
+          "sha256": "53ec721b6527ea17fd4bdc1387e58e5e883239d6271e4e60300f520225a6d24f",
+          "size_bytes": 8550
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L1_band/valid_2023.csv",
+          "sha256": "e6cfee3a532e16d46b6858d28516b2046069d9f39143553cb6181751e0854cfb",
+          "size_bytes": 45173775
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L1_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05640951932511919,
+        "ic_std": 0.0738530088610533,
+        "icir": 0.7638080045086286,
+        "ic_positive_ratio": 0.7851239669421488,
+        "annual_excess": 0.17166592346005113,
+        "top1_annual_ret": 0.19108916078016822,
+        "mean_turnover": 0.10259317640104813,
+        "final_score": 0.3432856318477486
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L2",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L2/run.json",
+          "sha256": "330688bfe35c6b90a8918073e1224770b08da788b54aa508378d68c9cde84637",
+          "size_bytes": 11146
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L2/valid_2023.csv",
+          "sha256": "d09b0d02a95aedda1129c6bc2f3b7457610de535868a424d0334abdcf4f16c16",
+          "size_bytes": 46584467
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L2/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06092193127379447,
+        "ic_std": 0.08269408745284976,
+        "icir": 0.736714475609042,
+        "ic_positive_ratio": 0.7727272727272727,
+        "annual_excess": 0.22887202498184778,
+        "top1_annual_ret": 0.24829526230196478,
+        "mean_turnover": 0.886079266022438,
+        "final_score": 0.1272066001973407
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_L2_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L2_band/run.json",
+          "sha256": "44c0e5cdb09f3f831ccf84ffd8e88e6c141d185d86bc4b7a3e57fbc0b1d3c36c",
+          "size_bytes": 8547
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L2_band/valid_2023.csv",
+          "sha256": "62756c38752c60c04ad263ea50a765d14449d4f778ed1cdda6312370992f208a",
+          "size_bytes": 45171794
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L2_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05642577020152899,
+        "ic_std": 0.0707910818649358,
+        "icir": 0.7970745567808277,
+        "ic_positive_ratio": 0.8099173553719008,
+        "annual_excess": 0.14315624277650407,
+        "top1_annual_ret": 0.16257948009662107,
+        "mean_turnover": 0.12242308505877073,
+        "final_score": 0.32879025539593154
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L3",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L3/run.json",
+          "sha256": "1bf03bbc9a30a80eeb791a4875dcc43bdd380f8a939163210c1ff15b7a97af42",
+          "size_bytes": 11149
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L3/valid_2023.csv",
+          "sha256": "2458e990225911f3486a266f418d42b238cd683cd3e6fa8738d068317ac880b3",
+          "size_bytes": 46625425
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L3/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.062221371270738644,
+        "ic_std": 0.08610337190999034,
+        "icir": 0.7226357097348387,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.22171587669316614,
+        "top1_annual_ret": 0.24113911401328314,
+        "mean_turnover": 0.8873143046550309,
+        "final_score": 0.12520902011973603
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_L3_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L3_band/run.json",
+          "sha256": "9afb945b022a4f6cb225eaccbc4e9ce8f587b55f1366193aeb7f79108af1e15b",
+          "size_bytes": 8558
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L3_band/valid_2023.csv",
+          "sha256": "adb2d85883b9996ac008f75e369d7fe123eef88f781cea5b4d6d994b106a25f4",
+          "size_bytes": 45170754
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L3_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.058476243858987385,
+        "ic_std": 0.07357305812029526,
+        "icir": 0.7948051277598941,
+        "ic_positive_ratio": 0.7851239669421488,
+        "annual_excess": 0.14993071653330234,
+        "top1_annual_ret": 0.16935395385341945,
+        "mean_turnover": 0.11667309510355774,
+        "final_score": 0.3333677839725183
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L4",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L4/run.json",
+          "sha256": "e1327873f0488a5c7d094af6c1053f455bff1e024839adf7c1d64e8ef8a6e30a",
+          "size_bytes": 11145
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L4/valid_2023.csv",
+          "sha256": "1210f2862619cab0dcbfc0b467c1bf375d49426cba71573a451c924f2fcc6ae4",
+          "size_bytes": 46622619
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L4/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06083858849696504,
+        "ic_std": 0.08522275287105929,
+        "icir": 0.7138772974045192,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.21814008683868186,
+        "top1_annual_ret": 0.2375633241587989,
+        "mean_turnover": 0.8870743882629569,
+        "final_score": 0.1236551449715035
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_L4_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L4_band/run.json",
+          "sha256": "8759f53be2532671fc51516c4bdd7d431c15a9d309245a28fd81c3622b2548e4",
+          "size_bytes": 8550
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L4_band/valid_2023.csv",
+          "sha256": "c06219cc5d8ad739743af23ee64dd317dcd3c868a1083fb6757f9c7a80544cab",
+          "size_bytes": 45163361
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L4_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.05637115911158749,
+        "ic_std": 0.07275458252734232,
+        "icir": 0.7748124881398684,
+        "ic_positive_ratio": 0.7892561983471075,
+        "annual_excess": 0.14838148395158346,
+        "top1_annual_ret": 0.16780472127170046,
+        "mean_turnover": 0.11441548432750331,
+        "final_score": 0.332738263531859
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_L5",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L5/run.json",
+          "sha256": "6202a7f9eefb074ff062e7fd22720898802ea9295b384dcc1903c179b4fea26d",
+          "size_bytes": 11145
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L5/valid_2023.csv",
+          "sha256": "fb06f5bac527000e48b65ccb1417a25ea34ad20c512f923dd23cd73a9076fd21",
+          "size_bytes": 46584058
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L5/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06160714011445635,
+        "ic_std": 0.08160189722130191,
+        "icir": 0.7549719088929957,
+        "ic_positive_ratio": 0.7892561983471075,
+        "annual_excess": 0.20678840566491774,
+        "top1_annual_ret": 0.2262116429850348,
+        "mean_turnover": 0.8842602210792236,
+        "final_score": 0.12140131142149077
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_L5_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_L5_band/run.json",
+          "sha256": "29441944dec74f08c241e82e50dd010cb8b335af18ec399e11755a218aa305e6",
+          "size_bytes": 8550
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_L5_band/valid_2023.csv",
+          "sha256": "31aaa0045eee8bb86a7835029f85dbee145651a18dca11fefea18da43f4499c3",
+          "size_bytes": 45170856
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_L5_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.057370535106531964,
+        "ic_std": 0.06984335273314579,
+        "icir": 0.8214172553504213,
+        "ic_positive_ratio": 0.8016528925619835,
+        "annual_excess": 0.12939153904840783,
+        "top1_annual_ret": 0.14881477636852486,
+        "mean_turnover": 0.12269415890750393,
+        "final_score": 0.324957428084884
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_R1",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R1/run.json",
+          "sha256": "2e0554dd05c013b547db3203a36a5cf3de90b43fe32803ea66372a85448b26a4",
+          "size_bytes": 10238
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R1/valid_2023.csv",
+          "sha256": "6d68161a9c762b33e4d7f84942470261c07bae02d0ff3c97cc3150b791772e12",
+          "size_bytes": 46511694
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R1/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06445921796200212,
+        "ic_std": 0.09553410398393235,
+        "icir": 0.6747246823275106,
+        "ic_positive_ratio": 0.7603305785123967,
+        "annual_excess": 0.07656237158567569,
+        "top1_annual_ret": 0.09598560890579268,
+        "mean_turnover": 0.7001327880712145,
+        "final_score": 0.1387125622391392
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_R1_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R1_band/run.json",
+          "sha256": "6b524658ba5c460fdcb27d17c4617034ce90bf8c320deba347fc7d92228fbb7f",
+          "size_bytes": 7854
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R1_band/valid_2023.csv",
+          "sha256": "a33cfcc689392056f210e91beb9f701bc774ea4f2967bbcca765b1e295de5551",
+          "size_bytes": 45153060
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R1_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06287057408260703,
+        "ic_std": 0.08981894125929465,
+        "icir": 0.6999701087670197,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.11970204516730006,
+        "top1_annual_ret": 0.13912528248741715,
+        "mean_turnover": 0.08729168600727945,
+        "final_score": 0.334871337381049
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_R2",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R2/run.json",
+          "sha256": "3510ad78082cd68a83af2d517ad3ee6491b34855c10b45401204d8c30b58c150",
+          "size_bytes": 10239
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R2/valid_2023.csv",
+          "sha256": "21212341e066c2e0d2bf51e4457a97f55151400a753f1538a7d1c6ab13488cd3",
+          "size_bytes": 46517038
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R2/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0654929171320175,
+        "ic_std": 0.09556936380546294,
+        "icir": 0.685291965167124,
+        "ic_positive_ratio": 0.7644628099173554,
+        "annual_excess": 0.07563933631950151,
+        "top1_annual_ret": 0.09506257363961851,
+        "mean_turnover": 0.695173855757591,
+        "final_score": 0.14033681102138013
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_R2_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R2_band/run.json",
+          "sha256": "c9136a2d1d9746b05763485df460fc77cbaed04e3c789acad84065b19d099e95",
+          "size_bytes": 7852
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R2_band/valid_2023.csv",
+          "sha256": "74be35e1cfdfa37bc7da20f1c67195f2b5c7f87c17a14aa9d8c70e9cf50be3e2",
+          "size_bytes": 45152614
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R2_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.06410313886231886,
+        "ic_std": 0.08996430327883691,
+        "icir": 0.712539713264232,
+        "ic_positive_ratio": 0.7520661157024794,
+        "annual_excess": 0.12226530131442374,
+        "top1_annual_ret": 0.14168853863454076,
+        "mean_turnover": 0.0850402324710715,
+        "final_score": 0.3368087761979332
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    },
+    {
+      "exp_id": "S002_screen_R3",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R3/run.json",
+          "sha256": "931f7d22ab34835f5b3c40b61245c4e38c338226df53eedcbfd78ed2329a0b5b",
+          "size_bytes": 10246
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R3/valid_2023.csv",
+          "sha256": "d49a248568d64fb32ac7cf90be8abc73e0dc85b5041354a2cbafe8ce2f4c03a3",
+          "size_bytes": 46566878
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R3/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.0748156879439492,
+        "ic_std": 0.09281226385224514,
+        "icir": 0.8060970052735051,
+        "ic_positive_ratio": 0.8016528925619835,
+        "annual_excess": 0.1391011488489118,
+        "top1_annual_ret": 0.15852438616902886,
+        "mean_turnover": 0.7808639465283241,
+        "final_score": 0.13739743587375597
+      },
+      "training_samples": {
+        "candidate_rows": 5649750,
+        "used_rows": 4597785,
+        "dropped_rows": 1051965
+      },
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": 0.0
+    },
+    {
+      "exp_id": "S002_screen_R3_band",
+      "git_commit": "d184029550127f1eafd7b65ea75bfb258e7a723a",
+      "files": {
+        "manifest": {
+          "path": "outputs/models/S002_screen_R3_band/run.json",
+          "sha256": "9498365dd0d51be16c5a23a57ba1f30d9d0093dc663ea4e9b20e7aad4f9ba5f8",
+          "size_bytes": 7860
+        },
+        "prediction": {
+          "path": "outputs/predictions/S002_screen_R3_band/valid_2023.csv",
+          "sha256": "5c4ef76d6193a212b306d5a104fc77625047a25215c9d91926c825e2f73ec7eb",
+          "size_bytes": 45156381
+        },
+        "labels": {
+          "path": "outputs/metrics/S002_screen_R3_band/validation_labels.csv",
+          "sha256": "8670b43116ebb982606b399c5d6d4b84d541c49ece7e3ebd366d199824bacd19",
+          "size_bytes": 44827602
+        }
+      },
+      "metrics": {
+        "ic_mean": 0.07113379038100905,
+        "ic_std": 0.08496194232933793,
+        "icir": 0.8372429870455783,
+        "ic_positive_ratio": 0.7933884297520661,
+        "annual_excess": 0.10658214442773328,
+        "top1_annual_ret": 0.1260053817478503,
+        "mean_turnover": 0.09126212737260073,
+        "final_score": 0.3330495212689434
+      },
+      "training_samples": null,
+      "official_max_difference": 0.0,
+      "model_reload_max_difference": null
+    }
+  ],
+  "handoff_note": "Large artifacts remain local and ignored by Git. Transfer trusted files through an agreed channel or reproduce from recorded commits/configurations. This inventory is not an independent Member B review."
+}

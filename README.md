@@ -4,7 +4,7 @@
 
 赛题：基于原始量价数据预测股票未来一天收益率。每条预测对应一组 `ts_code + trade_date`。
 
-当前已完成基础 LightGBM 全量流程、成员 A 的 Day 5–8 特征研究，以及成员 B 的 IC / Top 分析和换手优化。特征研究后保留 40 特征 V1；叠加固定的 band(0.1) 后，2023 / 2024 验证综合分为 **0.331148 / 0.349178**。仓库记录最近共 51 项开发检查通过。基线运行方式见 [基线说明](docs/baseline_run.md)，下一阶段安排见 [模型研究与融合计划书](docs/model_research_plan.md)，实际进度见 [项目状态](docs/project_status.md)。
+当前已完成基础流程、Day 5–8 特征研究、成员 B 的评分与换手优化，以及成员 A 的 **Day 9–12 模型研究 S002**。保留 40 特征，推荐 **25% L1 LightGBM + 75% R2 Ridge(alpha=10000) 的当日排名融合，再应用 band(0.1)**；2023 / 2024 验证综合分 **0.352949 / 0.355236**，同层 V1 对照为 0.331148 / 0.349178。2024 IC 下降，提分来自超额与低换手项。真实结果见 [S002 报告](docs/model_research_S002.md)，交接与待办见 [项目状态](docs/project_status.md)。既有 51 项开发检查的历史记录保留，本轮未新增或运行测试套件，实际执行了全量训练与产物核对。
 
 ## 项目依据
 
@@ -12,7 +12,7 @@
 - [官方赛题 PDF](docs/赛题五-更新.pdf)、[Python 官方评分器](evaluate.py)、[R 官方评分器](evaluate.R)：正式要求与计算依据。
 - [项目流程](docs/workflow.md)：推进顺序、两人分工和阶段交付。
 - [项目状态](docs/project_status.md)：已完成事项、待办和变更记录。
-- [下一阶段计划书](docs/model_research_plan.md)：Day 9–12 模型调参、Ridge 对照与融合，以及 Day 13–14 的提交衔接；当前为计划。
+- [模型研究计划书](docs/model_research_plan.md)：Day 9–12 已按固定协议完成；Day 13–14 衔接独立审核、最终训练与提交。
 - [数据字典](docs/data_dictionary.md)与[数据清单](data/manifest.json)：字段含义、文件大小与校验信息。
 
 后续每一步都从仓库当前文件和实际 Git 状态出发；聊天记录用于补充背景，具体实现、进度和配置写回仓库。
@@ -98,7 +98,9 @@ python -m venv .venv
 
 ## Day 9–12 模型研究
 
-S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [运行说明](docs/model_research_run.md)。2023 已完成 8 次新训练和 5 个融合权重对照，锁定 L1 / R2 的 25% / 75% 排名融合 + band(0.1)，综合分 0.352949，高于 V1 + band 的 0.331148。2024 确认尚待执行，当前保留 V1；真实结果见 [S002 报告](docs/model_research_S002.md) 与 [项目状态](docs/project_status.md)。
+S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [运行说明](docs/model_research_run.md)。2023 完成 8 次新训练和 5 个融合权重对照，在 `688bece` 提交、推送候选后，仅用锁定的 L1 / R2 在 2024 新训练 2 次。F025 + band 两年均超过同层 V1，按既定门槛成为推荐方案；备用为 V1 + band(0.1)。36 条训练或派生记录已追加，共享表共 51 条，原 15 条未改动。两年每个预测文件完整覆盖 1,125,300 个键，全部官方评分核对差异为 0，10 个新模型重载预测差异为 0。
+
+以下为本次执行命令。S002 已完成，已有目录拒绝覆盖；重新研究使用新编号，仍须先提交筛选锁定结果再确认。
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.models.model_research --study-id S002 --phase screen --owner A

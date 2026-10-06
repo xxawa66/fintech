@@ -197,8 +197,9 @@ def scan_alphas(scored: pd.DataFrame, alphas=DEFAULT_ALPHAS) -> tuple[pd.DataFra
 def scan_bands(scored: pd.DataFrame, keep_qs=DEFAULT_KEEP_QS) -> tuple[pd.DataFrame, pd.DataFrame]:
     """扫描 keep_q，返回 (汇总表, 逐日指标 long 表)。
 
-    自检：``keep_q = 1.0`` 时保留带退化为“只有当日排名第一的股票能留仓”，随后必然
-    被当日排名补足，Top 集合与基线逐日相同，8 项官方指标应逐位复现基线。
+    自检：``keep_q = 1.0`` 时下移量 ``delta ≈ 1e-9``，远小于满分位间距
+    （1/4650），编码退化为恒等变换，不发生任何名次交换，Top 集合与基线逐日
+    相同，8 项官方指标应逐位复现基线（机理同 ``band_scores`` 的 docstring）。
     """
     return _scan(scored, keep_qs, band_scores, "keep_q", 1.0)
 

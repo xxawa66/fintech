@@ -4,7 +4,7 @@
 
 赛题：基于原始量价数据预测股票未来一天收益率。每条预测对应一组 `ts_code + trade_date`。
 
-当前已完成成员 B 的数据审计、评分适配与时间切分，以及成员 A 的基础特征和 LightGBM 全量流程。15 项检查通过；实验 `E000_baseline_retry1` 已训练 5,659,954 条样本、预测完整 2024 验证集，官方综合分为 **0.197517**。运行方式见 [基线说明](docs/baseline_run.md)，实际结果见 [基线结果](docs/baseline_result.md)，进度见 [项目状态](docs/project_status.md)。
+当前已完成基础 LightGBM 全量流程、成员 A 的 Day 5–8 特征研究，以及成员 B 的 IC / Top 分析和换手优化。特征研究后保留 40 特征 V1；叠加固定的 band(0.1) 后，2023 / 2024 验证综合分为 **0.331148 / 0.349178**。仓库记录最近共 51 项开发检查通过。基线运行方式见 [基线说明](docs/baseline_run.md)，下一阶段安排见 [模型研究与融合计划书](docs/model_research_plan.md)，实际进度见 [项目状态](docs/project_status.md)。
 
 ## 项目依据
 
@@ -12,6 +12,7 @@
 - [官方赛题 PDF](docs/赛题五-更新.pdf)、[Python 官方评分器](evaluate.py)、[R 官方评分器](evaluate.R)：正式要求与计算依据。
 - [项目流程](docs/workflow.md)：推进顺序、两人分工和阶段交付。
 - [项目状态](docs/project_status.md)：已完成事项、待办和变更记录。
+- [下一阶段计划书](docs/model_research_plan.md)：Day 9–12 模型调参、Ridge 对照与融合，以及 Day 13–14 的提交衔接；当前为计划。
 - [数据字典](docs/data_dictionary.md)与[数据清单](data/manifest.json)：字段含义、文件大小与校验信息。
 
 后续每一步都从仓库当前文件和实际 Git 状态出发；聊天记录用于补充背景，具体实现、进度和配置写回仓库。
@@ -87,13 +88,13 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-`notebooks/01_eda.ipynb` 已由成员 B 执行；其他 Notebook、模型融合、回测与正式提交模块仍为预留位置。
+`notebooks/01_eda.ipynb` 与 `notebooks/04_result_visualization.ipynb` 已由成员 B 执行；回测分析和换手模块已实现。模型融合与正式提交模块仍为占位说明，其他探索 Notebook 继续按研究需要补充。
 
 ## Day 5–8 特征研究
 
 原 V1 已由成员 B 以 `E001_baseline_repeat` 独立复现，8 项指标逐位相同。
 新增三组共 18 特征（完整池 58 列），固定原模型参数，先用 2023 八组筛选和删组消融，再锁定一个候选做 2024 确认。
-成员 A 的 Day 5–8 已完成，40 项检查通过，`S001` 共完成 10 次全量实验。52 特征的量价+风险组合在 2023 从 0.120662 提高到 0.125195，但 2024 得分 0.193103 低于原 V1 的 0.197517，因此保留 **40 特征 V1**。实际对比、消融和稳定性分析见 [研究结果](docs/feature_research_S001.md)；运行方法见 [特征研究说明](docs/feature_research_run.md)。本轮新增特征与跨年结论的成员 B 独立审核待完成。
+成员 A 的 Day 5–8 已完成，40 项检查通过，`S001` 共完成 10 次全量实验。52 特征的量价+风险组合在 2023 从 0.120662 提高到 0.125195，但 2024 得分 0.193103 低于原 V1 的 0.197517，因此保留 **40 特征 V1**。实际对比、消融和稳定性分析见 [研究结果](docs/feature_research_S001.md)；运行方法见 [特征研究说明](docs/feature_research_run.md)。本轮新增特征与跨年结论的成员 B 独立审核暂缓，仍列为待办。
 
 ## 评分与交付
 

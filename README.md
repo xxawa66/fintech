@@ -98,7 +98,7 @@ python -m venv .venv
 
 ## Day 9–12 模型研究
 
-S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [运行说明](docs/model_research_run.md)。实现已整理，真实执行结果以 [项目状态](docs/project_status.md) 和研究报告为准。
+S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [运行说明](docs/model_research_run.md)。2023 已完成 8 次新训练和 5 个融合权重对照，锁定 L1 / R2 的 25% / 75% 排名融合 + band(0.1)，综合分 0.352949，高于 V1 + band 的 0.331148。2024 确认尚待执行，当前保留 V1；真实结果见 [S002 报告](docs/model_research_S002.md) 与 [项目状态](docs/project_status.md)。
 
 ```powershell
 .\.venv\Scripts\python.exe -m src.models.model_research --study-id S002 --phase screen --owner A

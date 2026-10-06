@@ -88,13 +88,23 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-`notebooks/01_eda.ipynb` 与 `notebooks/04_result_visualization.ipynb` 已由成员 B 执行；回测分析和换手模块已实现。模型融合与正式提交模块仍为占位说明，其他探索 Notebook 继续按研究需要补充。
+`notebooks/01_eda.ipynb` 与 `notebooks/04_result_visualization.ipynb` 已由成员 B 执行；回测分析和换手模块已实现。排名融合模块现已实现，正式提交模块仍为占位说明，其他探索 Notebook 继续按研究需要补充。
 
 ## Day 5–8 特征研究
 
 原 V1 已由成员 B 以 `E001_baseline_repeat` 独立复现，8 项指标逐位相同。
 新增三组共 18 特征（完整池 58 列），固定原模型参数，先用 2023 八组筛选和删组消融，再锁定一个候选做 2024 确认。
 成员 A 的 Day 5–8 已完成，40 项检查通过，`S001` 共完成 10 次全量实验。52 特征的量价+风险组合在 2023 从 0.120662 提高到 0.125195，但 2024 得分 0.193103 低于原 V1 的 0.197517，因此保留 **40 特征 V1**。实际对比、消融和稳定性分析见 [研究结果](docs/feature_research_S001.md)；运行方法见 [特征研究说明](docs/feature_research_run.md)。本轮新增特征与跨年结论的成员 B 独立审核暂缓，仍列为待办。
+
+## Day 9–12 模型研究
+
+S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [运行说明](docs/model_research_run.md)。实现已整理，真实执行结果以 [项目状态](docs/project_status.md) 和研究报告为准。
+
+```powershell
+.\.venv\Scripts\python.exe -m src.models.model_research --study-id S002 --phase screen --owner A
+# 将 2023 选择清单、报告与实验记录提交 main 后，再运行：
+.\.venv\Scripts\python.exe -m src.models.model_research --study-id S002 --phase confirm --owner A
+```
 
 ## 评分与交付
 

@@ -127,3 +127,33 @@ research:
     - {name: without_trend, groups: [V, R]}
     - {name: without_volume, groups: [T, R]}
     - {name: without_risk, groups: [T, V]}
+
+# Day 9–12: fixed V1 features; 2023 selection and one locked 2024 confirmation.
+model_research:
+  study_fold: fold1
+  confirm_fold: fold2
+  selection_tolerance: 1.0e-6
+  keep_q: 0.1
+  initial_state: cold_start
+  references:
+    fold1: {raw_exp_id: S001_screen_base, band_record_id: E003_band_kq01_fold1}
+    fold2: {raw_exp_id: S001_confirm_base, band_record_id: E003_band_kq01_fold2}
+  lightgbm_presets:
+    - {name: L0, rounds: 200, overrides: {}}
+    - {name: L1, rounds: 200, overrides: {num_leaves: 15, min_data_in_leaf: 500, lambda_l2: 5.0}}
+    - {name: L2, rounds: 200, overrides: {num_leaves: 63, lambda_l2: 5.0}}
+    - {name: L3, rounds: 200, overrides: {min_data_in_leaf: 500, lambda_l2: 10.0, feature_fraction: 0.8}}
+    - {name: L4, rounds: 400, overrides: {learning_rate: 0.025}}
+    - {name: L5, rounds: 400, overrides: {feature_fraction: 0.8}}
+  ridge:
+    solver: lsqr
+    tol: 1.0e-6
+    max_iter: 200
+    fit_intercept: true
+    batch_rows: 100000
+    num_threads: 8
+  ridge_presets:
+    - {name: R1, alpha: 100.0}
+    - {name: R2, alpha: 10000.0}
+    - {name: R3, alpha: 1000000.0}
+  blend_weights: [0.0, 0.25, 0.5, 0.75, 1.0]

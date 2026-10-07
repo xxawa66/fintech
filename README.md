@@ -108,6 +108,10 @@ S002 的固定参数、Ridge、排名融合和单候选跨年确认入口见 [�
 .\.venv\Scripts\python.exe -m src.models.model_research --study-id S002 --phase confirm --owner A
 ```
 
+## S003 联合自动调参
+
+已接入 Optuna/TPE + 2021–2023 Walk-forward CV + 官方综合分。50 个联合 trial 同时搜索 LightGBM 与 band_keep_q（0–1，优先从 0.1 附近启动），三折共用一个 keep_q，锁定后评估一次 2024。配置、续跑、候选推送与产物约定见 [联合调参说明](docs/optuna_tuning_run.md)。本阶段真实训练结果待运行，不将实现完成当成实验完成。
+
 ## 评分与交付
 
 `final_score = 0.4 * ic_mean + 0.3 * annual_excess + 0.3 * (1 - mean_turnover)`。

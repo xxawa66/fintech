@@ -1,6 +1,7 @@
 project:
   name: fintech
-  stage: model_research_complete_f025
+  stage: optuna_tuning_implemented
+  current_tuning_study: S003
   current_model_study: S002
   current_model_report: docs/model_research_S002.md
   current_model_selection: docs/model_research_S002_selection.json
@@ -20,6 +21,7 @@ paths:
   research_cache: data/processed/research_cache
   research_studies: outputs/metrics/research_studies
   research_reports: docs
+  optuna_cache: data/processed/optuna_cache
 
 data:
   key_columns: [ts_code, trade_date]
@@ -176,3 +178,32 @@ optimized_candidate:
   keep_q: 0.1
   initial_state: cold_start
   enabled: false
+
+# S003: jointly tune LightGBM and a common cold-start band on 2021–2023.
+optuna:
+  trial_budget: 50
+  seed: 42
+  startup_trials: 10
+  multivariate: true
+  pruning: false
+  objective: mean_official_final_score
+  initial_state: cold_start
+  row_order: [trade_date, ts_code]
+  baseline_keep_q: 0.1
+  warm_keep_qs: [0.05, 0.075, 0.09, 0.11, 0.125, 0.15, 0.0, 1.0]
+  folds:
+    - {name: wf2021, train: [20180102, 20201231], valid: [20210101, 20211231]}
+    - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
+    - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
+  confirm: {name: confirm2024, train: [20180102, 20231231], valid: [20240101, 20241231]}
+  search_space:
+    learning_rate: {low: 0.01, high: 0.08, log: true}
+    num_leaves: {low: 15, high: 128}
+    max_depth: [-1, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    min_data_in_leaf: {low: 200, high: 10000, log: true}
+    feature_fraction: {low: 0.5, high: 1.0}
+    bagging_fraction: {low: 0.5, high: 1.0}
+    lambda_l1: {low: 0.0, high: 20.0}
+    lambda_l2: {low: 0.0001, high: 50.0, log: true}
+    num_boost_round: [200, 400, 800]
+    band_keep_q: {low: 0.0, high: 1.0}

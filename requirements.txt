@@ -12,3 +12,4 @@ PyYAML
 jupyterlab
 ipykernel
 psutil
+optuna==5.0.0

@@ -1,7 +1,9 @@
 project:
   name: fintech
-  stage: optuna_tuning_implemented
+  stage: optuna_tuning_search_complete
   current_tuning_study: S003
+  current_tuning_report: docs/optuna_tuning_S003.md
+  current_tuning_selection: docs/optuna_tuning_S003_selection.json
   current_model_study: S002
   current_model_report: docs/model_research_S002.md
   current_model_selection: docs/model_research_S002_selection.json

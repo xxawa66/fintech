@@ -160,3 +160,19 @@ model_research:
     - {name: R2, alpha: 10000.0}
     - {name: R3, alpha: 1000000.0}
   blend_weights: [0.0, 0.25, 0.5, 0.75, 1.0]
+
+# 成员 B 复核 S002 的优化候选（见 docs/model_research_S002_review.md）。
+# 与 model_research 的锁定协议**并存而不冲突**：本段默认不参与 S002 的筛选/确认
+# 状态机（validate_protocol 只检查 model_research 段），需成员 A 确认后才用于正式
+# 训练与提交。R1 = 沿用 S002 筛出的 L1/R2 组件，融合权重改 0.35，叠加排名平滑
+# alpha=0.9 与冷启动留仓带 keep_q=0.1；两折 band 综合分 0.365447 / 0.362941。
+optimized_candidate:
+  name: R1
+  study_id: S002
+  components: [L1, R2]
+  blend_weights: [0.35, 0.65]
+  method: same_day_percentile_rank
+  smooth_alpha: 0.9
+  keep_q: 0.1
+  initial_state: cold_start
+  enabled: false

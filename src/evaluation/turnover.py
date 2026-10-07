@@ -18,7 +18,12 @@ Top 集合的逐日 Jaccard 距离（``official_eval`` 口径：剔除涨停、�
    昨日在榜且今日排名分位仍不低于 ``keep_q`` 的股票保留，其余按当日排名补足前十
    分之一。切线以下的排序完全不动，因此 IC 与超额的损失远小于同换手水平的平滑。
 
-两种方法都只改变提交的 ``pred`` 排序，评分一律复用 ``src/evaluation/official_eval.py``
+3. ``smooth_band``——**两段串联（成员 B 复核 S002 时提出，见
+   ``docs/model_research_S002_review.md``）**。先按 ``alpha`` 做排名平滑，再在平滑后
+   的排名上做留仓带。两段读的是同一个 ``pred``，``alpha = 1`` 时逐位退化为 ``band``
+   （截面 pct 排名幂等）。它不改变任何评分口径，仍是官方 8 指标。
+
+三种方法都只改变提交的 ``pred`` 排序，评分一律复用 ``src/evaluation/official_eval.py``
 （官方口径逐字一致）。优化目标是 **final_score 最大**，不是换手最小。
 
 CLI 示例::
@@ -149,6 +154,29 @@ def band_scores(scored: pd.DataFrame, keep_q: float = 0.80) -> pd.Series:
     return _to_long(scored, pd.DataFrame(out, index=dates, columns=rank_elig.columns), "band")
 
 
+def smooth_band_scores(scored: pd.DataFrame, alpha: float, keep_q: float) -> pd.Series:
+    """两段串联：先排名平滑，再留仓带，返回编码后的 pred（与 ``band_scores`` 同语义）。
+
+    串联顺序有实质含义——平滑先把截面排名压成对新信息反应更慢的时序信号，留仓带再
+    只对“切线附近”动手，于是同换手下 IC 保留率高于任一单段（S002 两折实证，见
+    ``docs/model_research_S002_review.md``）。
+
+    与单段实现的关系：
+
+    - ``alpha = 1`` 时 ``smooth_scores`` 返回 pred 的截面 pct 排名，而 pct 排名幂等
+      （对 pct 排名再排名得到同一数值），``band_scores`` 内部重算的宽表排名因此与
+      传入值逐位相同，整体退化为 ``band_scores(scored, keep_q)``（调用方自检点）；
+    - 两段都只读 ``pred`` 与 ``flag_limit_up``，不接触 ``y_ret_1d``，无未来信息；
+    - 首日冷启动：平滑的 ``S_1 = Rank_1``、留仓带首日无历史持仓，与单段实现一致。
+    """
+    if not 0.0 < alpha <= 1.0:
+        raise ValueError(f"alpha 必须在 (0, 1] 内，收到 {alpha}")
+    if not 0.0 <= keep_q <= 1.0:
+        raise ValueError(f"keep_q 必须在 [0, 1] 内，收到 {keep_q}")
+    smoothed = smooth_scores(scored, alpha).to_numpy(dtype=float)
+    return band_scores(scored.assign(pred=smoothed), keep_q)
+
+
 def _score_with(scored: pd.DataFrame, transformed: pd.Series) -> tuple[dict, pd.DataFrame]:
     df = scored.assign(pred=transformed)
     return evaluate_frame(df), daily_metrics(df)
@@ -162,6 +190,12 @@ def evaluate_smoothed(scored: pd.DataFrame, alpha: float) -> tuple[dict, pd.Data
 def evaluate_band(scored: pd.DataFrame, keep_q: float) -> tuple[dict, pd.DataFrame]:
     """给定 keep_q 返回官方 8 项指标与逐日指标表。"""
     return _score_with(scored, band_scores(scored, keep_q))
+
+
+def evaluate_smooth_band(scored: pd.DataFrame, alpha: float,
+                         keep_q: float) -> tuple[dict, pd.DataFrame]:
+    """给定 (alpha, keep_q) 返回两段串联后的官方 8 项指标与逐日指标表。"""
+    return _score_with(scored, smooth_band_scores(scored, alpha, keep_q))
 
 
 def _scan(scored: pd.DataFrame, values, transform, name: str,

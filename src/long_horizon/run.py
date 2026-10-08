@@ -11,11 +11,13 @@
   h 个交易日的标签使用验证期价格，按边界规则剔除（``src/long_horizon/labels.py``）；
 - 模型：与 T030 完全相同的 LightGBM 参数与轮数，从
   ``docs/optuna_tuning_S003_selection.json`` 的 winner.spec 直读，不重调参；
-- 评估（每折每模型，全部官方口径）：
-  1. raw 官方 8 指标（``evaluate_frame``，无 band）；
-  2. 首日 Top 1/10 组（换手候选口径：当日报价有效且非涨停）**持有全验证期**
-     的实现年化超额；
-  3. 自身 horizon 的逐日 Rank IC（>=30 有效样本）。
+- 评估（每折每模型，**排名口径为主**）：
+  1. **top10% 排名重合度**（主指标）：每日把预测与实际各自的 h 日收益排序，
+     取前 1/10 组成两个集合，重合率 = |交集| / 组大小；并报 Jaccard 与两组
+     实现收益均值（仅作旁证，不作判据）；
+  2. 自身 horizon 的逐日 Rank IC（>=30 有效样本）；
+  3. raw 官方 8 指标与首日 Top 组的实现超额（旁证，不作判据）。
+- 模型选择：看**两折**（2023 / 2024）的排名重合度，不取只对单折好的 h。
 - 正确性校验：h=1 重算标签与官方 y_ret_1d 逐位一致；H01（1 日基线）raw 指标
   应复现 S003 的 wf2023 / confirm2024 raw 结果（相同环境与监督路径）。
 
@@ -173,6 +175,52 @@ def frozen_set_annual_excess(valid: pd.DataFrame, members: set[str]) -> dict:
             "frozen_days_skipped": skipped}
 
 
+def top_decile_rank_agreement(valid: pd.DataFrame, pred: np.ndarray, label_col: str,
+                              eligible: np.ndarray) -> dict:
+    """逐日对比「预测 top 1/10 组」与「实际 top 1/10 组」的**排名重合度**。
+
+    排名口径（不是收益率数值口径）：把预测与实际各自的 h 日收益排序，
+    取前 1/10 组成两个集合，看两个集合的重合比例。
+    - 投资域与官方换手候选一致：报价有效、非涨停，且**实际 h 日收益可算**
+      （验证期末尾 h 个交易日无 close(t+h)，自动排除，天数记入 ``days``）。
+    - 组大小 k = floor(N/10)，N 为该日投资域股票数。
+    - 重合率 = |预测组 ∩ 实际组| / k；Jaccard = |∩| / |∪|。
+    """
+    y = valid[label_col].to_numpy(dtype="float64")
+    flag = valid["flag_limit_up"].to_numpy()
+    dates = valid["trade_date"].to_numpy()
+    ok = eligible & (flag == 0) & np.isfinite(y)
+    overlaps: list[float] = []
+    jaccards: list[float] = []
+    pred_mean: list[float] = []
+    oracle_mean: list[float] = []
+    sizes: list[int] = []
+    for day in np.unique(dates):
+        rows = ok & (dates == day)
+        n = int(rows.sum())
+        if n < TOP_MIN_VALID:
+            continue
+        k = max(n // 10, 1)
+        idx = np.flatnonzero(rows)
+        a = y[idx]
+        pred_top = np.argsort(-pred[idx], kind="stable")[:k]
+        actual_top = np.argsort(-a, kind="stable")[:k]
+        inter = int(np.intersect1d(pred_top, actual_top).size)
+        overlaps.append(inter / k)
+        jaccards.append(inter / (2 * k - inter))
+        pred_mean.append(float(a[pred_top].mean()))
+        oracle_mean.append(float(a[actual_top].mean()))
+        sizes.append(k)
+    ov = np.asarray(overlaps, dtype="float64")
+    return {"top10_overlap_mean": float(ov.mean()) if len(ov) else float("nan"),
+            "top10_overlap_std": float(ov.std(ddof=1)) if len(ov) > 1 else 0.0,
+            "top10_jaccard_mean": float(np.mean(jaccards)) if jaccards else float("nan"),
+            "top10_overlap_days": len(ov),
+            "pred_top10_realized_h": float(np.mean(pred_mean)) if pred_mean else float("nan"),
+            "oracle_top10_realized_h": float(np.mean(oracle_mean)) if oracle_mean else float("nan"),
+            "top10_group_size": int(np.mean(sizes)) if sizes else 0}
+
+
 def daily_ic_stats(valid: pd.DataFrame, pred: np.ndarray, label_col: str,
                    eligible: np.ndarray) -> dict:
     """验证期内 pred 与指定 horizon 标签的逐日 Rank IC 统计（官方门槛 30 样本）。"""
@@ -247,6 +295,8 @@ def run_fold(cfg: dict, horizons: list[int], spec: dict, selection: dict,
         metrics = evaluate_frame(scored)
         members = day1_top_set(valid, pred, eligible)
         frozen = frozen_set_annual_excess(valid, set(members))
+        label_col = "y_ret_1d" if h == 1 else label_name(h)
+        agree = top_decile_rank_agreement(valid, pred, label_col, eligible)
         if h == 1:
             # 官方 ic_mean 即自身 horizon（1 日）IC，同一口径不再重算
             horizon_ic = {"horizon_ic_mean": metrics["ic_mean"],
@@ -260,18 +310,19 @@ def run_fold(cfg: dict, horizons: list[int], spec: dict, selection: dict,
                **{k: metrics[k] for k in OFFICIAL_METRICS},
                "day1_n": len(members),
                "day1_overlap_H01": len(set(members) & set(base_set)),
-               **frozen, **horizon_ic}
+               **frozen, **horizon_ic, **agree}
         if name == "H01" and expected is not None:
             row["expected_s003_raw_final"] = expected["final_score"]
             row["raw_final_diff_vs_s003"] = abs(metrics["final_score"] - expected["final_score"])
         rows.append(row)
         day1_rows.extend({"fold": fold.name, "model": name, "rank": i + 1,
                           "ts_code": code} for i, code in enumerate(members))
-        log(f"  {name}: raw final {metrics['final_score']:.6f} | IC {metrics['ic_mean']:+.6f} | "
-            f"raw 超额 {metrics['annual_excess']:+.4f} | 冻结组年化超额 "
-            f"{frozen['frozen_annual_excess']:+.4f} | 自身 horizon IC "
-            f"{horizon_ic['horizon_ic_mean']:+.6f} | 与 H01 首日重合 "
-            f"{row['day1_overlap_H01']}/{len(members)}")
+        log(f"  {name}: 排名重合率 {agree['top10_overlap_mean']:.4f} "
+            f"(Jaccard {agree['top10_jaccard_mean']:.4f}, {agree['top10_overlap_days']} 天) | "
+            f"预测组实现收益 {agree['pred_top10_realized_h']:+.4f} vs "
+            f"实际组 {agree['oracle_top10_realized_h']:+.4f} | 自身 horizon IC "
+            f"{horizon_ic['horizon_ic_mean']:+.6f} | raw final {metrics['final_score']:.6f} | "
+            f"冻结组年化超额 {frozen['frozen_annual_excess']:+.4f}")
 
     fold_json = {
         "fold": fold.name, "split": split, "keep_q_spec": spec["keep_q"],
@@ -293,11 +344,14 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", default="configs/project.yaml")
     parser.add_argument("--folds", default="fold1,fold2",
                         help="要跑的折，逗号分隔（configs/project.yaml validation.folds 的名字）")
+    parser.add_argument("--study", default=None,
+                        help="覆盖 configs 的 long_horizon.study（决定产物目录与汇总文件名）")
     args = parser.parse_args(argv)
 
     cfg, _ = load_config(args.config)
     settings = cfg["long_horizon"]
     horizons = [int(h) for h in settings["horizons"]]
+    study = args.study or settings["study"]
     selection = json.loads((ROOT / settings["spec_source"]).read_text(encoding="utf-8"))
     spec = selection["winner"]["spec"]
     log(f"模型配置直读 {settings['spec_source']}：rounds={spec['rounds']}，"
@@ -328,7 +382,7 @@ def main(argv: list[str] | None = None) -> int:
     folds = [f for f in get_folds() if f.name in wanted]
     if not folds:
         raise ValueError(f"未找到折 {wanted}（configs/project.yaml validation.folds）")
-    out_root = project_path("outputs/long_horizon") / settings["study"]
+    out_root = project_path("outputs/long_horizon") / study
     out_root.mkdir(parents=True, exist_ok=True)
 
     all_rows: list[dict] = []
@@ -342,23 +396,30 @@ def main(argv: list[str] | None = None) -> int:
         fold_jsons[fold.name] = {"split": fold_json["split"], "rows": rows}
 
     summary = pd.DataFrame(all_rows)
-    summary_path = ROOT / "experiments" / f"{settings['study']}_summary.csv"
+    summary_path = ROOT / "experiments" / f"{study}_summary.csv"
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     summary.to_csv(summary_path, index=False)
     day1_frame = pd.DataFrame(all_day1)
-    day1_frame.to_csv(ROOT / "experiments" / f"{settings['study']}_day1_sets.csv", index=False)
+    day1_frame.to_csv(ROOT / "experiments" / f"{study}_day1_sets.csv", index=False)
     write_json(out_root / "experiment_report.json", json_safe({
-        "study": settings["study"], "horizons": horizons,
+        "study": study, "horizons": horizons,
         "spec_source": settings["spec_source"], "spec": spec,
         "cleaning": cleaning, "label_verify": verify,
         "folds": fold_jsons, "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}))
 
     pd.set_option("display.width", 240)
-    print("\n===== LH001 汇总（raw pred，官方口径）=====")
-    show = summary[["fold", "model", "horizon", "ic_mean", "annual_excess",
-                    "mean_turnover", "final_score", "frozen_annual_excess",
-                    "horizon_ic_mean", "day1_overlap_H01"]]
+    print(f"\n===== {study} 汇总（raw pred，排名重合度口径）=====")
+    show = summary[["fold", "model", "horizon", "top10_overlap_mean",
+                    "top10_jaccard_mean", "top10_overlap_days",
+                    "pred_top10_realized_h", "oracle_top10_realized_h",
+                    "horizon_ic_mean", "frozen_annual_excess", "final_score"]]
     print(show.to_string(index=False))
+    pivot = summary.pivot_table(index="model", columns="fold",
+                                values="top10_overlap_mean")
+    pivot["两折均值"] = pivot.mean(axis=1)
+    pivot["两折最差"] = pivot[[c for c in pivot.columns if c != "两折均值"]].min(axis=1)
+    print("\n----- 排名重合率（top10%）按模型 × 折 -----")
+    print(pivot.sort_values("两折均值", ascending=False).to_string())
     log(f"汇总已写入 {summary_path}")
     return 0
 

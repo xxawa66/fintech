@@ -4,7 +4,7 @@
 
 计划依据：GitHub `main` 的 `9ed991e3ab60ca6850171b009f8001d5b405a11f`、S003 已归档结果，以及《比赛说明与评分翻译》中讨论 S003 后续优化的最新对话。开始执行时再次同步远端并检查差异。
 
-用户已选择本阶段覆盖 **S004–S006：换手控制、训练目标、模型融合**。本文保留分阶段研究协议；S004 / S005 已于 2026-10-08 完成，真实结果见 [S004 报告](alpha_research_S004.md)、[S005 报告](alpha_research_S005.md)。S005 使用 15 次新训练，冻结 Y4 / Y1 供融合；S006 尚未执行，S003 仍为已完成的完整方案参照。
+用户已选择本阶段覆盖 **S004–S006：换手控制、训练目标、模型融合**。本文保留已执行的分阶段研究协议；三阶段和一次锁定后的 2024 确认已于 2026-10-08 完成，真实结果见 [S004 报告](alpha_research_S004.md)、[S005 报告](alpha_research_S005.md)与[S006 报告](alpha_research_S006.md)。S006 的 F005 在 CV 均值 0.4096782475，但 2024 确认 0.3810523173 低于 S003 0.3873823479，按既定门槛保留 S003；本阶段共 16/18 次新训练，成员 B 独立复核待接续。
 
 ## 1. 研究目标与当前起点
 
@@ -231,15 +231,17 @@ Y4 使用标准化目标，明确 Huber 参数对应的数值尺度，并与 Y3 
 
 ## 9. 拟新增模块与文件
 
-下列名称是分阶段实施设计。S004 / S005 已完成；S005 的 `target_transforms.py`、`target_cache.py`、`target_research.py` 与独立 `target_research` 配置已实际运行 15 次训练，`target_handoff.py` 读取已通过产物完成发布归档。目标配置单独保存以保持已完成 S004 协议可复现；S006 与最终确认仍待接续。正式源码进入 `src/`，所有路径从项目根目录解析。
+下列名称按实际实现更新，数值矩阵与选择协议保持原样。S004 的入口为 `alpha_research.py`，S005 的 `target_transforms.py`、`target_cache.py`、`target_research.py` 与独立 `target_research` 配置实际完成 15 次训练；S006 的 `ensemble_sources.py`、`ensemble_research.py` 与独立 `ensemble_research` 配置完成零拟合 CV 和一次确认拟合。各自 handoff 负责归档，`ensemble_diagnostics.py` 在执行完成后补充分项判读，不重新训练 / 评分 / 选择。正式源码进入 `src/`，所有路径从项目根目录解析。
 
 |文件|责任|
 |---|---|
 |`src/evaluation/turnover_controllers.py`|留仓奖励、排名差替换、选择集合与分数编码；X / 预测状态输入|
 |`src/models/target_transforms.py`|训练侧按日 rank、缩尾、标准化及目标统计|
-|`src/models/alpha_research.py`|S004–S006 顺序入口、原始预测复用、矩阵、有限训练、锁定 / 确认与恢复|
-|`configs/project.yaml` 的独立 `alpha_research` 段|预算、窗口、模型参照、控制器网格、目标、融合与选择规则|
-|`docs/alpha_research_run.md`|实现后的正式命令与执行协议|
+|`src/models/alpha_research.py` / `target_research.py` / `ensemble_research.py`|S004 / S005 / S006 的独立入口、实际来源复用、矩阵、有限训练、锁定 / 确认与恢复|
+|`src/models/ensemble_sources.py`|历史伙伴按质量 / 日排名相关性筛选与来源核对|
+|`src/evaluation/ensemble_handoff.py` / `ensemble_diagnostics.py`|实际比较、确认及分项 / 全月份报告，无新拟合或选择变更|
+|`configs/project.yaml` 的独立 `alpha_research` / `target_research` / `ensemble_research` 段|各阶段预算、窗口、模型参照、矩阵与选择规则，保持既有协议独立|
+|`docs/alpha_research_run.md` / `target_research_run.md` / `ensemble_research_run.md`|各阶段的实际命令与执行协议|
 |`docs/alpha_research_S004.md` / `S005.md` / `S006.md`|各阶段真实结论、选择与交接|
 |`docs/alpha_research_S006_selection.json` / `_confirmation.json` / `_artifacts.json`|最终冻结方案、历史确认与 SHA 索引|
 |`experiments/alpha_S004_*` / `alpha_S005_*` / `alpha_S006_*`|小型比较表、相关性、非支配表与月度摘要|
@@ -278,7 +280,9 @@ Y4 使用标准化目标，明确 Huber 参数对应的数值尺度，并与 Y3 
 
 ## 12. 依据与阅读入口
 
-- S005 已完成：15 次新训练、12 份目标映射，官方 / 重载差异 0；冻结 Y4 / Y1，PredictiveScore 均值 0.2115911261 / 0.2113403331，原始 T030 为 0.1582828566。它是下一步融合伙伴，不改变完整方案参照；详见 [真实报告](alpha_research_S005.md)、[冻结选择](alpha_research_S005_selection.json)、[产物索引](alpha_research_S005_artifacts.json)与[运行协议](target_research_run.md)。
+- S006 已完成：18 个信号 / 54 个完整配置，历史伙伴 T008 / T016，CV 新拟合 0；锁定纯 Y4 + C042 的 F005，均值 0.4096782475、最差 / 2023 为 0.3950504494。选择先在 `3ab882f` 推送，仅新拟合一个 2024 模型，确认 0.3810523173 低于参照 0.3873823479，按门槛保留 S003。预定 Y4 + q* band 诊断 0.3925979662 不在确认后重选。实际新增 196 条记录，共享表 706 条、旧 510 条不变；官方 / 重载差异 0，前缀与目标边界核对通过。五图、13 类表和完整月份 / 季度归档；本阶段总计 16 次新训练。详见 [真实报告](alpha_research_S006.md)、[冻结选择](alpha_research_S006_selection.json)、[确认决定](alpha_research_S006_confirmation.json)、[产物索引](alpha_research_S006_artifacts.json)与[运行协议](ensemble_research_run.md)。团队采纳与成员 B 新一轮独立复核尚未完成。
+
+- S005 已完成：15 次新训练、12 份目标映射，官方 / 重载差异 0；冻结 Y4 / Y1，PredictiveScore 均值 0.2115911261 / 0.2113403331，原始 T030 为 0.1582828566。已在 S006 作为融合伙伴比较，未改变完整方案参照；详见 [真实报告](alpha_research_S005.md)、[冻结选择](alpha_research_S005_selection.json)、[产物索引](alpha_research_S005_artifacts.json)与[运行协议](target_research_run.md)。
 
 - S004 已完成：67 个配置、44 种排序、132 个全量折、0 次新训练；最高 CV 0.3772752567，相对 S003 只微升约 0.0000018847。C018 / C042 已冻结供 S006 比较，正式参照保持 S003；详见 [真实报告](alpha_research_S004.md)、[冻结选择](alpha_research_S004_selection.json)、[产物索引](alpha_research_S004_artifacts.json)。
 - [S003 结果](optuna_tuning_S003.md)、[冻结选择](optuna_tuning_S003_selection.json)、[确认](optuna_tuning_S003_confirmation.json)、[产物索引](optuna_tuning_S003_artifacts.json)。

@@ -1,6 +1,6 @@
 {
   "status": "passed",
-  "time": "2026-10-08T23:11:31+08:00",
+  "time": "2026-10-08T23:24:17+08:00",
   "study_id": "S006",
   "implementation_commit": "c2a15e75ff3dfedcbd08c0b5e1717a81cea53bb6",
   "source_digest": "ca7563ca1ab91c6b28b84508fa76a9fe5600e76ebc8c1108172da6c2ce8f58f9",
@@ -599,14 +599,29 @@
     "outputs/metrics/S003_T034_wf2023_raw/monthly_metrics.csv": "74c284e155f67b7ef9b04537916fabcff0f979e62bb1a299e22ef443ba6a0ec8",
     "outputs/metrics/S003_T034_wf2023_raw/metrics.json": "060df5644303163f3ec9dc3d4aa4bd4159b185827db564ea1912220a78ca0107",
     "outputs/models/S003_T034_wf2023_raw/model.txt": "82e7b35272a8d567ca8a31522642eded57a36dedaf4ed87cf98f83ef52215d85",
-    "outputs/metrics/S003_T034_wf2023_raw/feature_importance.csv": "95450ff628e387fcf079635ca647cf47a9452175abe81e1dab968cd4259bbd9c"
+    "outputs/metrics/S003_T034_wf2023_raw/feature_importance.csv": "95450ff628e387fcf079635ca647cf47a9452175abe81e1dab968cd4259bbd9c",
+    "outputs/models/S003_confirm2024_raw/run.json": "6a0c9a774d69ace6613ba8ab000891526290733c5284850a6897ea2658a9c035",
+    "outputs/predictions/S003_confirm2024_raw/valid_2024.csv": "1390b2ba7d50af369bb95936cb63acc939c46a450187ccc79b5eff03beb8e748",
+    "outputs/metrics/research_studies/S003/labels/confirm2024.csv": "f15649f437aadf8972792c617bf8096ffacf749aea91fa1cb21f051a02235cfd",
+    "outputs/models/S003_confirm2024_raw/config.yaml": "d2fbcffb51f342df436802821dee640e5f997e6e07703c9cdefd5e34b0efec1f",
+    "outputs/metrics/S003_confirm2024_raw/daily_metrics.csv": "5950719ffae6855a571c738bcf93913b1f52877db393daf7eaddf740d7827d37",
+    "outputs/metrics/S003_confirm2024_raw/monthly_metrics.csv": "011be4be769ca15906fbe580ce4b09b02397bd7d518a3e6e78a8494b8342e6bf",
+    "outputs/metrics/S003_confirm2024_raw/metrics.json": "99e2d757b2cf7ce3dcef31961030d3ab6c342f2f15e61299db3b8f1b4b2de866",
+    "outputs/models/S003_confirm2024_raw/model.txt": "bd8859612cc65460ef4732868bf9bf909a9cac78cbadb2dd9a563e0ffb2db7c7",
+    "outputs/metrics/S003_confirm2024_raw/feature_importance.csv": "08ee4c41f2e32b24e823dcdbefbc9e1a60081a90ad8b70efbfcddedb916fc8d3",
+    "outputs/models/S003_confirm2024_band/run.json": "4449c00df4adc54f33254aad98a9804432a03cf201c3969ea3ce2acc902279e3",
+    "outputs/predictions/S003_confirm2024_band/valid_2024.csv": "c1306460b1981aa7d539828fbc246e289eccfafa71ad9ada08cbe40533c31e69",
+    "outputs/models/S003_confirm2024_band/config.yaml": "d2fbcffb51f342df436802821dee640e5f997e6e07703c9cdefd5e34b0efec1f",
+    "outputs/metrics/S003_confirm2024_band/daily_metrics.csv": "7a9e0f632a0ad051db8662c2375ac746bd3585d9ce3a4e6192f13d2ddf5cdd20",
+    "outputs/metrics/S003_confirm2024_band/monthly_metrics.csv": "810a4a181a0cec60a1d7eb02536b8910a705b31305aed68481f1eb684d8f20dd",
+    "outputs/metrics/S003_confirm2024_band/metrics.json": "cf6304868b3e95d3b77ce02e28c0f957f802c5536af6e52b8c9e2d8c6eadfa74"
   },
   "original_files_unchanged": true,
   "previous_records_unchanged": true,
   "initial_records": 510,
-  "new_records": 192,
-  "total_records": 702,
-  "new_model_fits": 0,
+  "new_records": 196,
+  "total_records": 706,
+  "new_model_fits": 1,
   "configured_complete_schemes": 54,
   "raw_signals": 18,
   "max_official_difference": 0.0,
@@ -4106,6 +4121,75 @@
         "outputs/predictions/S006_U017_wf2023_raw/native_rank_blend.parquet": "1f4ec7d750cb089557c78c2ca4b4977e0b2b83eccc19ffcc722690e6de8c4dd7",
         "outputs/predictions/S006_U017_wf2023_raw/valid_2023.csv": "16a14d6cfac92cf523ddd7dec999d1ed6ed13c3888c892380816681560821c46"
       }
+    },
+    {
+      "exp_id": "S006_confirm2024_Y4_raw",
+      "manifest": "outputs/models/S006_confirm2024_Y4_raw/run.json",
+      "manifest_sha256": "e8f421f248c5180dd0de455a2dbd4820b7746d1680a9d0652601c22df66f9ce5",
+      "artifact_hashes": {
+        "outputs/predictions/S006_confirm2024_Y4_raw/valid_2024.csv": "235292f1e63ad29318cf55e86684003dd1bd35f6250a7fb566587779c5c87873",
+        "outputs/metrics/research_studies/S006/labels/confirm2024.csv": "f15649f437aadf8972792c617bf8096ffacf749aea91fa1cb21f051a02235cfd",
+        "outputs/models/S006_confirm2024_Y4_raw/config.yaml": "3e06367844de473590f2fbfa99c75c279883b67d67ffaf23521660891f03a74c",
+        "outputs/metrics/S006_confirm2024_Y4_raw/daily_metrics.csv": "52a82110c579e7ec7920fc81e21cb5295e68f35b51e849dd336f59758380e6ca",
+        "outputs/metrics/S006_confirm2024_Y4_raw/monthly_metrics.csv": "9bdac8598cde05fc266a045d0343a4933617ddad9720e9b6cbedcf830173119e",
+        "outputs/metrics/S006_confirm2024_Y4_raw/metrics.json": "6b62c8541b261b2f940bdcd011c174bf2a425a2a5e15ad3b3d4eb6dfcf31b98c",
+        "outputs/models/S006_confirm2024_Y4_raw/model.txt": "23897a643a492f96a1f119f99f45189fd4cea11fa5b92b7fd19f44976c666b4e",
+        "outputs/metrics/S006_confirm2024_Y4_raw/feature_importance.csv": "968c72260129d586fdbcae786976f0103e831fc7ca8e49551a9153ad0f0806a6"
+      }
+    },
+    {
+      "exp_id": "S006_confirm2024_new_signal_qstar",
+      "manifest": "outputs/models/S006_confirm2024_new_signal_qstar/run.json",
+      "manifest_sha256": "602348e1907b237fcdbc79d375a89d093a3d1c1f5332f31ba33fa79adccf5d07",
+      "artifact_hashes": {
+        "outputs/models/S006_confirm2024_new_signal_qstar/config.yaml": "8d1bd36300a2bd83ce2c089c0bd27147cd1e656d74472aa6f156c59f9c9ae8f6",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/daily_metrics.csv": "0f6c9f595e376bcd8d1802376faf8747f8d440a53f9d5ce234fdb769ec958108",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/holdings_daily.csv": "12d266d2c2bcaa13136f21228aa36c39c462aea0e619e716f907ad5ed1c14f33",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/holdings_stocks.csv": "2613aea2afe6194cbe7face94549cdfb0dfc33f92a4622c39e0edb299dbf12b3",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/holdings_summary.json": "9f8d33c35795e852727aee00f13af3decd60a993508e33194d8588b55d62eae0",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/holding_length_histogram.csv": "2130eb2484f9ad656ac2f9a70545a673b8f8ee869578c090c7d75a79ac484be0",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/metrics.json": "b4202d5c3b1ac3c3391060e53cc198e186d38480ae1be64ebc2d1d4ba6c7f3ad",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/monthly_metrics.csv": "7621cf137636fd8830955762343526c499f8201e184045c88b4fcd41bf5cb4e0",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/quarterly_metrics.csv": "6595d53d1490d493869a5fa6ce57946e3a861972e7113e1198743dea55897328",
+        "outputs/metrics/S006_confirm2024_new_signal_qstar/top_sets.npz": "dbac9732f40270abbf26b19c0a7d0b44fb3573abaa3d1acdeba92f17e01e91b9",
+        "outputs/predictions/S006_confirm2024_new_signal_qstar/valid_2024.csv": "af59ede3ed5b2959f20a02cd531d3554cffed601d669e37960e90d8af4dc44dc"
+      }
+    },
+    {
+      "exp_id": "S006_confirm2024_new_complete",
+      "manifest": "outputs/models/S006_confirm2024_new_complete/run.json",
+      "manifest_sha256": "cb69ad8698f88cda6ed29cce07bdec038a00aa677d53b5de5fae4a9837edceee",
+      "artifact_hashes": {
+        "outputs/models/S006_confirm2024_new_complete/config.yaml": "8d1bd36300a2bd83ce2c089c0bd27147cd1e656d74472aa6f156c59f9c9ae8f6",
+        "outputs/metrics/S006_confirm2024_new_complete/daily_metrics.csv": "3078f62cd3aac08e0e29f35cb6395aa169d5e214b51b8386e6d402717b7c5c01",
+        "outputs/metrics/S006_confirm2024_new_complete/holdings_daily.csv": "69b7c52541395c5e9f6fd3feb19ac3c9029bc1a53ade287a5bcc44639bc54463",
+        "outputs/metrics/S006_confirm2024_new_complete/holdings_stocks.csv": "b795016af9dce3f01e453a3b1997f0103328e87888cb603bb846824d6abe2be7",
+        "outputs/metrics/S006_confirm2024_new_complete/holdings_summary.json": "7775a4a3c796d631fba7478a5cdab750258a93978f20d83a0bb7af2f685e89a1",
+        "outputs/metrics/S006_confirm2024_new_complete/holding_length_histogram.csv": "1ae0c7be15effd6ce6c5ba54e245e27ae4d760300422e2838f42b7038e6e5615",
+        "outputs/metrics/S006_confirm2024_new_complete/metrics.json": "100b7ccc9346713db3ff7f5ce9e97fdf0a99284e2c0f2a8194f5df5073407975",
+        "outputs/metrics/S006_confirm2024_new_complete/monthly_metrics.csv": "de274dfc91497ffa90fc8cbc4bf425ffbb03c7b1e71e904850a81f68c6de51a5",
+        "outputs/metrics/S006_confirm2024_new_complete/quarterly_metrics.csv": "99afb2238c1c4e3840a495f61c2bd8a2eda3e87554546b3f09ee5920b42cb3be",
+        "outputs/metrics/S006_confirm2024_new_complete/top_sets.npz": "85e3166a3f9a4b342c27572c313d12c41445509d6d700bc138f5c6ac1950d31c",
+        "outputs/predictions/S006_confirm2024_new_complete/valid_2024.csv": "81834222ab0acfb2874ac72232cfa14a482f9a5cc11350df73d7b3b92283bd32"
+      }
+    },
+    {
+      "exp_id": "S006_confirm2024_T030_selected_controller",
+      "manifest": "outputs/models/S006_confirm2024_T030_selected_controller/run.json",
+      "manifest_sha256": "6036966e3bc44393903f7c9ef880814df1bae4368b844c9e3887c834e562b5a1",
+      "artifact_hashes": {
+        "outputs/models/S006_confirm2024_T030_selected_controller/config.yaml": "8d1bd36300a2bd83ce2c089c0bd27147cd1e656d74472aa6f156c59f9c9ae8f6",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/daily_metrics.csv": "efd0c7d373a40146d33dd9703d23220fb6e47da0b181473f4ca294ccc9b51666",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/holdings_daily.csv": "4e24d7508446680c87c3f7765e2fdb633c7fecd216be99acc888e65f8abbd7a8",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/holdings_stocks.csv": "5b6b014c490bb8b641feec2739128165864679e529beebecd42ef147246fd976",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/holdings_summary.json": "f3319f6ffb0d9ffa3aec882dfe67248ca0c61fff2f5be1afeb80101b01e5b903",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/holding_length_histogram.csv": "416b398ca4d99c03b1657518c088938b4e8c184d559a3ffa75d90338fc80ecec",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/metrics.json": "9703ea0f037c251c6fa249698475ad4e910d882ce2843d46075777ae14fbd023",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/monthly_metrics.csv": "fe1fb17e4063af8fb1eec4b00f771e49dbccdac93a1775536d2aca28684584dc",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/quarterly_metrics.csv": "891882a6bfd289781940e948d0b2dd4dd9f3ddaf16758d3ba622deb313d28e62",
+        "outputs/metrics/S006_confirm2024_T030_selected_controller/top_sets.npz": "13e2201947deeebf68652ba87b30189b88ea95e89d00a78bfe0acbaf07263a87",
+        "outputs/predictions/S006_confirm2024_T030_selected_controller/valid_2024.csv": "64baa4655ba2bb7d7cb15302c0bc3a02784c8e188cd089c695a7064e0df17cf0"
+      }
     }
   ],
   "selection_digest": "0d9dcadff208cf15b8515eac33ee8985efd2693826639bad9f80327738257409",
@@ -4137,28 +4221,37 @@
   "evaluated_years": [
     2021,
     2022,
-    2023
+    2023,
+    2024
   ],
   "published_files": {
     "docs/alpha_research_S006.md": {
-      "sha256": "d3611f13efc289452f6df0c3095070928a6dd760a30571deddb89530d7535d6b",
-      "size_bytes": 7251
+      "sha256": "fa6ca72b937f555e4dfb0ac7191cf66cf1339be22e5913f7e021aa432e5acc9f",
+      "size_bytes": 12726
     },
     "docs/alpha_research_S006_selection.json": {
       "sha256": "b696c76208a806bab43fa329f80b6bd0ec00ace724ba78d9b50e85bc47f5adf3",
       "size_bytes": 65621
     },
+    "docs/alpha_research_S006_confirmation.json": {
+      "sha256": "297c2fa64a7fc9b47f5d9ac1b67a8b9708ce5ff56d32e3b997a7cd897ec9e3ea",
+      "size_bytes": 55260
+    },
     "docs/figures/alpha_S006_attribution.png": {
       "sha256": "42e82b18dbac391d6868b80f7c30c00edab19ae6cdabdfe7ed1ec024d25ee2b5",
       "size_bytes": 37197
+    },
+    "docs/figures/alpha_S006_confirmation_attribution.png": {
+      "sha256": "dc3eebfda596e902474bb52b3065b9b1f9656d144b1dc2eb80957476f7c1ae43",
+      "size_bytes": 37422
     },
     "docs/figures/alpha_S006_cv_scores.png": {
       "sha256": "6dfcfd1398edb982f4d0e663f80aaf53cd774bbcf70ca3c6655462d6e3155d9e",
       "size_bytes": 56033
     },
     "docs/figures/alpha_S006_monthly.png": {
-      "sha256": "a2555ba62139675ac10752746897f3e7d268ad6b393a7d57985aa0104648cb63",
-      "size_bytes": 180054
+      "sha256": "3d4f309aa0fca760cb322daf6632f4446fd126791e4fdfaaa2eecd0d3b5c82a4",
+      "size_bytes": 240817
     },
     "docs/figures/alpha_S006_pareto.png": {
       "sha256": "74cb92f3ee7a0c34f2bcd3ebbfdc735dfa51e86fe21b365f8501900b8920da72",
@@ -4167,6 +4260,14 @@
     "experiments/alpha_S006_comparison.csv": {
       "sha256": "2212652b82d2e86499add361f0c38d1a6e16269256137abd02c9bc517bd9ab1a",
       "size_bytes": 17451
+    },
+    "experiments/alpha_S006_confirmation.csv": {
+      "sha256": "8f0243950ff4be18612a6089aff797a229ce81ffc448784450c56d5045ee4856",
+      "size_bytes": 1499
+    },
+    "experiments/alpha_S006_confirmation_attribution.csv": {
+      "sha256": "43193b692b8a176de5ff1a14af3f445eb5c734517ff454e34a791aa4ee273094",
+      "size_bytes": 722
     },
     "experiments/alpha_S006_folds.csv": {
       "sha256": "497db5a9f76c0404b96ea7d5fe751b93f463a395f0d72d4fd80d6ddbe30e3a6f",
@@ -4189,16 +4290,43 @@
       "size_bytes": 50314
     },
     "experiments/alpha_S006_monthly.csv": {
-      "sha256": "ed0a1c15820d5841a776f781784616ac4bcdb66c010b46e5b7edd4d912b1943b",
-      "size_bytes": 413727
+      "sha256": "df72589d6ea3787ac9b6357784eba3ec38953ebea9bb1dd907c5f59a666b780e",
+      "size_bytes": 435634
     },
     "experiments/alpha_S006_quarterly.csv": {
-      "sha256": "f5102a9084c3fe0f9a2523b5f1bf81b89debe514c1881c7ef4be889e260f830f",
-      "size_bytes": 139429
+      "sha256": "0071f08f67444122642044245582e4a39eb6a2d28727a0756bd163f099bce684",
+      "size_bytes": 146748
     },
     "experiments/alpha_S006_raw_signals.csv": {
       "sha256": "ee8718d2c44f2d9244db8e14462be853915022576ac4e2156a278787927a9e19",
       "size_bytes": 12520
+    },
+    "experiments/alpha_S006_selected_monthly_changes.csv": {
+      "sha256": "ca7e048c2960e74801baa828bad9385c22f8c67743a0e2f64e91477515813516",
+      "size_bytes": 6510
+    },
+    "experiments/alpha_S006_selected_stability.csv": {
+      "sha256": "549e4468ca91f562084bf5aee1e2f97e84534b68840ba3ea56fbe97947f29db5",
+      "size_bytes": 565
     }
+  },
+  "descriptive_publication": {
+    "time": "2026-10-08T23:30:15+08:00",
+    "reporting_module": "src/evaluation/ensemble_diagnostics.py",
+    "sha256": "bc7c9769f81d90e0b5e705c7f0f14ce65a55ca392926725c2b786a69bf84970a",
+    "new_model_fits": 0,
+    "new_scored_configurations": 0,
+    "selection_changed": false
+  },
+  "final_handoff_audit": {
+    "path": "outputs/metrics/research_studies/S006/final_handoff_audit.json",
+    "sha256": "504faa7c52f06f22270ec10f77ff3c3e33d61fcf25ffc2096e3becb66a1b0320",
+    "time": "2026-10-08T23:42:34+08:00",
+    "checked_hashes": 3066,
+    "checked_runs": 196,
+    "total_records": 706,
+    "numerical_protocol_unchanged": true,
+    "pre_confirmation_selection_unchanged": true,
+    "no_new_fits_or_scores": true
   }
 }

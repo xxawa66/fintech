@@ -1,10 +1,13 @@
 project:
   name: fintech
-  stage: ensemble_cv_selected
+  stage: ensemble_research_complete
+  research_recommendation: retain_S003
+  reference_selection: docs/optuna_tuning_S003_selection.json
   current_ensemble_study: S006
   current_ensemble_run: docs/ensemble_research_run.md
   current_ensemble_report: docs/alpha_research_S006.md
   current_ensemble_selection: docs/alpha_research_S006_selection.json
+  current_ensemble_confirmation: docs/alpha_research_S006_confirmation.json
   current_ensemble_artifacts: docs/alpha_research_S006_artifacts.json
   current_target_study: S005
   current_target_run: docs/target_research_run.md

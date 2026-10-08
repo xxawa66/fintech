@@ -211,3 +211,13 @@ optuna:
     lambda_l2: {low: 0.0001, high: 50.0, log: true}
     num_boost_round: [200, 400, 800]
     band_keep_q: {low: 0.0, high: 1.0}
+
+# LH001（model/long-horizon 分支，未并入 main）：长周期选股实验。
+# 用 t 日特征（冻结的 40 个 V1 特征，只向后看）训练预测未来 h 个交易日收益率的
+# 模型，raw pred 口径评估首日 Top 1/10 的选股质量；不叠 band、不以换手优化为
+# 目标。模型参数直读 S003 winner.spec，不重调参。生产接入路径（实验通过后才
+# 考虑）：首日 pred 替换为长周期预测，其余交易日不变，由留仓带维持首日集合。
+long_horizon:
+  study: LH001
+  horizons: [5, 10, 20, 30]
+  spec_source: docs/optuna_tuning_S003_selection.json

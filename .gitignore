@@ -24,6 +24,8 @@ outputs/metrics/*
 !outputs/metrics/.gitkeep
 outputs/predictions/*
 !outputs/predictions/.gitkeep
+outputs/long_horizon/*
+!outputs/long_horizon/.gitkeep
 
 # Local temporary files and credentials
 tmp/

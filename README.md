@@ -15,6 +15,7 @@
 - [模型研究计划书](docs/model_research_plan.md)：Day 9–12 已按固定协议完成；Day 13–14 衔接独立审核、最终训练与提交。
 - [S004–S006 计划书](docs/alpha_retention_plan.md)：固定三折研究，S004 已完成，S005 / S006 待启动。
 - [S004 运行说明](docs/alpha_research_run.md)：固定 T030 的 67 组控制器、排序去重、官方核对和真实交接。
+- [S005 运行说明](docs/target_research_run.md)：已实现固定 T030 的五种目标 / 损失、实际日期键对齐和 15 次三折训练；全量研究待执行。
 - [数据字典](docs/data_dictionary.md)与[数据清单](data/manifest.json)：字段含义、文件大小与校验信息。
 
 后续每一步都从仓库当前文件和实际 Git 状态出发；聊天记录用于补充背景，具体实现、进度和配置写回仓库。

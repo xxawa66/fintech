@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "study_id": "S004",
+  "created_at": "2026-10-08T18:43:48+08:00",
+  "git": {
+    "commit": "4563f48f70e0b14c65a208d43875eccb8a6a04af",
+    "branch": "main",
+    "dirty": false
+  },
+  "source_digest": "d7d7b5e8270cbb59c746e7d28c18d2f1057e38e8e8b186da67eb92f73e1d3839",
+  "protocol_digest": "952aaeee743afaf63643eacaa756de1bdd69f085696044947a2b76aabd81189b",
+  "source_selection_digest": "2206cc007787f8c988f5de191950efb89fcd6ee724d5b96b9f45169e63ec2367",
+  "controllers": [
+    {
+      "id": "C018",
+      "family": "band",
+      "spec": {
+        "method": "band_minimal",
+        "keep_q": 0.0022778298112255263
+      },
+      "status": "COMPLETE",
+      "alias_of": null,
+      "order_fingerprints": [
+        "6b8ad169f5ea99853ced55ae592b2ff14e778b7a5d8768694d7f53713d754453",
+        "5771a2a10e1eff81de683a06b5c1420d9936d2fe927174af0711e693f6051d80",
+        "a0cb954e4f65d372a08f0a914dca0c43be1669d40684c5826aaa55615989b44a"
+      ],
+      "cv_mean": 0.3772752566889346,
+      "cv_std": 0.014298883168530898,
+      "cv_worst": 0.3570993660943539,
+      "mean_ic": 0.06592726262311753,
+      "mean_excess": 0.18717932741363677,
+      "mean_turnover": 0.017498155281344872,
+      "scores": {
+        "wf2021": 0.38854098330615555,
+        "wf2022": 0.38618542066629424,
+        "wf2023": 0.3570993660943539
+      },
+      "passes_cv_replacement_gate": true,
+      "runs": {
+        "wf2021": {
+          "exp_id": "S004_C018_wf2021",
+          "prediction": "outputs/predictions/S004_C018_wf2021/valid_2021.csv",
+          "sha256": "55a87e09c421956555e787d4b43ba3c58234a1c2902ed52f1c45d56b145b5ae1"
+        },
+        "wf2022": {
+          "exp_id": "S004_C018_wf2022",
+          "prediction": "outputs/predictions/S004_C018_wf2022/valid_2022.csv",
+          "sha256": "857a89ae5ea052a21742d64c4d1cb4db30dca0900e2f7171ef76d4ee719b813a"
+        },
+        "wf2023": {
+          "exp_id": "S004_C018_wf2023",
+          "prediction": "outputs/predictions/S004_C018_wf2023/valid_2023.csv",
+          "sha256": "01fd2155730aa5d1e36dece6295be60e3180b6a8c5e0f5dbc065272646d848d1"
+        }
+      }
+    },
+    {
+      "id": "C042",
+      "family": "gap",
+      "spec": {
+        "method": "gap",
+        "delta": 0.0,
+        "rho": 0.01
+      },
+      "status": "COMPLETE",
+      "alias_of": null,
+      "order_fingerprints": [
+        "4320a4d240b47b04f57d8e4171b7cb03e5e6024c4cc82b744acba5534b670da9",
+        "a0f61c14128ac66d408dc06fd7a1f1e3eff54261be0fea64ddf94873848d8e79",
+        "d7b054cea38a198dd330273fb4696f2d518864ad62463e93f7f5bb9590d53bab"
+      ],
+      "cv_mean": 0.37411145040514354,
+      "cv_std": 0.023888746480539277,
+      "cv_worst": 0.3403279087212525,
+      "mean_ic": 0.06793815046145096,
+      "mean_excess": 0.19162483720074083,
+      "mean_turnover": 0.035170869798863566,
+      "scores": {
+        "wf2021": 0.39111523056283004,
+        "wf2022": 0.3908912119313482,
+        "wf2023": 0.3403279087212525
+      },
+      "passes_cv_replacement_gate": false,
+      "runs": {
+        "wf2021": {
+          "exp_id": "S004_C042_wf2021",
+          "prediction": "outputs/predictions/S004_C042_wf2021/valid_2021.csv",
+          "sha256": "71ebb4d7b94684b697e0f7db87f0bafbdce988472b2e7e5890117ccece3f7da9"
+        },
+        "wf2022": {
+          "exp_id": "S004_C042_wf2022",
+          "prediction": "outputs/predictions/S004_C042_wf2022/valid_2022.csv",
+          "sha256": "63ab63292f6dedf01d6f75dfe1aa9d40b573bc48d84c270c129cc2fc08e0250e"
+        },
+        "wf2023": {
+          "exp_id": "S004_C042_wf2023",
+          "prediction": "outputs/predictions/S004_C042_wf2023/valid_2023.csv",
+          "sha256": "2a6f9abccad5fb11701bf5643d8486ad41d2470ecec5ee65ed7162cc918e8ef7"
+        }
+      }
+    }
+  ],
+  "baseline": {
+    "id": "C002",
+    "family": "band",
+    "spec": {
+      "method": "band",
+      "keep_q": 0.0022778298112255263
+    },
+    "status": "COMPLETE",
+    "alias_of": null,
+    "order_fingerprints": [
+      "212b11a8c27cdee46b79ba3d54f4817ae97345777329751d47634e97bd1e4e35",
+      "356019b17ae3e7a99a8eb7f8e9bcf704920c49cc637c4bb7d606174fe1a897bf",
+      "b00f420f2ac39ebd9ed775b4ab523ce2b4e8e73fd1179591d6423d0abafe73c4"
+    ],
+    "cv_mean": 0.3772733719642721,
+    "cv_std": 0.014298735270296688,
+    "cv_worst": 0.357097676244488,
+    "mean_ic": 0.06592255081146142,
+    "mean_excess": 0.18717932741363677,
+    "mean_turnover": 0.017498155281344872,
+    "scores": {
+      "wf2021": 0.3885388115029958,
+      "wf2022": 0.3861836281453326,
+      "wf2023": 0.357097676244488
+    }
+  },
+  "highest_mean_unrestricted": {
+    "id": "C018",
+    "family": "band",
+    "spec": {
+      "method": "band_minimal",
+      "keep_q": 0.0022778298112255263
+    },
+    "status": "COMPLETE",
+    "alias_of": null,
+    "order_fingerprints": [
+      "6b8ad169f5ea99853ced55ae592b2ff14e778b7a5d8768694d7f53713d754453",
+      "5771a2a10e1eff81de683a06b5c1420d9936d2fe927174af0711e693f6051d80",
+      "a0cb954e4f65d372a08f0a914dca0c43be1669d40684c5826aaa55615989b44a"
+    ],
+    "cv_mean": 0.3772752566889346,
+    "cv_std": 0.014298883168530898,
+    "cv_worst": 0.3570993660943539,
+    "mean_ic": 0.06592726262311753,
+    "mean_excess": 0.18717932741363677,
+    "mean_turnover": 0.017498155281344872,
+    "scores": {
+      "wf2021": 0.38854098330615555,
+      "wf2022": 0.38618542066629424,
+      "wf2023": 0.3570993660943539
+    }
+  },
+  "rule": "Highest CV mean per distinct nonraw family, then worst fold and predeclared ID; order-equivalent configurations are evaluated once; freeze two for S006, not formal adoption.",
+  "initial_state": "cold_start",
+  "row_order": [
+    "trade_date",
+    "ts_code"
+  ],
+  "prefix_replays": [
+    {
+      "candidate": "C018",
+      "fold": "wf2021",
+      "end": 20210705,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "candidate": "C018",
+      "fold": "wf2022",
+      "end": 20220706,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "candidate": "C018",
+      "fold": "wf2023",
+      "end": 20230705,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "candidate": "C042",
+      "fold": "wf2021",
+      "end": 20210705,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "candidate": "C042",
+      "fold": "wf2022",
+      "end": 20220706,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "candidate": "C042",
+      "fold": "wf2023",
+      "end": 20230705,
+      "rows": 562650,
+      "passed": true
+    }
+  ],
+  "evaluated_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "new_model_fits": 0,
+  "selection_digest": "bc2de100d48ed97e25924908454f3d8dd34b8df90fc0d3654216320264f4c20e"
+}

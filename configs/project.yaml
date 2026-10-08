@@ -1,6 +1,6 @@
 project:
   name: fintech
-  stage: controller_research_ready
+  stage: controller_research_complete
   current_alpha_study: S004
   current_alpha_plan: docs/alpha_retention_plan.md
   current_alpha_report: docs/alpha_research_S004.md

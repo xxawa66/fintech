@@ -1,6 +1,11 @@
 project:
   name: fintech
-  stage: optuna_tuning_complete
+  stage: controller_research_ready
+  current_alpha_study: S004
+  current_alpha_plan: docs/alpha_retention_plan.md
+  current_alpha_report: docs/alpha_research_S004.md
+  current_alpha_selection: docs/alpha_research_S004_selection.json
+  current_alpha_artifacts: docs/alpha_research_S004_artifacts.json
   current_tuning_study: S003
   current_tuning_report: docs/optuna_tuning_S003.md
   current_tuning_selection: docs/optuna_tuning_S003_selection.json
@@ -211,3 +216,22 @@ optuna:
     lambda_l2: {low: 0.0001, high: 50.0, log: true}
     num_boost_round: [200, 400, 800]
     band_keep_q: {low: 0.0, high: 1.0}
+
+# S004: fixed frozen T030 predictions; no model fitting or 2024 evaluation.
+alpha_research:
+  phase: S004
+  source_selection: docs/optuna_tuning_S003_selection.json
+  source_artifacts: docs/optuna_tuning_S003_artifacts.json
+  initial_state: cold_start
+  row_order: [trade_date, ts_code]
+  candidate_budget: 67
+  selection_tolerance: 1.0e-6
+  folds:
+    - {name: wf2021, train: [20180102, 20201231], valid: [20210101, 20211231]}
+    - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
+    - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
+  controllers:
+    keep_qs: [0.0, 0.0022778298112255263, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.4, 0.6, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0]
+    bonuses: [0.0, 0.025, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0]
+    gaps: [0.0, 0.025, 0.05, 0.1, 0.2]
+    replacement_caps: [0.01, 0.025, 0.05, 0.1, 0.2]

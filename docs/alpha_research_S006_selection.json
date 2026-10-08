@@ -1,0 +1,1544 @@
+{
+  "schema": 1,
+  "study_id": "S006",
+  "created_at": "2026-10-08T23:10:48+08:00",
+  "git": {
+    "commit": "c2a15e75ff3dfedcbd08c0b5e1717a81cea53bb6",
+    "branch": "main",
+    "dirty": false
+  },
+  "source_digest": "ca7563ca1ab91c6b28b84508fa76a9fe5600e76ebc8c1108172da6c2ce8f58f9",
+  "protocol_digest": "21051271d30cebb94f83a2e1f33a3d65186524ddf353b527899c5d29c79adfd0",
+  "source_selection_digest": "2206cc007787f8c988f5de191950efb89fcd6ee724d5b96b9f45169e63ec2367",
+  "controller_selection_digest": "bc2de100d48ed97e25924908454f3d8dd34b8df90fc0d3654216320264f4c20e",
+  "target_selection_digest": "9809105475dbe5de31475a0eea50d8418405b24fa68c096037ae3049fbe33018",
+  "winner": {
+    "id": "F005",
+    "signal": {
+      "id": "U001",
+      "components": [
+        "Y4"
+      ],
+      "weights": [
+        1.0
+      ],
+      "method": "single_original_pred"
+    },
+    "controller_id": "Q2",
+    "controller": {
+      "method": "gap",
+      "delta": 0.0,
+      "rho": 0.01
+    },
+    "status": "COMPLETE",
+    "alias_of": null,
+    "order_fingerprints": [
+      "bf6be740500b9d11cda96c31c563b37641b50b24bc9e0feccbc956cd38805a28",
+      "00201ce61db44222f182f2594e4b7c9fac0a4dc15debd7ee44275efcf47c1022",
+      "0e3244f2f14bb8ce2d674b5656c2e0c090f6c5d7e984189da356dc20ed5183a3"
+    ],
+    "cv_mean": 0.40967824748088644,
+    "cv_std": 0.014056643323702283,
+    "cv_worst": 0.3950504494239817,
+    "mean_ic": 0.10798529538427531,
+    "mean_excess": 0.25161241317528543,
+    "mean_turnover": 0.029998648751364442,
+    "scores": {
+      "wf2021": 0.40533433902681926,
+      "wf2022": 0.42864995399185823,
+      "wf2023": 0.3950504494239817
+    },
+    "passes_cv_gate": true,
+    "components": [
+      {
+        "id": "Y4",
+        "kind": "target",
+        "target": {
+          "id": "Y4",
+          "transform": "daily_winsor_zscore",
+          "quantiles": [
+            0.01,
+            0.99
+          ],
+          "interpolation": "linear",
+          "ddof": 0,
+          "zero_std": 0.0,
+          "objective": "huber",
+          "metric": "huber",
+          "alpha": 0.9
+        },
+        "model_spec": {
+          "model_params": {
+            "objective": "huber",
+            "boosting_type": "gbdt",
+            "metric": "huber",
+            "learning_rate": 0.04065467822968424,
+            "num_leaves": 28,
+            "max_depth": 8,
+            "min_data_in_leaf": 415,
+            "lambda_l1": 2.086527798462595,
+            "lambda_l2": 0.011862211698474496,
+            "feature_fraction": 0.660945618691071,
+            "bagging_fraction": 0.9204918282790925,
+            "bagging_freq": 1,
+            "max_bin": 255,
+            "seed": 42,
+            "num_threads": 8,
+            "device_type": "cpu",
+            "deterministic": true,
+            "force_col_wise": true,
+            "use_missing": true,
+            "zero_as_missing": false,
+            "verbosity": -1,
+            "alpha": 0.9
+          },
+          "rounds": 800
+        },
+        "folds": {
+          "wf2021": {
+            "exp_id": "S005_Y4_wf2021_raw",
+            "status": "passed",
+            "started_at": "2026-10-08T21:01:41+08:00",
+            "owner": "A",
+            "git": {
+              "commit": "6c891eff35d823eae3a241c485e785b51e72f3fa",
+              "branch": "main",
+              "dirty": false
+            },
+            "data": {
+              "path": "data/raw/训练集.csv",
+              "size_bytes": 946832276,
+              "sha256": "e9d23e87f7e1f9439f28f7dd951d129ea49eaacda5ad650da8576a830a6deac9",
+              "official_attachments": {
+                "evaluate.py": "72dc59987e92ba8ae6b506e114dfe8591b5608c9beccd0769d5d1f778f9189c2",
+                "evaluate.R": "9d5e8403dccf29983bcd35eccea4533f5dba79417248d2d724fbb4b34bbf3ed1",
+                "docs/赛题五-更新.pdf": "d471d467d5c385d750be59bb58ff96d3c10ca36fefc38c08bcb7e830a844c29f"
+              },
+              "test_x": {
+                "path": "data/raw/测试集_X.csv",
+                "sha256": "dceffbf68bbab07a254bc6caa4d8a1e33de8de9c15489d936c5d15020dbfa90f",
+                "size_bytes": 168825396
+              }
+            },
+            "source_digest": "5569f58c93a61eb76824903d304522b2988634e9f4e37bc726505789a0d526fa",
+            "protocol_digest": "e033b9291d19bfada4eb4f2724a2f9dd68deb3113d783fb294c29cf0f65817c5",
+            "config_path": "configs/project.yaml",
+            "spec": {
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "target_id": "Y4",
+              "target_transform": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet",
+              "target_mapping_sha256": "472083fa81a0eaf98bc4f91946ee1735bdeafc89f3101b548b94cd357ff188f9",
+              "training_keys_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+              "source_model": "S003 T030",
+              "layer": "raw"
+            },
+            "split": {
+              "fold": "wf2021",
+              "train_window": [
+                20180102,
+                20201231
+              ],
+              "valid_window": [
+                20210101,
+                20211231
+              ],
+              "n_train_rows": 3394500,
+              "n_valid_rows": 1129950,
+              "last_train_day": 20201231,
+              "next_trading_day": 20210104,
+              "n_boundary_rows": 4650,
+              "n_boundary_labels_dropped": 3853,
+              "n_train_labels_before": 2597901,
+              "n_train_labels_after": 2594048,
+              "n_valid_labels": 975147,
+              "valid_label_coverage": 0.8630001327492367
+            },
+            "training_samples": {
+              "candidate_rows": 3394500,
+              "used_rows": 2594048,
+              "dropped_rows": 800452
+            },
+            "family": "LightGBM",
+            "layer": "raw",
+            "timings_seconds": {
+              "training": 27.085684600000604
+            },
+            "environment": {
+              "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+              "platform": "Windows-11-10.0.26100-SP0",
+              "packages": {
+                "numpy": "2.5.3",
+                "pandas": "3.0.6",
+                "scipy": "1.18.1",
+                "lightgbm": "4.7.0",
+                "pyarrow": "25.0.1",
+                "PyYAML": "6.0.3",
+                "matplotlib": "3.11.2",
+                "optuna": "5.0.0",
+                "psutil": "7.2.2"
+              }
+            },
+            "actual_iterations": 800,
+            "reload_max_difference": 0.0,
+            "fallback_rows": 154330,
+            "finished_at": "2026-10-08T21:02:26+08:00",
+            "metrics": {
+              "ic_mean": 0.12401582921011269,
+              "ic_std": 0.0860006677464791,
+              "icir": 1.4420333290399356,
+              "ic_positive_ratio": 0.9382716049382716,
+              "annual_excess": 0.678477336153563,
+              "top1_annual_ret": 0.8361839741556485,
+              "mean_turnover": 0.8726151415783494,
+              "final_score": 0.29136499005660915,
+              "n_days_ic": 243,
+              "n_days_top": 243,
+              "n_days_turnover": 242
+            },
+            "official_differences": {
+              "ic_mean": 0.0,
+              "ic_std": 0.0,
+              "icir": 0.0,
+              "ic_positive_ratio": 0.0,
+              "annual_excess": 0.0,
+              "top1_annual_ret": 0.0,
+              "mean_turnover": 0.0,
+              "final_score": 0.0
+            },
+            "official_max_difference": 0.0,
+            "duration_seconds": 45.39152270000159,
+            "prediction": "outputs/predictions/S005_Y4_wf2021_raw/valid_2021.csv",
+            "labels": "outputs/metrics/research_studies/S005/labels/wf2021.csv",
+            "validation_rows": 1129950,
+            "validation_days": 243,
+            "peak_sampled_rss_bytes": 3890233344,
+            "checks": {
+              "keys_complete_unique_finite": true,
+              "official_match": true,
+              "row_order": [
+                "trade_date",
+                "ts_code"
+              ],
+              "cold_start": true
+            },
+            "notes": "S005; raw; cold_start; complete fold; new model fit; no early stopping",
+            "model": "outputs/models/S005_Y4_wf2021_raw/model.txt",
+            "artifact_hashes": {
+              "outputs/predictions/S005_Y4_wf2021_raw/valid_2021.csv": "b3040092404a4df6cd60f63ef1adb6a669e5224791d9da6b4577ef5ce01b6a44",
+              "outputs/metrics/research_studies/S005/labels/wf2021.csv": "290aa2056ff6193a60f6ab631567f12d60b1e2a0dc3ffc51061b6c8740931461",
+              "outputs/models/S005_Y4_wf2021_raw/config.yaml": "42231e2b3027a1f8ecf88140efdf0880bcc1223e058d39ea5b6acfc67d72f9a9",
+              "outputs/metrics/S005_Y4_wf2021_raw/daily_metrics.csv": "79d08c52906440324a7f4a3b667afcf3e0f45abc59734eb8733392f1989a6379",
+              "outputs/metrics/S005_Y4_wf2021_raw/monthly_metrics.csv": "d8cedd35ca13b6b70741b7609acb811e3619567f9a20c080fd9f8affdfb35366",
+              "outputs/metrics/S005_Y4_wf2021_raw/metrics.json": "c79a421fe458f57a1111d499727c1931dff5ba3cdd9c66f90eb22a6502546d4b",
+              "outputs/models/S005_Y4_wf2021_raw/model.txt": "996ec60bfafc4802e4dc70e37ae9a9cddc03a8e39135b2ca2cd0e3d06820331e",
+              "outputs/metrics/S005_Y4_wf2021_raw/feature_importance.csv": "8d682859e9bb611de6818dbefc84680e26f0121e7922f88c03db5225310bb347",
+              "outputs/metrics/S005_Y4_wf2021_raw/quarterly_metrics.csv": "016a292bb1c6f9b68c71a614b9fbb5ba8ce138b81462173c91e83e68fc630f75",
+              "outputs/metrics/S005_Y4_wf2021_raw/agreement_daily.csv": "8549a4f63c53746f653076c73720a38a12c8c2157bb5d5811c6130ea555a00e1"
+            },
+            "csv_order_and_ties_preserved": true,
+            "csv_max_difference": 8.881784197001252e-16,
+            "target_id": "Y4",
+            "target_mapping": {
+              "status": "passed",
+              "identity": {
+                "schema": 1,
+                "fold": "wf2021",
+                "supervised_keys": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+                "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                }
+              },
+              "mapping": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet",
+              "summary": {
+                "rows": 2594048,
+                "days": 729,
+                "stocks": 3861,
+                "start": 20180102,
+                "end": 20201230,
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                },
+                "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+                "target_digest": "8805e80aa3db4c167622f2c2b377f84acfb6540e81999b3edda35758fd53d80b",
+                "raw_mean": 0.000291838358056902,
+                "raw_std": 0.02890898755249202,
+                "target_mean": 7.012165555710058e-19,
+                "target_std": 1.0,
+                "target_min": -4.300472083777945,
+                "target_max": 5.861964503523231,
+                "target_q01": -2.333974174626021,
+                "target_q99": 3.6967906712376495,
+                "zero_std_days": 0,
+                "clipped_rows": 52578,
+                "all_finite": true,
+                "training_only": true,
+                "input_order_preserved": true
+              },
+              "key_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+              "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/daily_statistics.csv",
+              "prefix_replay": {
+                "end": 20190703,
+                "rows": 1258263,
+                "passed": true
+              },
+              "artifact_hashes": {
+                "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet": "472083fa81a0eaf98bc4f91946ee1735bdeafc89f3101b548b94cd357ff188f9",
+                "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/daily_statistics.csv": "35fc7e31ca1621d1da210b549b336c078c56d0c82078897b7b041c3605cc49a2",
+                "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/summary.json": "6507369ee98407f59d02f54171a316d8a7242b4c6184ae3f2afdbedbe79c1968"
+              },
+              "manifest": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/target.json",
+              "manifest_sha256": "42ace4d8667da9c940e81f2526172524587f1a4626c90b765d4a62647463fb06"
+            },
+            "predictive_score": 0.25314953253011396,
+            "agreement": {
+              "rank_correlation": 0.505643496091815,
+              "eligible_top_overlap": 0.3647813485567671,
+              "eligible_top_jaccard": 0.23018881811764075,
+              "mean_exact_ties": 634.1893004115226
+            },
+            "diagnostics": "outputs/metrics/S005_Y4_wf2021_raw",
+            "new_model_fits": 1,
+            "signal_semantics": "sorting signal; no inverse transform in prediction",
+            "features": "baseline_v1 (40)"
+          },
+          "wf2022": {
+            "exp_id": "S005_Y4_wf2022_raw",
+            "status": "passed",
+            "started_at": "2026-10-08T21:02:36+08:00",
+            "owner": "A",
+            "git": {
+              "commit": "6c891eff35d823eae3a241c485e785b51e72f3fa",
+              "branch": "main",
+              "dirty": false
+            },
+            "data": {
+              "path": "data/raw/训练集.csv",
+              "size_bytes": 946832276,
+              "sha256": "e9d23e87f7e1f9439f28f7dd951d129ea49eaacda5ad650da8576a830a6deac9",
+              "official_attachments": {
+                "evaluate.py": "72dc59987e92ba8ae6b506e114dfe8591b5608c9beccd0769d5d1f778f9189c2",
+                "evaluate.R": "9d5e8403dccf29983bcd35eccea4533f5dba79417248d2d724fbb4b34bbf3ed1",
+                "docs/赛题五-更新.pdf": "d471d467d5c385d750be59bb58ff96d3c10ca36fefc38c08bcb7e830a844c29f"
+              },
+              "test_x": {
+                "path": "data/raw/测试集_X.csv",
+                "sha256": "dceffbf68bbab07a254bc6caa4d8a1e33de8de9c15489d936c5d15020dbfa90f",
+                "size_bytes": 168825396
+              }
+            },
+            "source_digest": "5569f58c93a61eb76824903d304522b2988634e9f4e37bc726505789a0d526fa",
+            "protocol_digest": "e033b9291d19bfada4eb4f2724a2f9dd68deb3113d783fb294c29cf0f65817c5",
+            "config_path": "configs/project.yaml",
+            "spec": {
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "target_id": "Y4",
+              "target_transform": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet",
+              "target_mapping_sha256": "f127a68d9de523c5aa6697d4fada9423e40293f5264c86d8b5976b338d9cd28d",
+              "training_keys_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+              "source_model": "S003 T030",
+              "layer": "raw"
+            },
+            "split": {
+              "fold": "wf2022",
+              "train_window": [
+                20180102,
+                20211231
+              ],
+              "valid_window": [
+                20220101,
+                20221231
+              ],
+              "n_train_rows": 4524450,
+              "n_valid_rows": 1125300,
+              "last_train_day": 20211231,
+              "next_trading_day": 20220104,
+              "n_boundary_rows": 4650,
+              "n_boundary_labels_dropped": 4170,
+              "n_train_labels_before": 3573048,
+              "n_train_labels_after": 3568878,
+              "n_valid_labels": 1029017,
+              "valid_label_coverage": 0.9144379276637341
+            },
+            "training_samples": {
+              "candidate_rows": 4524450,
+              "used_rows": 3568878,
+              "dropped_rows": 955572
+            },
+            "family": "LightGBM",
+            "layer": "raw",
+            "timings_seconds": {
+              "training": 37.87727769999947
+            },
+            "environment": {
+              "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+              "platform": "Windows-11-10.0.26100-SP0",
+              "packages": {
+                "numpy": "2.5.3",
+                "pandas": "3.0.6",
+                "scipy": "1.18.1",
+                "lightgbm": "4.7.0",
+                "pyarrow": "25.0.1",
+                "PyYAML": "6.0.3",
+                "matplotlib": "3.11.2",
+                "optuna": "5.0.0",
+                "psutil": "7.2.2"
+              }
+            },
+            "actual_iterations": 800,
+            "reload_max_difference": 0.0,
+            "fallback_rows": 95860,
+            "finished_at": "2026-10-08T21:03:33+08:00",
+            "metrics": {
+              "ic_mean": 0.13031902698378248,
+              "ic_std": 0.09488643756594961,
+              "icir": 1.373421010702461,
+              "ic_positive_ratio": 0.9173553719008265,
+              "annual_excess": 0.6227346847778025,
+              "top1_annual_ret": 0.49160646771303235,
+              "mean_turnover": 0.8632617264216998,
+              "final_score": 0.2799694983003438,
+              "n_days_ic": 242,
+              "n_days_top": 242,
+              "n_days_turnover": 241
+            },
+            "official_differences": {
+              "ic_mean": 0.0,
+              "ic_std": 0.0,
+              "icir": 0.0,
+              "ic_positive_ratio": 0.0,
+              "annual_excess": 0.0,
+              "top1_annual_ret": 0.0,
+              "mean_turnover": 0.0,
+              "final_score": 0.0
+            },
+            "official_max_difference": 0.0,
+            "duration_seconds": 56.4286020999989,
+            "prediction": "outputs/predictions/S005_Y4_wf2022_raw/valid_2022.csv",
+            "labels": "outputs/metrics/research_studies/S005/labels/wf2022.csv",
+            "validation_rows": 1125300,
+            "validation_days": 242,
+            "peak_sampled_rss_bytes": 3908313088,
+            "checks": {
+              "keys_complete_unique_finite": true,
+              "official_match": true,
+              "row_order": [
+                "trade_date",
+                "ts_code"
+              ],
+              "cold_start": true
+            },
+            "notes": "S005; raw; cold_start; complete fold; new model fit; no early stopping",
+            "model": "outputs/models/S005_Y4_wf2022_raw/model.txt",
+            "artifact_hashes": {
+              "outputs/predictions/S005_Y4_wf2022_raw/valid_2022.csv": "3dc738c0bf22d52b58d5782cb3f5c9303ec3654fee54c23f43132da68eb85688",
+              "outputs/metrics/research_studies/S005/labels/wf2022.csv": "87ad0343aef3bee07ff1f71bdab9dca47347e7384a9c697ea59a5715d8c2fa11",
+              "outputs/models/S005_Y4_wf2022_raw/config.yaml": "42231e2b3027a1f8ecf88140efdf0880bcc1223e058d39ea5b6acfc67d72f9a9",
+              "outputs/metrics/S005_Y4_wf2022_raw/daily_metrics.csv": "2296775c3d949ab1925cd91fee462ead56469ea6549c264d8d7e4a0baab4249e",
+              "outputs/metrics/S005_Y4_wf2022_raw/monthly_metrics.csv": "fa786ec1852b485aba0ac7bc4ca1a5934b35cd3cf74a19369dc47b9e5f1ea651",
+              "outputs/metrics/S005_Y4_wf2022_raw/metrics.json": "055dd3d233a41008339dbc38a7f150f209cd63ddc916868db99b32559c2e5440",
+              "outputs/models/S005_Y4_wf2022_raw/model.txt": "5ff7aa0696ce92adcc332cfc161f312a364670b7a36c79502237806818ec528a",
+              "outputs/metrics/S005_Y4_wf2022_raw/feature_importance.csv": "df6b9d24771b5b7ad11a9b125b8444f5d9f8e4524e04462ce16c1f5a8bb30e08",
+              "outputs/metrics/S005_Y4_wf2022_raw/quarterly_metrics.csv": "596c22dec678ef0816388c35e3f55eb5f41a2ae19db992375fe55eaf175ff30b",
+              "outputs/metrics/S005_Y4_wf2022_raw/agreement_daily.csv": "8d62739fd36d4f294523f0b6e1215d647c994bad5f3eff9a1528f4de5800ecf4"
+            },
+            "csv_order_and_ties_preserved": true,
+            "csv_max_difference": 8.881784197001252e-16,
+            "target_id": "Y4",
+            "target_mapping": {
+              "status": "passed",
+              "identity": {
+                "schema": 1,
+                "fold": "wf2022",
+                "supervised_keys": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+                "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                }
+              },
+              "mapping": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet",
+              "summary": {
+                "rows": 3568878,
+                "days": 972,
+                "stocks": 4182,
+                "start": 20180102,
+                "end": 20211230,
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                },
+                "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+                "target_digest": "90dc40f4ebff9de9304b6ff26a72108579e7fc54f1789dceabb84e3b5a06f826",
+                "raw_mean": 0.0004911946266400518,
+                "raw_std": 0.029386333333232012,
+                "target_mean": 3.822607700962018e-19,
+                "target_std": 1.0,
+                "target_min": -4.300472083777945,
+                "target_max": 5.861964503523231,
+                "target_q01": -2.337766073837762,
+                "target_q99": 3.653639493156466,
+                "zero_std_days": 0,
+                "clipped_rows": 72301,
+                "all_finite": true,
+                "training_only": true,
+                "input_order_preserved": true
+              },
+              "key_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+              "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/daily_statistics.csv",
+              "prefix_replay": {
+                "end": 20191230,
+                "rows": 1694259,
+                "passed": true
+              },
+              "artifact_hashes": {
+                "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet": "f127a68d9de523c5aa6697d4fada9423e40293f5264c86d8b5976b338d9cd28d",
+                "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/daily_statistics.csv": "92da323900833f1cd4fad8e077eae6a83a5336aa54b9a5a20174a9ed2a191aef",
+                "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/summary.json": "5b59cf609c5fd2867da27909402d204c4fce508033c824115c29ca16b5d11b58"
+              },
+              "manifest": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/target.json",
+              "manifest_sha256": "f454cbfd26dc86e753bf837d0b204cd54ab2343a0325dc7d7e6c71e61e0e7175"
+            },
+            "predictive_score": 0.23894801622685374,
+            "agreement": {
+              "rank_correlation": 0.5783316762416687,
+              "eligible_top_overlap": 0.374349393464057,
+              "eligible_top_jaccard": 0.23746326917151872,
+              "mean_exact_ties": 395.1404958677686
+            },
+            "diagnostics": "outputs/metrics/S005_Y4_wf2022_raw",
+            "new_model_fits": 1,
+            "signal_semantics": "sorting signal; no inverse transform in prediction",
+            "features": "baseline_v1 (40)"
+          },
+          "wf2023": {
+            "exp_id": "S005_Y4_wf2023_raw",
+            "status": "passed",
+            "started_at": "2026-10-08T21:03:42+08:00",
+            "owner": "A",
+            "git": {
+              "commit": "6c891eff35d823eae3a241c485e785b51e72f3fa",
+              "branch": "main",
+              "dirty": false
+            },
+            "data": {
+              "path": "data/raw/训练集.csv",
+              "size_bytes": 946832276,
+              "sha256": "e9d23e87f7e1f9439f28f7dd951d129ea49eaacda5ad650da8576a830a6deac9",
+              "official_attachments": {
+                "evaluate.py": "72dc59987e92ba8ae6b506e114dfe8591b5608c9beccd0769d5d1f778f9189c2",
+                "evaluate.R": "9d5e8403dccf29983bcd35eccea4533f5dba79417248d2d724fbb4b34bbf3ed1",
+                "docs/赛题五-更新.pdf": "d471d467d5c385d750be59bb58ff96d3c10ca36fefc38c08bcb7e830a844c29f"
+              },
+              "test_x": {
+                "path": "data/raw/测试集_X.csv",
+                "sha256": "dceffbf68bbab07a254bc6caa4d8a1e33de8de9c15489d936c5d15020dbfa90f",
+                "size_bytes": 168825396
+              }
+            },
+            "source_digest": "5569f58c93a61eb76824903d304522b2988634e9f4e37bc726505789a0d526fa",
+            "protocol_digest": "e033b9291d19bfada4eb4f2724a2f9dd68deb3113d783fb294c29cf0f65817c5",
+            "config_path": "configs/project.yaml",
+            "spec": {
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "target_id": "Y4",
+              "target_transform": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet",
+              "target_mapping_sha256": "839be6670ec31354e3efbe348b2f1bebd6854f90f3854768567bc9e36ad7e99c",
+              "training_keys_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+              "source_model": "S003 T030",
+              "layer": "raw"
+            },
+            "split": {
+              "fold": "wf2023",
+              "train_window": [
+                20180102,
+                20221231
+              ],
+              "valid_window": [
+                20230101,
+                20231231
+              ],
+              "n_train_rows": 5649750,
+              "n_valid_rows": 1125300,
+              "last_train_day": 20221230,
+              "next_trading_day": 20230103,
+              "n_boundary_rows": 4650,
+              "n_boundary_labels_dropped": 4280,
+              "n_train_labels_before": 4602065,
+              "n_train_labels_after": 4597785,
+              "n_valid_labels": 1062411,
+              "valid_label_coverage": 0.9441135697147427
+            },
+            "training_samples": {
+              "candidate_rows": 5649750,
+              "used_rows": 4597785,
+              "dropped_rows": 1051965
+            },
+            "family": "LightGBM",
+            "layer": "raw",
+            "timings_seconds": {
+              "training": 51.3784951000016
+            },
+            "environment": {
+              "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+              "platform": "Windows-11-10.0.26100-SP0",
+              "packages": {
+                "numpy": "2.5.3",
+                "pandas": "3.0.6",
+                "scipy": "1.18.1",
+                "lightgbm": "4.7.0",
+                "pyarrow": "25.0.1",
+                "PyYAML": "6.0.3",
+                "matplotlib": "3.11.2",
+                "optuna": "5.0.0",
+                "psutil": "7.2.2"
+              }
+            },
+            "actual_iterations": 800,
+            "reload_max_difference": 0.0,
+            "fallback_rows": 62553,
+            "finished_at": "2026-10-08T21:04:53+08:00",
+            "metrics": {
+              "ic_mean": 0.1043339342357677,
+              "ic_std": 0.0984441442197341,
+              "icir": 1.0598287492132308,
+              "ic_positive_ratio": 0.8512396694214877,
+              "annual_excess": 0.33647418578933724,
+              "top1_annual_ret": 0.35589742310945427,
+              "mean_turnover": 0.8607638693769785,
+              "final_score": 0.1844466686180147,
+              "n_days_ic": 242,
+              "n_days_top": 242,
+              "n_days_turnover": 241
+            },
+            "official_differences": {
+              "ic_mean": 0.0,
+              "ic_std": 0.0,
+              "icir": 0.0,
+              "ic_positive_ratio": 0.0,
+              "annual_excess": 0.0,
+              "top1_annual_ret": 0.0,
+              "mean_turnover": 0.0,
+              "final_score": 0.0
+            },
+            "official_max_difference": 0.0,
+            "duration_seconds": 70.80555800000002,
+            "prediction": "outputs/predictions/S005_Y4_wf2023_raw/valid_2023.csv",
+            "labels": "outputs/metrics/research_studies/S005/labels/wf2023.csv",
+            "validation_rows": 1125300,
+            "validation_days": 242,
+            "peak_sampled_rss_bytes": 3980996608,
+            "checks": {
+              "keys_complete_unique_finite": true,
+              "official_match": true,
+              "row_order": [
+                "trade_date",
+                "ts_code"
+              ],
+              "cold_start": true
+            },
+            "notes": "S005; raw; cold_start; complete fold; new model fit; no early stopping",
+            "model": "outputs/models/S005_Y4_wf2023_raw/model.txt",
+            "artifact_hashes": {
+              "outputs/predictions/S005_Y4_wf2023_raw/valid_2023.csv": "680648a6426caea75ad905fb01c13c5dda4dd6e7d9c3fa333fc7372082707480",
+              "outputs/metrics/research_studies/S005/labels/wf2023.csv": "b07f12c4453d41785eb3820d83179df7c1d9618b30e5e08a2795bdfe4ea00a4d",
+              "outputs/models/S005_Y4_wf2023_raw/config.yaml": "42231e2b3027a1f8ecf88140efdf0880bcc1223e058d39ea5b6acfc67d72f9a9",
+              "outputs/metrics/S005_Y4_wf2023_raw/daily_metrics.csv": "c3ea03835884ddd0e75664db9c8b1713ea7016ba56618138f17233c4860caefb",
+              "outputs/metrics/S005_Y4_wf2023_raw/monthly_metrics.csv": "9d8b8079b5e5ee3d821c3736685c1a94e6a0c167deec22731ec43573b29eacd8",
+              "outputs/metrics/S005_Y4_wf2023_raw/metrics.json": "1174c8e3823089a171dc8163b0a560728392282e2721610255246d234bdff97f",
+              "outputs/models/S005_Y4_wf2023_raw/model.txt": "fd1f21400c7ad41e80f06f939e9b94410c85c0c3d0ad818b7d57cc51761dd13d",
+              "outputs/metrics/S005_Y4_wf2023_raw/feature_importance.csv": "21fb5423fa6b0035338ad5fba0e08c5c9a7a3b7f73b165d531eaeb9c4ae6fb06",
+              "outputs/metrics/S005_Y4_wf2023_raw/quarterly_metrics.csv": "8d575b850a4dd73338101ee775d0a2b04b96fecb9882471ef970ad5948bb9244",
+              "outputs/metrics/S005_Y4_wf2023_raw/agreement_daily.csv": "b97d42758d85f99b8ca574a682d2aa46cc44e727b0bc225249224ec0f4fa99c4"
+            },
+            "csv_order_and_ties_preserved": true,
+            "csv_max_difference": 8.881784197001252e-16,
+            "target_id": "Y4",
+            "target_mapping": {
+              "status": "passed",
+              "identity": {
+                "schema": 1,
+                "fold": "wf2023",
+                "supervised_keys": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+                "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                }
+              },
+              "mapping": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet",
+              "summary": {
+                "rows": 4597785,
+                "days": 1214,
+                "stocks": 4291,
+                "start": 20180102,
+                "end": 20221229,
+                "spec": {
+                  "transform": "daily_winsor_zscore",
+                  "quantiles": [
+                    0.01,
+                    0.99
+                  ],
+                  "interpolation": "linear",
+                  "ddof": 0,
+                  "zero_std": 0.0
+                },
+                "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+                "target_digest": "c27e33907d92bfcb6c2746b2d4286a80b586b4641b8a8f3ccc6e89248ab6c0fe",
+                "raw_mean": 0.0003242378122297261,
+                "raw_std": 0.029629623799459357,
+                "target_mean": -2.967172350728432e-19,
+                "target_std": 1.0,
+                "target_min": -4.300472083777945,
+                "target_max": 5.861964503523231,
+                "target_q01": -2.342486941717192,
+                "target_q99": 3.6571457368510156,
+                "zero_std_days": 0,
+                "clipped_rows": 93052,
+                "all_finite": true,
+                "training_only": true,
+                "input_order_preserved": true
+              },
+              "key_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+              "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/daily_statistics.csv",
+              "prefix_replay": {
+                "end": 20200703,
+                "rows": 2135065,
+                "passed": true
+              },
+              "artifact_hashes": {
+                "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet": "839be6670ec31354e3efbe348b2f1bebd6854f90f3854768567bc9e36ad7e99c",
+                "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/daily_statistics.csv": "81c83e034e42ce96654b608619f7e6eb92e40272100ca83b456670b1f75a495d",
+                "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/summary.json": "fd02b9aa6c0e9cdac18885880a31415afcde1f7ddb7801fddbd9c8cae617ee45"
+              },
+              "manifest": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/target.json",
+              "manifest_sha256": "5b26753d5c085ab35156aa3b022f5b04680fe299e685a8e98a847e3e7850b994"
+            },
+            "predictive_score": 0.14267582943110824,
+            "agreement": {
+              "rank_correlation": 0.5979447268228089,
+              "eligible_top_overlap": 0.363599607995588,
+              "eligible_top_jaccard": 0.22780854073209156,
+              "mean_exact_ties": 257.4917355371901
+            },
+            "diagnostics": "outputs/metrics/S005_Y4_wf2023_raw",
+            "new_model_fits": 1,
+            "signal_semantics": "sorting signal; no inverse transform in prediction",
+            "features": "baseline_v1 (40)"
+          }
+        },
+        "predictive_mean": 0.211591126062692,
+        "predictive_worst": 0.14267582943110824,
+        "predictive_std": 0.04907415714129196,
+        "mean_ic": 0.11955626347655429,
+        "mean_excess": 0.5458954022402343
+      }
+    ],
+    "cv_runs": {
+      "wf2021": {
+        "exp_id": "S006_F005_wf2021",
+        "status": "passed",
+        "started_at": "2026-10-08T22:28:31+08:00",
+        "owner": "A",
+        "git": {
+          "commit": "c2a15e75ff3dfedcbd08c0b5e1717a81cea53bb6",
+          "branch": "main",
+          "dirty": false
+        },
+        "source_digest": "ca7563ca1ab91c6b28b84508fa76a9fe5600e76ebc8c1108172da6c2ce8f58f9",
+        "protocol_digest": "21051271d30cebb94f83a2e1f33a3d65186524ddf353b527899c5d29c79adfd0",
+        "config_path": "configs/project.yaml",
+        "spec": {
+          "signal": {
+            "id": "U001",
+            "components": [
+              "Y4"
+            ],
+            "weights": [
+              1.0
+            ],
+            "method": "single_original_pred"
+          },
+          "controller": {
+            "method": "gap",
+            "delta": 0.0,
+            "rho": 0.01
+          },
+          "initial_state": "cold_start",
+          "row_order": [
+            "trade_date",
+            "ts_code"
+          ],
+          "signal_encoding": "original_pred",
+          "output_encoding": "daily_minimal_shift",
+          "components": [
+            {
+              "id": "Y4",
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "source_exp_id": "S005_Y4_wf2021_raw",
+              "prediction_sha256": "b3040092404a4df6cd60f63ef1adb6a669e5224791d9da6b4577ef5ce01b6a44"
+            }
+          ]
+        },
+        "family": "rank_blend+gap",
+        "split": {
+          "fold": "wf2021",
+          "train_window": [
+            20180102,
+            20201231
+          ],
+          "valid_window": [
+            20210101,
+            20211231
+          ],
+          "n_train_rows": 3394500,
+          "n_valid_rows": 1129950,
+          "last_train_day": 20201231,
+          "next_trading_day": 20210104,
+          "n_boundary_rows": 4650,
+          "n_boundary_labels_dropped": 3853,
+          "n_train_labels_before": 2597901,
+          "n_train_labels_after": 2594048,
+          "n_valid_labels": 975147,
+          "valid_label_coverage": 0.8630001327492367
+        },
+        "training_samples": {
+          "Y4": {
+            "candidate_rows": 3394500,
+            "used_rows": 2594048,
+            "dropped_rows": 800452
+          }
+        },
+        "new_model_fits": 0,
+        "signal": "U001",
+        "controller": {
+          "method": "gap",
+          "delta": 0.0,
+          "rho": 0.01
+        },
+        "labels": "outputs/metrics/research_studies/S005/labels/wf2021.csv",
+        "component_models": {
+          "Y4": {
+            "model": "outputs/models/S005_Y4_wf2021_raw/model.txt",
+            "sha256": "996ec60bfafc4802e4dc70e37ae9a9cddc03a8e39135b2ca2cd0e3d06820331e",
+            "fallback_rows": 154330
+          }
+        },
+        "finished_at": "2026-10-08T22:28:41+08:00",
+        "metrics": {
+          "ic_mean": 0.10988031512912803,
+          "ic_std": 0.07847514116570024,
+          "icir": 1.4001926405855807,
+          "ic_positive_ratio": 0.9012345679012346,
+          "annual_excess": 0.23976072077643537,
+          "top1_annual_ret": 0.3974673587785209,
+          "mean_turnover": 0.0351533441925418,
+          "final_score": 0.40533433902681926,
+          "n_days_ic": 243,
+          "n_days_top": 243,
+          "n_days_turnover": 242
+        },
+        "official_differences": {
+          "ic_mean": 0.0,
+          "ic_std": 0.0,
+          "icir": 0.0,
+          "ic_positive_ratio": 0.0,
+          "annual_excess": 0.0,
+          "top1_annual_ret": 0.0,
+          "mean_turnover": 0.0,
+          "final_score": 0.0
+        },
+        "official_max_difference": 0.0,
+        "prediction": "outputs/predictions/S006_F005_wf2021/valid_2021.csv",
+        "validation_rows": 1129950,
+        "validation_days": 243,
+        "duration_seconds": 9.886604499999521,
+        "order_fingerprint": "bf6be740500b9d11cda96c31c563b37641b50b24bc9e0feccbc956cd38805a28",
+        "holdings_summary": {
+          "stocks_ever_selected": 1842,
+          "spell_count": 2432,
+          "right_censored_spells": 457,
+          "mean_spell_days": 45.60526315789474,
+          "median_spell_days": 22.0,
+          "p95_spell_days": 193.44999999999982,
+          "max_spell_days": 243,
+          "mean_selected_raw_rank": 0.5669313534167454,
+          "mean_raw_top_retained_fraction": 0.1477388376559396,
+          "mean_selected_below_top20_fraction": 0.7404679092312277,
+          "eligible_exits": 1005,
+          "forced_ineligible_exits": 970,
+          "top_set_sha256": "15eca46318c4fd7ab84de0c20a909e16d839f31dcf899eef8195b4d60530f47a",
+          "saved_top_matches_intended": true,
+          "spell_note": "Fold-end spells are right censored; all lengths use trading observations.",
+          "active_swaps": 968,
+          "forced_resize_exits": 37,
+          "capacity_fills": 1464
+        },
+        "notes": "S006; U001; gap; no new fit; complete fold; cold_start; canonical rows; native order/ties preserved; saved-file official check",
+        "artifact_hashes": {
+          "outputs/models/S006_F005_wf2021/config.yaml": "0cb0a472cfbc9710bd6675159dc84c1e33b9a49ac6c1c3182bfc14be5de91608",
+          "outputs/metrics/S006_F005_wf2021/daily_metrics.csv": "a3a806196f86aff45ae7f984e6731535feb89b30ddb922cc702243e61a2b1db9",
+          "outputs/metrics/S006_F005_wf2021/holdings_daily.csv": "bed9c4401b03d6666a58088c11affcdd0d290d6bc2437cc3ef12a38fd000ed88",
+          "outputs/metrics/S006_F005_wf2021/holdings_stocks.csv": "f867b5337409938865c512432bcd7ba77d68aedd56b567f7fa42c1e5f32ec8ef",
+          "outputs/metrics/S006_F005_wf2021/holdings_summary.json": "22a7bbd6278d64379b88028d361cc5f205ebd35a6793b90a03916be36d8a4e65",
+          "outputs/metrics/S006_F005_wf2021/holding_length_histogram.csv": "ca98dd4bc1dec661e09c2b6a56fb8fd6c93af5e8dc775b9b3ed8c7f2298fbd9b",
+          "outputs/metrics/S006_F005_wf2021/metrics.json": "41e9d6bc0eacdf3f214030e702e9a0fed006874b2970b50cd00b070298b0dff7",
+          "outputs/metrics/S006_F005_wf2021/monthly_metrics.csv": "2e673cfd04b95ed90cfdc9da1da30fcbb9a3444f3e0ec34fb458e1bc3b2277cf",
+          "outputs/metrics/S006_F005_wf2021/quarterly_metrics.csv": "0c5a512a810e8ab88130a610dd65ceb4b13e9bf7ba80fc05f9284cbc3c701051",
+          "outputs/metrics/S006_F005_wf2021/top_sets.npz": "f5a52a7884798b529dfc75ebada2869ad74a6790dcf05a35b0a9069363b25918",
+          "outputs/predictions/S006_F005_wf2021/valid_2021.csv": "000e375c0a6dd4465f513b17280fc345c6406d4cd6d05e0b95fd63731555f35d"
+        }
+      },
+      "wf2022": {
+        "exp_id": "S006_F005_wf2022",
+        "status": "passed",
+        "started_at": "2026-10-08T22:28:41+08:00",
+        "owner": "A",
+        "git": {
+          "commit": "c2a15e75ff3dfedcbd08c0b5e1717a81cea53bb6",
+          "branch": "main",
+          "dirty": false
+        },
+        "source_digest": "ca7563ca1ab91c6b28b84508fa76a9fe5600e76ebc8c1108172da6c2ce8f58f9",
+        "protocol_digest": "21051271d30cebb94f83a2e1f33a3d65186524ddf353b527899c5d29c79adfd0",
+        "config_path": "configs/project.yaml",
+        "spec": {
+          "signal": {
+            "id": "U001",
+            "components": [
+              "Y4"
+            ],
+            "weights": [
+              1.0
+            ],
+            "method": "single_original_pred"
+          },
+          "controller": {
+            "method": "gap",
+            "delta": 0.0,
+            "rho": 0.01
+          },
+          "initial_state": "cold_start",
+          "row_order": [
+            "trade_date",
+            "ts_code"
+          ],
+          "signal_encoding": "original_pred",
+          "output_encoding": "daily_minimal_shift",
+          "components": [
+            {
+              "id": "Y4",
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "source_exp_id": "S005_Y4_wf2022_raw",
+              "prediction_sha256": "3dc738c0bf22d52b58d5782cb3f5c9303ec3654fee54c23f43132da68eb85688"
+            }
+          ]
+        },
+        "family": "rank_blend+gap",
+        "split": {
+          "fold": "wf2022",
+          "train_window": [
+            20180102,
+            20211231
+          ],
+          "valid_window": [
+            20220101,
+            20221231
+          ],
+          "n_train_rows": 4524450,
+          "n_valid_rows": 1125300,
+          "last_train_day": 20211231,
+          "next_trading_day": 20220104,
+          "n_boundary_rows": 4650,
+          "n_boundary_labels_dropped": 4170,
+          "n_train_labels_before": 3573048,
+          "n_train_labels_after": 3568878,
+          "n_valid_labels": 1029017,
+          "valid_label_coverage": 0.9144379276637341
+        },
+        "training_samples": {
+          "Y4": {
+            "candidate_rows": 4524450,
+            "used_rows": 3568878,
+            "dropped_rows": 955572
+          }
+        },
+        "new_model_fits": 0,
+        "signal": "U001",
+        "controller": {
+          "method": "gap",
+          "delta": 0.0,
+          "rho": 0.01
+        },
+        "labels": "outputs/metrics/research_studies/S005/labels/wf2022.csv",
+        "component_models": {
+          "Y4": {
+            "model": "outputs/models/S005_Y4_wf2022_raw/model.txt",
+            "sha256": "5ff7aa0696ce92adcc332cfc161f312a364670b7a36c79502237806818ec528a",
+            "fallback_rows": 95860
+          }
+        },
+        "finished_at": "2026-10-08T22:28:52+08:00",
+        "metrics": {
+          "ic_mean": 0.11800361309461323,
+          "ic_std": 0.08500563673527914,
+          "icir": 1.3881857442241736,
+          "ic_positive_ratio": 0.9090909090909091,
+          "annual_excess": 0.3024412571863496,
+          "top1_annual_ret": 0.17131304012157947,
+          "mean_turnover": 0.030946228006306507,
+          "final_score": 0.42864995399185823,
+          "n_days_ic": 242,
+          "n_days_top": 242,
+          "n_days_turnover": 241
+        },
+        "official_differences": {
+          "ic_mean": 0.0,
+          "ic_std": 0.0,
+          "icir": 0.0,
+          "ic_positive_ratio": 0.0,
+          "annual_excess": 0.0,
+          "top1_annual_ret": 0.0,
+          "mean_turnover": 0.0,
+          "final_score": 0.0
+        },
+        "official_max_difference": 0.0,
+        "prediction": "outputs/predictions/S006_F005_wf2022/valid_2022.csv",
+        "validation_rows": 1125300,
+        "validation_days": 242,
+        "duration_seconds": 10.621137000001909,
+        "order_fingerprint": "00201ce61db44222f182f2594e4b7c9fac0a4dc15debd7ee44275efcf47c1022",
+        "holdings_summary": {
+          "stocks_ever_selected": 1721,
+          "spell_count": 2189,
+          "right_censored_spells": 460,
+          "mean_spell_days": 50.544084056646874,
+          "median_spell_days": 25.0,
+          "p95_spell_days": 242.0,
+          "max_spell_days": 242,
+          "mean_selected_raw_rank": 0.6039581407449235,
+          "mean_raw_top_retained_fraction": 0.1471190958838363,
+          "mean_selected_below_top20_fraction": 0.6985824213233475,
+          "eligible_exits": 1018,
+          "forced_ineligible_exits": 711,
+          "top_set_sha256": "61bff41baba6b6904d88ae10229d5de9b034f6d779907ca2af34c49078ed7e5c",
+          "saved_top_matches_intended": true,
+          "spell_note": "Fold-end spells are right censored; all lengths use trading observations.",
+          "active_swaps": 964,
+          "forced_resize_exits": 54,
+          "capacity_fills": 1225
+        },
+        "notes": "S006; U001; gap; no new fit; complete fold; cold_start; canonical rows; native order/ties preserved; saved-file official check",
+        "artifact_hashes": {
+          "outputs/models/S006_F005_wf2022/config.yaml": "0cb0a472cfbc9710bd6675159dc84c1e33b9a49ac6c1c3182bfc14be5de91608",
+          "outputs/metrics/S006_F005_wf2022/daily_metrics.csv": "daa81f1ab8595e3a0af7585ebe1802288908fc6b18af773c94da086b5ce49ff0",
+          "outputs/metrics/S006_F005_wf2022/holdings_daily.csv": "9f26292db242b106c7167b4405e7a6f8cdade2eff67826ce4da0a85c5850572d",
+          "outputs/metrics/S006_F005_wf2022/holdings_stocks.csv": "64cd19f0c6838ba47814694dd045580c09e72fc0a114598f394b3778feb0f6c8",
+          "outputs/metrics/S006_F005_wf2022/holdings_summary.json": "aa238d53be0942820b0d5f247a80cce6b930cc8592a64edd04189dd96ab1dbaa",
+          "outputs/metrics/S006_F005_wf2022/holding_length_histogram.csv": "53d07a5652b53dbaa9d44ef5787f6312cde50a0d7e61dd843003b8a6f30cf08f",
+          "outputs/metrics/S006_F005_wf2022/metrics.json": "4a02394e95b17f2548f73201e6b99fbe70da946378b287b57e98b5c837a701e7",
+          "outputs/metrics/S006_F005_wf2022/monthly_metrics.csv": "e1473dbdf9e64d9ada88e00a46b66d84943c14328cdd85d752bb58007a65411b",
+          "outputs/metrics/S006_F005_wf2022/quarterly_metrics.csv": "0c593d79c7a806af3f66dae6e27e42e334385bc45c203a054f1c2fcd23a293c5",
+          "outputs/metrics/S006_F005_wf2022/top_sets.npz": "bba4d27e46b4fe88c1acae46eca1ba9cdd657980e1022573630871cc6432023f",
+          "outputs/predictions/S006_F005_wf2022/valid_2022.csv": "66342dd8d1bc5648774fc12711df345d51008c9f801630c7e9e5f4a5a0d756cf"
+        }
+      },
+      "wf2023": {
+        "exp_id": "S006_F005_wf2023",
+        "status": "passed",
+        "started_at": "2026-10-08T22:28:52+08:00",
+        "owner": "A",
+        "git": {
+          "commit": "c2a15e75ff3dfedcbd08c0b5e1717a81cea53bb6",
+          "branch": "main",
+          "dirty": false
+        },
+        "source_digest": "ca7563ca1ab91c6b28b84508fa76a9fe5600e76ebc8c1108172da6c2ce8f58f9",
+        "protocol_digest": "21051271d30cebb94f83a2e1f33a3d65186524ddf353b527899c5d29c79adfd0",
+        "config_path": "configs/project.yaml",
+        "spec": {
+          "signal": {
+            "id": "U001",
+            "components": [
+              "Y4"
+            ],
+            "weights": [
+              1.0
+            ],
+            "method": "single_original_pred"
+          },
+          "controller": {
+            "method": "gap",
+            "delta": 0.0,
+            "rho": 0.01
+          },
+          "initial_state": "cold_start",
+          "row_order": [
+            "trade_date",
+            "ts_code"
+          ],
+          "signal_encoding": "original_pred",
+          "output_encoding": "daily_minimal_shift",
+          "components": [
+            {
+              "id": "Y4",
+              "model_params": {
+                "objective": "huber",
+                "boosting_type": "gbdt",
+                "metric": "huber",
+                "learning_rate": 0.04065467822968424,
+                "num_leaves": 28,
+                "max_depth": 8,
+                "min_data_in_leaf": 415,
+                "lambda_l1": 2.086527798462595,
+                "lambda_l2": 0.011862211698474496,
+                "feature_fraction": 0.660945618691071,
+                "bagging_fraction": 0.9204918282790925,
+                "bagging_freq": 1,
+                "max_bin": 255,
+                "seed": 42,
+                "num_threads": 8,
+                "device_type": "cpu",
+                "deterministic": true,
+                "force_col_wise": true,
+                "use_missing": true,
+                "zero_as_missing": false,
+                "verbosity": -1,
+                "alpha": 0.9
+              },
+              "rounds": 800,
+              "source_exp_id": "S005_Y4_wf2023_raw",
+              "prediction_sha256": "680648a6426caea75ad905fb01c13c5dda4dd6e7d9c3fa333fc7372082707480"
+            }
+          ]
+        },
+        "family": "rank_blend+gap",
+        "split": {
+          "fold": "wf2023",
+          "train_window": [
+            20180102,
+            20221231
+          ],
+          "valid_window": [
+            20230101,
+            20231231
+          ],
+          "n_train_rows": 5649750,
+          "n_valid_rows": 1125300,
+          "last_train_day": 20221230,
+          "next_trading_day": 20230103,
+          "n_boundary_rows": 4650,
+          "n_boundary_labels_dropped": 4280,
+          "n_train_labels_before": 4602065,
+          "n_train_labels_after": 4597785,
+          "n_valid_labels": 1062411,
+          "valid_label_coverage": 0.9441135697147427
+        },
+        "training_samples": {
+          "Y4": {
+            "candidate_rows": 5649750,
+            "used_rows": 4597785,
+            "dropped_rows": 1051965
+          }
+        },
+        "new_model_fits": 0,
+        "signal": "U001",
+        "controller": {
+          "method": "gap",
+          "delta": 0.0,
+          "rho": 0.01
+        },
+        "labels": "outputs/metrics/research_studies/S005/labels/wf2023.csv",
+        "component_models": {
+          "Y4": {
+            "model": "outputs/models/S005_Y4_wf2023_raw/model.txt",
+            "sha256": "fd1f21400c7ad41e80f06f939e9b94410c85c0c3d0ad818b7d57cc51761dd13d",
+            "fallback_rows": 62553
+          }
+        },
+        "finished_at": "2026-10-08T22:29:03+08:00",
+        "metrics": {
+          "ic_mean": 0.09607195792908467,
+          "ic_std": 0.08835956348033673,
+          "icir": 1.0872842072206959,
+          "ic_positive_ratio": 0.8636363636363636,
+          "annual_excess": 0.2126352615630713,
+          "top1_annual_ret": 0.2320584988831883,
+          "mean_turnover": 0.023896374055245022,
+          "final_score": 0.3950504494239817,
+          "n_days_ic": 242,
+          "n_days_top": 242,
+          "n_days_turnover": 241
+        },
+        "official_differences": {
+          "ic_mean": 0.0,
+          "ic_std": 0.0,
+          "icir": 0.0,
+          "ic_positive_ratio": 0.0,
+          "annual_excess": 0.0,
+          "top1_annual_ret": 0.0,
+          "mean_turnover": 0.0,
+          "final_score": 0.0
+        },
+        "official_max_difference": 0.0,
+        "prediction": "outputs/predictions/S006_F005_wf2023/valid_2023.csv",
+        "validation_rows": 1125300,
+        "validation_days": 242,
+        "duration_seconds": 10.733683899998141,
+        "order_fingerprint": "0e3244f2f14bb8ce2d674b5656c2e0c090f6c5d7e984189da356dc20ed5183a3",
+        "holdings_summary": {
+          "stocks_ever_selected": 1512,
+          "spell_count": 1798,
+          "right_censored_spells": 457,
+          "mean_spell_days": 61.97107897664071,
+          "median_spell_days": 29.0,
+          "p95_spell_days": 242.0,
+          "max_spell_days": 242,
+          "mean_selected_raw_rank": 0.6518093477347053,
+          "mean_raw_top_retained_fraction": 0.13904359624905863,
+          "mean_selected_below_top20_fraction": 0.6065255803425356,
+          "eligible_exits": 1028,
+          "forced_ineligible_exits": 313,
+          "top_set_sha256": "7d03d1296858e7ccd391ddadafc94df1c8fcbf42e938ad15b56f7c5beec975fc",
+          "saved_top_matches_intended": true,
+          "spell_note": "Fold-end spells are right censored; all lengths use trading observations.",
+          "active_swaps": 964,
+          "forced_resize_exits": 64,
+          "capacity_fills": 834
+        },
+        "notes": "S006; U001; gap; no new fit; complete fold; cold_start; canonical rows; native order/ties preserved; saved-file official check",
+        "artifact_hashes": {
+          "outputs/models/S006_F005_wf2023/config.yaml": "0cb0a472cfbc9710bd6675159dc84c1e33b9a49ac6c1c3182bfc14be5de91608",
+          "outputs/metrics/S006_F005_wf2023/daily_metrics.csv": "e8e98c8adafc5df02489729f03dfede6224b7ba2f545186691bd559517959da3",
+          "outputs/metrics/S006_F005_wf2023/holdings_daily.csv": "8606a1e0e82956446e0ab9a628479db3c4d546b7e8abff4a3f0d9013801038d1",
+          "outputs/metrics/S006_F005_wf2023/holdings_stocks.csv": "910b3e0e07837aba80828da216a9f50dbc999115ba5ff499fa19363e8a5637b0",
+          "outputs/metrics/S006_F005_wf2023/holdings_summary.json": "f78e8dabd28bcc22411635adc8bf708e19e4294474377d3bc30db62497c7dfd4",
+          "outputs/metrics/S006_F005_wf2023/holding_length_histogram.csv": "43e13c1e8d8e9957a73ea3a1cc1a4a6894ca7210db66ca904fa22ce5101d77d8",
+          "outputs/metrics/S006_F005_wf2023/metrics.json": "b50a809c94b5a8a19a48d0244c29ce74d16c93621d3e7662aa0e88716dc71768",
+          "outputs/metrics/S006_F005_wf2023/monthly_metrics.csv": "7bd6d2d4d363b7b78e5796bfa56a753ccfb1b01e871f9faf3670a191eedf4083",
+          "outputs/metrics/S006_F005_wf2023/quarterly_metrics.csv": "53ff8e748f07273161ded7c60dea936b7a2247318de4e5426d9068526a6c5f0a",
+          "outputs/metrics/S006_F005_wf2023/top_sets.npz": "497d4bb9b5224aa4e356c59359980b461ddaf464e8eea599e06bd1723f008c9e",
+          "outputs/predictions/S006_F005_wf2023/valid_2023.csv": "f3df2990783c5849c57c1e5bdceb083ca95cf6d91899b4ee1bb80b132dee9c24"
+        }
+      }
+    }
+  },
+  "baseline": {
+    "id": "F000",
+    "signal": {
+      "id": "U000",
+      "components": [
+        "T030"
+      ],
+      "weights": [
+        1.0
+      ],
+      "method": "single_original_pred"
+    },
+    "controller_id": "Q0",
+    "controller": {
+      "method": "band",
+      "keep_q": 0.0022778298112255263
+    },
+    "status": "COMPLETE",
+    "alias_of": null,
+    "order_fingerprints": [
+      "212b11a8c27cdee46b79ba3d54f4817ae97345777329751d47634e97bd1e4e35",
+      "356019b17ae3e7a99a8eb7f8e9bcf704920c49cc637c4bb7d606174fe1a897bf",
+      "b00f420f2ac39ebd9ed775b4ab523ce2b4e8e73fd1179591d6423d0abafe73c4"
+    ],
+    "cv_mean": 0.3772733719642721,
+    "cv_std": 0.014298735270296688,
+    "cv_worst": 0.357097676244488,
+    "mean_ic": 0.06592255081146142,
+    "mean_excess": 0.18717932741363677,
+    "mean_turnover": 0.017498155281344872,
+    "scores": {
+      "wf2021": 0.3885388115029958,
+      "wf2022": 0.3861836281453326,
+      "wf2023": 0.357097676244488
+    },
+    "passes_cv_gate": false
+  },
+  "highest_mean_unrestricted": {
+    "id": "F005",
+    "signal": {
+      "id": "U001",
+      "components": [
+        "Y4"
+      ],
+      "weights": [
+        1.0
+      ],
+      "method": "single_original_pred"
+    },
+    "controller_id": "Q2",
+    "controller": {
+      "method": "gap",
+      "delta": 0.0,
+      "rho": 0.01
+    },
+    "status": "COMPLETE",
+    "alias_of": null,
+    "order_fingerprints": [
+      "bf6be740500b9d11cda96c31c563b37641b50b24bc9e0feccbc956cd38805a28",
+      "00201ce61db44222f182f2594e4b7c9fac0a4dc15debd7ee44275efcf47c1022",
+      "0e3244f2f14bb8ce2d674b5656c2e0c090f6c5d7e984189da356dc20ed5183a3"
+    ],
+    "cv_mean": 0.40967824748088644,
+    "cv_std": 0.014056643323702283,
+    "cv_worst": 0.3950504494239817,
+    "mean_ic": 0.10798529538427531,
+    "mean_excess": 0.25161241317528543,
+    "mean_turnover": 0.029998648751364442,
+    "scores": {
+      "wf2021": 0.40533433902681926,
+      "wf2022": 0.42864995399185823,
+      "wf2023": 0.3950504494239817
+    },
+    "passes_cv_gate": true
+  },
+  "history_partners": [
+    "T008",
+    "T016"
+  ],
+  "prefix_replays": [
+    {
+      "fold": "wf2021",
+      "end": 20210705,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "fold": "wf2022",
+      "end": 20220706,
+      "rows": 562650,
+      "passed": true
+    },
+    {
+      "fold": "wf2023",
+      "end": 20230705,
+      "rows": 562650,
+      "passed": true
+    }
+  ],
+  "row_order": [
+    "trade_date",
+    "ts_code"
+  ],
+  "initial_state": "cold_start",
+  "blend_serialization": "twice_daily_average_rank_integer",
+  "confirm_definition": {
+    "name": "confirm2024",
+    "train": [
+      20180102,
+      20231231
+    ],
+    "valid": [
+      20240101,
+      20241231
+    ]
+  },
+  "confirm_fit_budget": 3,
+  "confirm_layers": [
+    "T030_raw",
+    "T030_qstar",
+    "component_raw",
+    "new_signal_raw",
+    "new_signal_qstar",
+    "T030_selected_controller",
+    "new_complete"
+  ],
+  "confirm_threshold": 0.3873823479464019,
+  "rule": "CV mean improvement >1e-6; worst/2023 no worse; tol ties worst/fewer models/ID; one confirmation",
+  "screen_new_model_fits": 0,
+  "formal_adoption": false,
+  "evaluated_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "selection_digest": "0d9dcadff208cf15b8515eac33ee8985efd2693826639bad9f80327738257409"
+}

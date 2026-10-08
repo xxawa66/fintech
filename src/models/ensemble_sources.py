@@ -101,8 +101,8 @@ def daily_correlations(left, right):
         if not a[KEYS].equals(b[KEYS]):
             raise ValueError("History correlations require identical canonical keys.")
         days = np.sort(a.trade_date.unique())
-        aa = a.pred.groupby(a.trade_date).rank(method="average", pct=True).to_numpy().reshape(len(days), 4650)
-        bb = b.pred.groupby(b.trade_date).rank(method="average", pct=True).to_numpy().reshape(len(days), 4650)
+        aa = a.pred.groupby(a.trade_date).rank(method="average", pct=True).to_numpy(copy=True).reshape(len(days), 4650)
+        bb = b.pred.groupby(b.trade_date).rank(method="average", pct=True).to_numpy(copy=True).reshape(len(days), 4650)
         aa -= aa.mean(axis=1, keepdims=True); bb -= bb.mean(axis=1, keepdims=True)
         corr = (aa*bb).sum(axis=1)/np.sqrt((aa*aa).sum(axis=1)*(bb*bb).sum(axis=1))
         if not np.isfinite(corr).all():

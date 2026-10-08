@@ -1,13 +1,16 @@
 project:
   name: fintech
-  stage: target_research_ready
+  stage: target_research_complete
   current_target_study: S005
   current_target_run: docs/target_research_run.md
-  current_alpha_study: S004
+  current_target_report: docs/alpha_research_S005.md
+  current_target_selection: docs/alpha_research_S005_selection.json
+  current_target_artifacts: docs/alpha_research_S005_artifacts.json
+  current_alpha_study: S005
   current_alpha_plan: docs/alpha_retention_plan.md
-  current_alpha_report: docs/alpha_research_S004.md
-  current_alpha_selection: docs/alpha_research_S004_selection.json
-  current_alpha_artifacts: docs/alpha_research_S004_artifacts.json
+  current_alpha_report: docs/alpha_research_S005.md
+  current_alpha_selection: docs/alpha_research_S005_selection.json
+  current_alpha_artifacts: docs/alpha_research_S005_artifacts.json
   current_tuning_study: S003
   current_tuning_report: docs/optuna_tuning_S003.md
   current_tuning_selection: docs/optuna_tuning_S003_selection.json

@@ -1,0 +1,775 @@
+{
+  "schema": 1,
+  "study_id": "S005",
+  "created_at": "2026-10-08T21:09:19+08:00",
+  "git": {
+    "commit": "6c891eff35d823eae3a241c485e785b51e72f3fa",
+    "branch": "main",
+    "dirty": false
+  },
+  "source_digest": "5569f58c93a61eb76824903d304522b2988634e9f4e37bc726505789a0d526fa",
+  "protocol_digest": "e033b9291d19bfada4eb4f2724a2f9dd68deb3113d783fb294c29cf0f65817c5",
+  "source_selection_digest": "2206cc007787f8c988f5de191950efb89fcd6ee724d5b96b9f45169e63ec2367",
+  "controller_selection_digest": "bc2de100d48ed97e25924908454f3d8dd34b8df90fc0d3654216320264f4c20e",
+  "partners": [
+    {
+      "id": "Y4",
+      "target": {
+        "id": "Y4",
+        "transform": "daily_winsor_zscore",
+        "quantiles": [
+          0.01,
+          0.99
+        ],
+        "interpolation": "linear",
+        "ddof": 0,
+        "zero_std": 0.0,
+        "objective": "huber",
+        "metric": "huber",
+        "alpha": 0.9
+      },
+      "status": "COMPLETE",
+      "predictive_mean": 0.211591126062692,
+      "predictive_std": 0.04907415714129196,
+      "predictive_worst": 0.14267582943110824,
+      "predictive_2023": 0.14267582943110824,
+      "raw_final_mean": 0.2519270523249892,
+      "mean_metrics": {
+        "ic_mean": 0.11955626347655429,
+        "ic_std": 0.09311041651072094,
+        "icir": 1.2917610296518758,
+        "ic_positive_ratio": 0.9022888820868619,
+        "annual_excess": 0.5458954022402343,
+        "top1_annual_ret": 0.561229288326045,
+        "mean_turnover": 0.8655469124590093,
+        "final_score": 0.2519270523249892
+      },
+      "agreement": {
+        "rank_correlation": 0.5606399663854308,
+        "eligible_top_overlap": 0.367576783338804,
+        "eligible_top_jaccard": 0.231820209340417,
+        "mean_exact_ties": 428.9405106054938
+      },
+      "runs": {
+        "wf2021": {
+          "exp_id": "S005_Y4_wf2021_raw",
+          "prediction": "outputs/predictions/S005_Y4_wf2021_raw/valid_2021.csv",
+          "prediction_sha256": "b3040092404a4df6cd60f63ef1adb6a669e5224791d9da6b4577ef5ce01b6a44",
+          "model": "outputs/models/S005_Y4_wf2021_raw/model.txt",
+          "model_sha256": "996ec60bfafc4802e4dc70e37ae9a9cddc03a8e39135b2ca2cd0e3d06820331e",
+          "spec": {
+            "model_params": {
+              "objective": "huber",
+              "boosting_type": "gbdt",
+              "metric": "huber",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1,
+              "alpha": 0.9
+            },
+            "rounds": 800,
+            "target_id": "Y4",
+            "target_transform": {
+              "transform": "daily_winsor_zscore",
+              "quantiles": [
+                0.01,
+                0.99
+              ],
+              "interpolation": "linear",
+              "ddof": 0,
+              "zero_std": 0.0
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet",
+            "target_mapping_sha256": "472083fa81a0eaf98bc4f91946ee1735bdeafc89f3101b548b94cd357ff188f9",
+            "training_keys_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2021",
+              "supervised_keys": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+              "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet",
+            "summary": {
+              "rows": 2594048,
+              "days": 729,
+              "stocks": 3861,
+              "start": 20180102,
+              "end": 20201230,
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+              "target_digest": "8805e80aa3db4c167622f2c2b377f84acfb6540e81999b3edda35758fd53d80b",
+              "raw_mean": 0.000291838358056902,
+              "raw_std": 0.02890898755249202,
+              "target_mean": 7.012165555710058e-19,
+              "target_std": 1.0,
+              "target_min": -4.300472083777945,
+              "target_max": 5.861964503523231,
+              "target_q01": -2.333974174626021,
+              "target_q99": 3.6967906712376495,
+              "zero_std_days": 0,
+              "clipped_rows": 52578,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20190703,
+              "rows": 1258263,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/mapping.parquet": "472083fa81a0eaf98bc4f91946ee1735bdeafc89f3101b548b94cd357ff188f9",
+              "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/daily_statistics.csv": "35fc7e31ca1621d1da210b549b336c078c56d0c82078897b7b041c3605cc49a2",
+              "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/summary.json": "6507369ee98407f59d02f54171a316d8a7242b4c6184ae3f2afdbedbe79c1968"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2021/a090fcb6c82320ce7927e444975795924ef85c961d3d085d067ffcd311c494e8/target.json",
+            "manifest_sha256": "42ace4d8667da9c940e81f2526172524587f1a4626c90b765d4a62647463fb06"
+          }
+        },
+        "wf2022": {
+          "exp_id": "S005_Y4_wf2022_raw",
+          "prediction": "outputs/predictions/S005_Y4_wf2022_raw/valid_2022.csv",
+          "prediction_sha256": "3dc738c0bf22d52b58d5782cb3f5c9303ec3654fee54c23f43132da68eb85688",
+          "model": "outputs/models/S005_Y4_wf2022_raw/model.txt",
+          "model_sha256": "5ff7aa0696ce92adcc332cfc161f312a364670b7a36c79502237806818ec528a",
+          "spec": {
+            "model_params": {
+              "objective": "huber",
+              "boosting_type": "gbdt",
+              "metric": "huber",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1,
+              "alpha": 0.9
+            },
+            "rounds": 800,
+            "target_id": "Y4",
+            "target_transform": {
+              "transform": "daily_winsor_zscore",
+              "quantiles": [
+                0.01,
+                0.99
+              ],
+              "interpolation": "linear",
+              "ddof": 0,
+              "zero_std": 0.0
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet",
+            "target_mapping_sha256": "f127a68d9de523c5aa6697d4fada9423e40293f5264c86d8b5976b338d9cd28d",
+            "training_keys_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2022",
+              "supervised_keys": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+              "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet",
+            "summary": {
+              "rows": 3568878,
+              "days": 972,
+              "stocks": 4182,
+              "start": 20180102,
+              "end": 20211230,
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+              "target_digest": "90dc40f4ebff9de9304b6ff26a72108579e7fc54f1789dceabb84e3b5a06f826",
+              "raw_mean": 0.0004911946266400518,
+              "raw_std": 0.029386333333232012,
+              "target_mean": 3.822607700962018e-19,
+              "target_std": 1.0,
+              "target_min": -4.300472083777945,
+              "target_max": 5.861964503523231,
+              "target_q01": -2.337766073837762,
+              "target_q99": 3.653639493156466,
+              "zero_std_days": 0,
+              "clipped_rows": 72301,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20191230,
+              "rows": 1694259,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/mapping.parquet": "f127a68d9de523c5aa6697d4fada9423e40293f5264c86d8b5976b338d9cd28d",
+              "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/daily_statistics.csv": "92da323900833f1cd4fad8e077eae6a83a5336aa54b9a5a20174a9ed2a191aef",
+              "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/summary.json": "5b59cf609c5fd2867da27909402d204c4fce508033c824115c29ca16b5d11b58"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2022/2c412846565a30f6291d07c4f79dfa22bfc3b5f516270e53ee021e4a5e5d773f/target.json",
+            "manifest_sha256": "f454cbfd26dc86e753bf837d0b204cd54ab2343a0325dc7d7e6c71e61e0e7175"
+          }
+        },
+        "wf2023": {
+          "exp_id": "S005_Y4_wf2023_raw",
+          "prediction": "outputs/predictions/S005_Y4_wf2023_raw/valid_2023.csv",
+          "prediction_sha256": "680648a6426caea75ad905fb01c13c5dda4dd6e7d9c3fa333fc7372082707480",
+          "model": "outputs/models/S005_Y4_wf2023_raw/model.txt",
+          "model_sha256": "fd1f21400c7ad41e80f06f939e9b94410c85c0c3d0ad818b7d57cc51761dd13d",
+          "spec": {
+            "model_params": {
+              "objective": "huber",
+              "boosting_type": "gbdt",
+              "metric": "huber",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1,
+              "alpha": 0.9
+            },
+            "rounds": 800,
+            "target_id": "Y4",
+            "target_transform": {
+              "transform": "daily_winsor_zscore",
+              "quantiles": [
+                0.01,
+                0.99
+              ],
+              "interpolation": "linear",
+              "ddof": 0,
+              "zero_std": 0.0
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet",
+            "target_mapping_sha256": "839be6670ec31354e3efbe348b2f1bebd6854f90f3854768567bc9e36ad7e99c",
+            "training_keys_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2023",
+              "supervised_keys": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+              "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet",
+            "summary": {
+              "rows": 4597785,
+              "days": 1214,
+              "stocks": 4291,
+              "start": 20180102,
+              "end": 20221229,
+              "spec": {
+                "transform": "daily_winsor_zscore",
+                "quantiles": [
+                  0.01,
+                  0.99
+                ],
+                "interpolation": "linear",
+                "ddof": 0,
+                "zero_std": 0.0
+              },
+              "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+              "target_digest": "c27e33907d92bfcb6c2746b2d4286a80b586b4641b8a8f3ccc6e89248ab6c0fe",
+              "raw_mean": 0.0003242378122297261,
+              "raw_std": 0.029629623799459357,
+              "target_mean": -2.967172350728432e-19,
+              "target_std": 1.0,
+              "target_min": -4.300472083777945,
+              "target_max": 5.861964503523231,
+              "target_q01": -2.342486941717192,
+              "target_q99": 3.6571457368510156,
+              "zero_std_days": 0,
+              "clipped_rows": 93052,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20200703,
+              "rows": 2135065,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/mapping.parquet": "839be6670ec31354e3efbe348b2f1bebd6854f90f3854768567bc9e36ad7e99c",
+              "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/daily_statistics.csv": "81c83e034e42ce96654b608619f7e6eb92e40272100ca83b456670b1f75a495d",
+              "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/summary.json": "fd02b9aa6c0e9cdac18885880a31415afcde1f7ddb7801fddbd9c8cae617ee45"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2023/b6798ce2f1b7cb73237c2283818081a5f3773b849c02aceba9361320445e3412/target.json",
+            "manifest_sha256": "5b26753d5c085ab35156aa3b022f5b04680fe299e685a8e98a847e3e7850b994"
+          }
+        }
+      }
+    },
+    {
+      "id": "Y1",
+      "target": {
+        "id": "Y1",
+        "transform": "daily_rank",
+        "ties": "average",
+        "objective": "regression",
+        "metric": "l2"
+      },
+      "status": "COMPLETE",
+      "predictive_mean": 0.21134033311359943,
+      "predictive_std": 0.05054434469788108,
+      "predictive_worst": 0.1406049926990475,
+      "predictive_2023": 0.1406049926990475,
+      "raw_final_mean": 0.25997630667087895,
+      "mean_metrics": {
+        "ic_mean": 0.122327085672037,
+        "ic_std": 0.0930131620913325,
+        "icir": 1.3266701344188305,
+        "ic_positive_ratio": 0.8967792402135837,
+        "annual_excess": 0.5413649961492822,
+        "top1_annual_ret": 0.5566988822350931,
+        "mean_turnover": 0.8378800881424016,
+        "final_score": 0.25997630667087895
+      },
+      "agreement": {
+        "rank_correlation": 0.4944897507050465,
+        "eligible_top_overlap": 0.3577526370693624,
+        "eligible_top_jaccard": 0.22311867240676322,
+        "mean_exact_ties": 428.9432654264304
+      },
+      "runs": {
+        "wf2021": {
+          "exp_id": "S005_Y1_wf2021_raw",
+          "prediction": "outputs/predictions/S005_Y1_wf2021_raw/valid_2021.csv",
+          "prediction_sha256": "d2d568820298a728c91744e677a0abc06ee56704414e4745bedca9fc5fcdf968",
+          "model": "outputs/models/S005_Y1_wf2021_raw/model.txt",
+          "model_sha256": "ea61ba9ba33ebf3d53282bc0048cb8f65645b92e8a349608d08b419e3db7ddc9",
+          "spec": {
+            "model_params": {
+              "objective": "regression",
+              "boosting_type": "gbdt",
+              "metric": "l2",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1
+            },
+            "rounds": 800,
+            "target_id": "Y1",
+            "target_transform": {
+              "transform": "daily_rank",
+              "ties": "average"
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/mapping.parquet",
+            "target_mapping_sha256": "f582a3bee3c5d04d4da3d107f100fb5e8e80fa5eb11388b6f75416d561d42440",
+            "training_keys_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2021",
+              "supervised_keys": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+              "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/mapping.parquet",
+            "summary": {
+              "rows": 2594048,
+              "days": 729,
+              "stocks": 3861,
+              "start": 20180102,
+              "end": 20201230,
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              },
+              "raw_digest": "8efda885416e0550baa3494a55f2e21bbde219b6b68a3f1b40262f9e041e6f71",
+              "target_digest": "4329d98d67b5f0817e4d02135416754c09d4af127999ff70c4106a7f3063d75b",
+              "raw_mean": 0.000291838358056902,
+              "raw_std": 0.02890898755249202,
+              "target_mean": 0.5001405139766111,
+              "target_std": 0.28864414345587625,
+              "target_min": 0.00025960539979231567,
+              "target_max": 1.0,
+              "target_q01": 0.010155665990832159,
+              "target_q99": 0.9901351499272402,
+              "zero_std_days": 0,
+              "clipped_rows": 0,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "d19e3892e02df9f659fcf8ebeb1ae830652ff6d0a45785d5dbbc91067bae1e69",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20190703,
+              "rows": 1258263,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/mapping.parquet": "f582a3bee3c5d04d4da3d107f100fb5e8e80fa5eb11388b6f75416d561d42440",
+              "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/daily_statistics.csv": "ed855a987d46714b7d5e0c6cff3417f1c11c1eb7eb399fcb6a020b2d4d0a9a04",
+              "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/summary.json": "3567dbc697acc1c83a802d6a787c1ee0073d488d56078013d7ee9452960bd3b1"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2021/6a9ee13ef370c083120a3e9d3c85a14b41f4bebddc9208b08f39c465d1ddcee5/target.json",
+            "manifest_sha256": "fdcfe0a9671676e9c1f39305d11764142a747cde7d5bf4fee002ee6b817d7df0"
+          }
+        },
+        "wf2022": {
+          "exp_id": "S005_Y1_wf2022_raw",
+          "prediction": "outputs/predictions/S005_Y1_wf2022_raw/valid_2022.csv",
+          "prediction_sha256": "74767b9a462c7a4f2e18c478eadf90d9c6d5c9c1393ca0b7e77e62ac3df4bc98",
+          "model": "outputs/models/S005_Y1_wf2022_raw/model.txt",
+          "model_sha256": "9a3b41271cde5b1852df31c472ac4e4929f032312fd23bb8c7d5d1159c3e3ed3",
+          "spec": {
+            "model_params": {
+              "objective": "regression",
+              "boosting_type": "gbdt",
+              "metric": "l2",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1
+            },
+            "rounds": 800,
+            "target_id": "Y1",
+            "target_transform": {
+              "transform": "daily_rank",
+              "ties": "average"
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/mapping.parquet",
+            "target_mapping_sha256": "eb38b283ed6ee12aa6fe0b1ac91697a9856f3dfa20888a881c462de64bd11443",
+            "training_keys_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2022",
+              "supervised_keys": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+              "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/mapping.parquet",
+            "summary": {
+              "rows": 3568878,
+              "days": 972,
+              "stocks": 4182,
+              "start": 20180102,
+              "end": 20211230,
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              },
+              "raw_digest": "e9bf9930f93f4393dbea16f2afdb15c96f47246ebceeae86e00a5177a1689227",
+              "target_digest": "86ecc4361ae0ca81ef4d1f3c7ecea058ac733cd9a261d02a3898029b66b89322",
+              "raw_mean": 0.0004911946266400518,
+              "raw_std": 0.029386333333232012,
+              "target_mean": 0.5001361772523465,
+              "target_std": 0.28865107548983415,
+              "target_min": 0.00023969319271332693,
+              "target_max": 1.0,
+              "target_q01": 0.010144927536231883,
+              "target_q99": 0.9901332649923117,
+              "zero_std_days": 0,
+              "clipped_rows": 0,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "3f2c036f06e0c66f8751f91f3222e916372f0d6d4556e3e27e29cbd63666e5ed",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20191230,
+              "rows": 1694259,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/mapping.parquet": "eb38b283ed6ee12aa6fe0b1ac91697a9856f3dfa20888a881c462de64bd11443",
+              "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/daily_statistics.csv": "e1f4195a17a72eb95f53d8dd710258fa4660fcbd055885cc1460021721480f3f",
+              "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/summary.json": "0b70bbd42ace60b0be7b778ede42cece40890fd93678ce6df5689c4425aa7dd4"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2022/e4aab7a035ac7d05df8369190c110fedf6c2336d0c5b6b018c1ca33287e84130/target.json",
+            "manifest_sha256": "7f3e5f79cddc537e13c4f03fd40ca5dae6e0b48abf3565878839203f3765f20b"
+          }
+        },
+        "wf2023": {
+          "exp_id": "S005_Y1_wf2023_raw",
+          "prediction": "outputs/predictions/S005_Y1_wf2023_raw/valid_2023.csv",
+          "prediction_sha256": "3df4ccbec1e247650c242bd96cc197f76d22a713a97a01fa42736323cd318ed4",
+          "model": "outputs/models/S005_Y1_wf2023_raw/model.txt",
+          "model_sha256": "0c45e56bde2a48675feb010e7a862927b4e0a7dd6094b2b000085536618f84ca",
+          "spec": {
+            "model_params": {
+              "objective": "regression",
+              "boosting_type": "gbdt",
+              "metric": "l2",
+              "learning_rate": 0.04065467822968424,
+              "num_leaves": 28,
+              "max_depth": 8,
+              "min_data_in_leaf": 415,
+              "lambda_l1": 2.086527798462595,
+              "lambda_l2": 0.011862211698474496,
+              "feature_fraction": 0.660945618691071,
+              "bagging_fraction": 0.9204918282790925,
+              "bagging_freq": 1,
+              "max_bin": 255,
+              "seed": 42,
+              "num_threads": 8,
+              "device_type": "cpu",
+              "deterministic": true,
+              "force_col_wise": true,
+              "use_missing": true,
+              "zero_as_missing": false,
+              "verbosity": -1
+            },
+            "rounds": 800,
+            "target_id": "Y1",
+            "target_transform": {
+              "transform": "daily_rank",
+              "ties": "average"
+            },
+            "target_mapping": "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/mapping.parquet",
+            "target_mapping_sha256": "06fad44c73e3af29df2e2b002e0380d0fd07c3b99a426942f97e8b2de662cfde",
+            "training_keys_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+            "source_model": "S003 T030",
+            "layer": "raw"
+          },
+          "target_mapping": {
+            "status": "passed",
+            "identity": {
+              "schema": 1,
+              "fold": "wf2023",
+              "supervised_keys": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+              "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              }
+            },
+            "mapping": "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/mapping.parquet",
+            "summary": {
+              "rows": 4597785,
+              "days": 1214,
+              "stocks": 4291,
+              "start": 20180102,
+              "end": 20221229,
+              "spec": {
+                "transform": "daily_rank",
+                "ties": "average"
+              },
+              "raw_digest": "a18752a2671d78398dc22d932edad0851aada21cf6ba7dfeea69c5c44bab055d",
+              "target_digest": "3a1c1b72e28cc74a2172bdf339bc7c5c732d266cae0b6c1b3c1f7dde587d46d2",
+              "raw_mean": 0.0003242378122297261,
+              "raw_std": 0.029629623799459357,
+              "target_mean": 0.5001320200922835,
+              "target_std": 0.28865550285757624,
+              "target_min": 0.00023326335432703523,
+              "target_max": 1.0,
+              "target_q01": 0.010135135135135136,
+              "target_q99": 0.9901342833653055,
+              "zero_std_days": 0,
+              "clipped_rows": 0,
+              "all_finite": true,
+              "training_only": true,
+              "input_order_preserved": true
+            },
+            "key_digest": "a67417b17c6f5abe076027ac548139fe3feebc4ea2ed0690445b9b16efa827dd",
+            "daily_statistics": "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/daily_statistics.csv",
+            "prefix_replay": {
+              "end": 20200703,
+              "rows": 2135065,
+              "passed": true
+            },
+            "artifact_hashes": {
+              "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/mapping.parquet": "06fad44c73e3af29df2e2b002e0380d0fd07c3b99a426942f97e8b2de662cfde",
+              "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/daily_statistics.csv": "9c3866fa77a14af3224879054c03d30f46512091cbeeccf697dbbd0bef00651b",
+              "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/summary.json": "3cc153aa63491a853fa5a5641ccdaf3b67e852dfb40c54dd73dc64530f2902fa"
+            },
+            "manifest": "outputs/metrics/research_studies/S005/targets/wf2023/ac1f7f50f3e8a22729ff86267bd7551f08fe4d537264f09af89a34c9ba1a4650/target.json",
+            "manifest_sha256": "b9096054fe739dcb069fecdd4a4308d1763c4208535857b7996e5f5bc2bf0a86"
+          }
+        }
+      }
+    }
+  ],
+  "baseline": {
+    "id": "Y0",
+    "target": {
+      "id": "Y0",
+      "transform": "raw",
+      "objective": "regression",
+      "metric": "l2"
+    },
+    "status": "COMPLETE",
+    "predictive_mean": 0.15828285660096694,
+    "predictive_std": 0.045261274384160416,
+    "predictive_worst": 0.09430736142626316,
+    "predictive_2023": 0.09430736142626316,
+    "raw_final_mean": 0.19661798415765175,
+    "mean_metrics": {
+      "ic_mean": 0.07759137843949353,
+      "ic_std": 0.07646903644116476,
+      "icir": 1.029636439586193,
+      "ic_positive_ratio": 0.8486322257366029,
+      "annual_excess": 0.4241543507505651,
+      "top1_annual_ret": 0.43948823683637595,
+      "mean_turnover": 0.8722162414777173,
+      "final_score": 0.19661798415765175
+    },
+    "agreement": {
+      "rank_correlation": 1.0,
+      "eligible_top_overlap": 1.0,
+      "eligible_top_jaccard": 1.0,
+      "mean_exact_ties": 428.954284710177
+    }
+  },
+  "rule": "mean(0.4*raw_ic_mean+0.3*raw_annual_excess); tol then worst fold then ID",
+  "evaluated_years": [
+    2021,
+    2022,
+    2023
+  ],
+  "new_model_fits": 15,
+  "row_order": [
+    "trade_date",
+    "ts_code"
+  ],
+  "formal_adoption": false,
+  "next_phase": "S006; frozen partners only; no 2024 evaluation yet",
+  "selection_digest": "9809105475dbe5de31475a0eea50d8418405b24fa68c096037ae3049fbe33018"
+}

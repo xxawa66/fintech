@@ -24,7 +24,7 @@ from src.evaluation.official_eval import OFFICIAL_METRICS, daily_metrics, evalua
 from src.evaluation.research_diagnostics import monthly_metrics
 from src.evaluation.turnover_controllers import official_top, order_fingerprint, prepare_controller_input
 from src.models.alpha_research import (is_canonical, quarter_metrics, relative, save_csv,
-                                       table_markdown, verify_sources, write_text)
+                                       table_markdown as table_lines, verify_sources, write_text)
 from src.models.baseline import RunLog
 from src.models.lightgbm_model import load_model
 from src.models.optuna_tuning import (ensure_record, provenance, read_json, run_prediction,
@@ -47,6 +47,10 @@ APPROVED_TARGETS = [
      "ddof": 0, "zero_std": 0., "objective": "huber", "metric": "huber", "alpha": .9},
     {"id": "Y5", "transform": "raw", "objective": "regression_l1", "metric": "l1"},
 ]
+
+
+def table_markdown(frame, columns):
+    return "\n".join(table_lines(frame, columns))
 
 
 def protocol(cfg):

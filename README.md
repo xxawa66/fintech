@@ -4,7 +4,7 @@
 
 赛题：基于原始量价数据预测股票未来一天收益率。每条预测对应一组 `ts_code + trade_date`。
 
-当前已完成基础流程、S001、S002、S003 及 **S004 换手控制研究**。S004 的 67 个配置去重为 44 种完整排序，完成 132 个三折全量评分，新增模型训练 0 次；最高均分 **0.3772752567**，相对 S003 的 **0.3772733720** 仅增加约 **0.0000018847**，来自同一 Top 集合编码后的微小 IC 变化，未获得实质性提分。冻结 C018（按日编码 band，q=0.0022778298112255263）及 C042（排名差替换，delta=0、rho=0.01）供 S006 比较；正式方案继续以 S003 T030 + 锁定 band 为参照，其 2024 历史确认仍为 **0.3873823479**。结果见 [S004 报告](docs/alpha_research_S004.md) 与 [S003 报告](docs/optuna_tuning_S003.md)，S005 目标研究、S006 融合及成员 B 的独立复核待接续。分阶段方案见 [计划书](docs/alpha_retention_plan.md)，进度见 [项目状态](docs/project_status.md)。
+当前已完成基础流程及 S001–S005。S005 的 15 次固定参数训练冻结 Y4（每日缩尾标准化 + Huber）与 Y1（日排名 + L2）两个融合伙伴，原始 PredictiveScore 三折均值 **0.2115911261 / 0.2113403331**，原始 T030 为 **0.1582828566**；2023 两者均改善。辅助分用于信号初筛，完整方案接续 S006 判断；本轮没有训练或评分 2024。S004 的 C018 / C042 控制器已冻结供后续比较，S003 的完整方案仍为参照，其既有 2024 历史确认 **0.3873823479**。真实结果见 [S005 报告](docs/alpha_research_S005.md)、[S004 报告](docs/alpha_research_S004.md)与[计划书](docs/alpha_retention_plan.md)；成员 B 独立复核、S006 及正式提交待接续。
 
 ## 项目依据
 
@@ -13,9 +13,9 @@
 - [项目流程](docs/workflow.md)：推进顺序、两人分工和阶段交付。
 - [项目状态](docs/project_status.md)：已完成事项、待办和变更记录。
 - [模型研究计划书](docs/model_research_plan.md)：Day 9–12 已按固定协议完成；Day 13–14 衔接独立审核、最终训练与提交。
-- [S004–S006 计划书](docs/alpha_retention_plan.md)：固定三折研究，S004 已完成，S005 / S006 待启动。
+- [S004–S006 计划书](docs/alpha_retention_plan.md)：固定三折研究，S004 / S005 已完成，S006 待启动。
 - [S004 运行说明](docs/alpha_research_run.md)：固定 T030 的 67 组控制器、排序去重、官方核对和真实交接。
-- [S005 运行说明](docs/target_research_run.md)：已实现固定 T030 的五种目标 / 损失、实际日期键对齐和 15 次三折训练；全量研究待执行。
+- [S005 运行说明](docs/target_research_run.md)：固定 T030 的五种目标 / 损失、实际日期键对齐和 15 次三折训练已完成；Y4 / Y1 冻结，见 [S005 报告](docs/alpha_research_S005.md)。
 - [数据字典](docs/data_dictionary.md)与[数据清单](data/manifest.json)：字段含义、文件大小与校验信息。
 
 后续每一步都从仓库当前文件和实际 Git 状态出发；聊天记录用于补充背景，具体实现、进度和配置写回仓库。
@@ -121,7 +121,19 @@ S003 已完成 Optuna/TPE + 2021–2023 Walk-forward CV + 官方综合分的 50 
 
 C018 的均分 **0.3772752567** 仅微升，Top 收益和换手保持相同；C042 的均分 **0.3741114504**，2021 / 2022 改善而 2023 降至 **0.3403279087**，未通过跨年替换门槛。两个控制器冻结供 S006 有限组合比较，S003 继续作为正式研究参照。排名差网格内 delta=0–0.2 在同一上限下结果完全等价，不能据此宣称唯一最优 delta。源文件、实际 Top、6 次前缀重放与旧记录核对通过；未新增或运行测试套件。
 
-结果、四张图和交接见 [S004 报告](docs/alpha_research_S004.md)、[选择](docs/alpha_research_S004_selection.json)、[产物索引](docs/alpha_research_S004_artifacts.json)；小型表在 `experiments/alpha_S004_*`，完整预测和留仓诊断保存在本地忽略目录。按 [运行说明](docs/alpha_research_run.md) 可用新研究编号独立复现；已完成 S004 拒绝重跑。下一步 S005 研究训练目标，随后 S006 融合；成员 B 独立复核另行接续。
+结果、四张图和交接见 [S004 报告](docs/alpha_research_S004.md)、[选择](docs/alpha_research_S004_selection.json)、[产物索引](docs/alpha_research_S004_artifacts.json)；小型表在 `experiments/alpha_S004_*`，完整预测和留仓诊断保存在本地忽略目录。按 [运行说明](docs/alpha_research_run.md) 可用新研究编号独立复现；已完成 S004 拒绝重跑。S005 目标研究已完成，下一步 S006 融合；成员 B 独立复核另行接续。
+
+## S005 训练目标与损失研究
+
+已完成 Y1–Y5 × 2021–2023 的 **15 次固定 T030 / 800 轮训练**，Y0 复用。按三折原始 `PredictiveScore = 0.4*IC + 0.3*annual_excess` 冻结 **Y4（日缩尾标准化 + Huber）**、**Y1（日排名 + L2）**，均值 **0.2115911261 / 0.2113403331**，原始 T030 为 **0.1582828566**；2023 为 **0.1426758294 / 0.1406049927**，参照 **0.0943073614**。它是研究辅助分，完整官方方案仍在 S006 判断。本轮没有训练或评分 2024。
+
+官方八指标 / 模型重载差异均为 0，12 份实际训练目标映射与因果前缀通过，原 495 条记录不变，新增 15 条，共 510 条。报告发布格式错误已在不增加拟合、评分或改变选择的情况下修复；完整报告、四图、9 类小型交接表与来源 SHA 见 [S005 报告](docs/alpha_research_S005.md)、[冻结伙伴](docs/alpha_research_S005_selection.json)、[产物索引](docs/alpha_research_S005_artifacts.json)。研究入口：
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 -u -m src.models.target_research --study-id S005_repeat --owner A
+```
+
+已完成 S005 拒绝重跑；成员 B 独立复核与 S006 接续，运行 / 发布协议见 [说明](docs/target_research_run.md)。
 
 ## 评分与交付
 

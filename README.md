@@ -16,6 +16,7 @@
 - [S004–S006 计划书](docs/alpha_retention_plan.md)：固定三折研究，S004 / S005 已完成，S006 待启动。
 - [S004 运行说明](docs/alpha_research_run.md)：固定 T030 的 67 组控制器、排序去重、官方核对和真实交接。
 - [S005 运行说明](docs/target_research_run.md)：固定 T030 的五种目标 / 损失、实际日期键对齐和 15 次三折训练已完成；Y4 / Y1 冻结，见 [S005 报告](docs/alpha_research_S005.md)。
+- [S006 运行说明](docs/ensemble_research_run.md)：已实现有限排名融合、冻结控制器及唯一候选的 2024 确认入口，真实研究待运行。
 - [数据字典](docs/data_dictionary.md)与[数据清单](data/manifest.json)：字段含义、文件大小与校验信息。
 
 后续每一步都从仓库当前文件和实际 Git 状态出发；聊天记录用于补充背景，具体实现、进度和配置写回仓库。

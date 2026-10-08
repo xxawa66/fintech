@@ -1,6 +1,8 @@
 project:
   name: fintech
-  stage: target_research_complete
+  stage: ensemble_research_ready
+  current_ensemble_study: S006
+  current_ensemble_run: docs/ensemble_research_run.md
   current_target_study: S005
   current_target_run: docs/target_research_run.md
   current_target_report: docs/alpha_research_S005.md
@@ -263,3 +265,27 @@ target_research:
     - {id: Y3, transform: daily_winsor_zscore, quantiles: [0.01, 0.99], interpolation: linear, ddof: 0, zero_std: 0.0, objective: regression, metric: l2}
     - {id: Y4, transform: daily_winsor_zscore, quantiles: [0.01, 0.99], interpolation: linear, ddof: 0, zero_std: 0.0, objective: huber, metric: huber, alpha: 0.9}
     - {id: Y5, transform: raw, objective: regression_l1, metric: l1}
+
+# S006: cached CV blends and frozen controllers; one selected 2024 confirmation.
+ensemble_research:
+  phase: S006
+  controller_selection: docs/alpha_research_S004_selection.json
+  controller_artifacts: docs/alpha_research_S004_artifacts.json
+  target_selection: docs/alpha_research_S005_selection.json
+  target_artifacts: docs/alpha_research_S005_artifacts.json
+  history_top_k: 10
+  history_partner_count: 2
+  base_weights: [0.25, 0.5, 0.75]
+  signal_budget: 18
+  configuration_budget: 54
+  confirm_fit_budget: 3
+  selection_tolerance: 1.0e-6
+  confirm_threshold: 0.3873823479464019
+  blend_serialization: twice_daily_average_rank_integer
+  row_order: [trade_date, ts_code]
+  initial_state: cold_start
+  folds:
+    - {name: wf2021, train: [20180102, 20201231], valid: [20210101, 20211231]}
+    - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
+    - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
+  confirm: {name: confirm2024, train: [20180102, 20231231], valid: [20240101, 20241231]}

@@ -220,4 +220,32 @@ optuna:
 long_horizon:
   study: LH001
   horizons: [5, 10, 20, 30]
+  # 统一评估周期：**所有模型**（不论自身预测几日）选出的 top1/10 组都用这些周期的
+  # 实际收益评估，保证跨模型可比（见 docs/long_horizon_LH002.md 附录）。
+  # 任务目标是「找出长期有超额的股票」，因此默认取长周期 30 日。
+  eval_horizons: [5, 10, 20, 30]
   spec_source: docs/optuna_tuning_S003_selection.json
+  # 变体：features ∈ {v1, long}，target ∈ {raw, rank}。F1T1 即 LH001/LH002 的配置。
+  variants:
+    - {tag: F2T1, features: long, target: raw}
+    - {tag: F1T2, features: v1, target: rank}
+    - {tag: F2T2, features: long, target: rank}
+    # LH004：窗口一致性目标（V1 特征，隔离「目标口径」的单独贡献）
+    - {tag: TOPFRAC, features: v1, target: topfrac}
+    - {tag: MEANRANK, features: v1, target: meanrank}
+    - {tag: P25RANK, features: v1, target: p25rank}
+  # 长周期专属增量特征（在 V1 的 40 个之上叠加，windows 单位=交易日）
+  long_features:
+    version: long_v1
+    expected_count: 19
+    long_return_windows: [120, 250]
+    skip_windows: [[250, 20]]        # 跳月动量：跳过最近 20 日
+    long_ma_windows: [120, 250]
+    long_volatility_windows: [120, 250]
+    long_position_windows: [120, 250]
+    long_volume_windows: [120]
+    long_amount_windows: [120]
+    trend_windows: [60, 120]         # 上涨日占比
+    drawdown_windows: [120, 250]     # 当前价 / 窗口内最高 − 1
+    skew_windows: [60, 120]
+    rank_sources: [lh_ret_250, lh_price_position_250]

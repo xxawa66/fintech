@@ -235,7 +235,7 @@ def evaluate_arm_fold(cfg: dict, dataset: pd.DataFrame, columns: list[str], fold
     log(f"PASS {out_dir.name}: raw={layers['raw']['final_score']:.10f}, "
         f"band q*={layers['band_qstar']['final_score']:.10f}, "
         f"band 0.1={layers['band_01']['final_score']:.10f}")
-    del train, valid, scored, pred, truth
+    del valid, scored, pred, truth
     gc.collect()
     return result
 

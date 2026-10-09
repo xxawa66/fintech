@@ -335,7 +335,7 @@ def write_report(cfg: dict, root: Path, trials: pd.DataFrame, anchor_ok: bool,
                      f"{mine['ic_mean'] - base['ic_mean']:+.10f}|"
                      f"{mine['annual_excess'] - base['annual_excess']:+.10f}|"
                      f"{mine['mean_turnover'] - base['mean_turnover']:+.10f}|")
-    confirm_metrics = confirm_entry["saved"]["metrics"]["band_qstar"]
+    confirm_metrics = confirm_entry["metrics"]["band_qstar"]
     gate = 0.3873823479464019
     verdict_replace = confirm_metrics["final_score"] >= gate
     lines += ["", "## confirm2024", "",

@@ -389,7 +389,7 @@ def main(argv=None) -> int:
     if revision["branch"] != "main" or revision["dirty"]:
         raise ValueError("S008 must run from a clean main working tree.")
     winner_spec_frozen, frozen = frozen_references()
-    keep_q = float(winner_spec_frozen["keep_q"])
+    keep_q = float(winner_spec_frozen["spec"]["keep_q"])
     columns = feature_names(cfg["features"])
     if len(columns) != 40:
         raise ValueError("S008 expects the frozen 40-feature V1.")

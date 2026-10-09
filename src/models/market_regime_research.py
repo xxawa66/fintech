@@ -165,7 +165,7 @@ def evaluate_arm_fold(cfg: dict, dataset: pd.DataFrame, columns: list[str], fold
     if metrics_path.exists():
         saved = read_json(metrics_path)
         if saved.get("spec_digest") == digest(spec) and saved.get("columns") == columns:
-            log(f"reuse {out_dir.name}: band q*={saved['band_qstar']['final_score']:.10f}")
+            log(f"reuse {out_dir.name}: band q*={saved['metrics']['band_qstar']['final_score']:.10f}")
             return saved
         raise ValueError(f"Existing S007 metrics disagree with current spec: {out_dir}")
     out_dir.mkdir(parents=True, exist_ok=True)

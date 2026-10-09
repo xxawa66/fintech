@@ -52,7 +52,7 @@ import pandas as pd
 from src.data.clean_data import valid_quote
 from src.data.load_data import KEYS
 from src.evaluation.official_eval import TOP_MIN_VALID, evaluate_frame
-from src.evaluation.turnover import band_scores
+from src.evaluation.turnover import _to_long, _wide_rank, band_scores
 from src.evaluation.validation import get_folds
 from src.long_horizon.run import get_optuna_folds
 from src.utils.project import ROOT, load_config, project_path, write_json
@@ -233,9 +233,11 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--keep-q", type=float, default=None,
                         help="留仓带阈值；默认直读 T030 冻结 spec")
     parser.add_argument("--hold-source", default="mapped",
-                        choices=["mapped", "h01"],
+                        choices=["mapped", "h01", "primary", "combo"],
                         help="留仓判定的参照分数：mapped=重排映射后的 pred（历史行为）；"
-                             "h01=未加工的 S003/H01 原始预测，补足新成员仍按 pred")
+                             "h01=未加工的 S003/H01 原始预测；primary=该方向 primary "
+                             "模型的原始预测；combo=primary 与 refiner 候选内分位的算术"
+                             "平均（每天独立重算的组合排名）。补足新成员一律按 pred 排序")
     args = parser.parse_args(argv)
 
     cfg, _ = load_config(args.config)
@@ -256,6 +258,11 @@ def main(argv: list[str] | None = None) -> int:
     hold_source = args.hold_source
     fetch = sorted(set(models) | ({"H01"} if hold_source == "h01" else set()))
     log(f"hold_source = {hold_source}（留仓判定参照；其余折参数不变）")
+    if hold_source == "primary":
+        log(f"  提示：池 = primary 前 q 比例，故持仓股的 primary 候选内分位恒 ≥ 1−q"
+            f"（当前 max q={max(qs):.2f} ⇒ ≥{1 - max(qs):.4f}）；"
+            f"keep_q ≤ {1 - max(qs):.4f} 时判定恒真、结果应与 mapped 逐位一致，"
+            "要真正触发必须 keep_q > 1−q")
 
     csv_path = project_path(cfg["paths"]["train"])
     out_root = project_path("outputs/long_horizon") / args.out_tag
@@ -286,7 +293,8 @@ def main(argv: list[str] | None = None) -> int:
 
         dates = merged["trade_date"].to_numpy()
         flag = merged["flag_limit_up"].to_numpy()
-        # 留仓判定参照：h01 时用未加工的原始预测（含 NaN，NaN 视为不可留）
+        # 留仓判定参照：h01 时用未加工的 S003 原始预测（含 NaN，NaN 视为不可留）；
+        # primary 时逐方向取该方向 primary 的原始预测，故在方向循环内赋值。
         hold_arr = (merged["H01"].to_numpy(dtype="float64")
                     if hold_source == "h01" else None)
         refs[fold.name] = reference_band(fold.name) or {}
@@ -334,9 +342,21 @@ def main(argv: list[str] | None = None) -> int:
         for primary, refiner in directions:
             pa = _fill(merged[primary].to_numpy(dtype="float64"))
             pb = _fill(merged[refiner].to_numpy(dtype="float64"))
+            # primary 判定源：判定用该方向 primary 的原始预测（与名单同源，但未经
+            # 分段映射，分位尺度不失真）；combo：两模型候选内分位的算术平均，即
+            # 「每天都从零重算的组合预测排名」；mapped 时 dir_hold=None，h01 沿用折级值
+            dir_hold = hold_arr
+            if hold_source == "primary":
+                dir_hold = merged[primary].to_numpy(dtype="float64")
+            elif hold_source == "combo":
+                basef = merged[KEYS + ["y_ret_1d", "flag_limit_up"]]
+                r1 = _wide_rank(basef.assign(pred=pa), eligible_only=True)
+                r2 = _wide_rank(basef.assign(pred=pb), eligible_only=True)
+                combo_long = _to_long(basef, (r1 + r2) / 2.0, "combo")
+                dir_hold = combo_long.to_numpy(dtype="float64")
             for q in qs:
                 pred = pool_rerank(pa, pb, flag, dates, q)
-                metrics = score_variants(merged, pred, keep_q, hold_pred=hold_arr)
+                metrics = score_variants(merged, pred, keep_q, hold_pred=dir_hold)
                 rows.append({"study": args.study, "fold": fold.name,
                              "primary": primary, "refiner": refiner, "q": q,
                              "hold_source": hold_source,

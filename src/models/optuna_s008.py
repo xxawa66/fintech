@@ -497,7 +497,8 @@ def main(argv=None) -> int:
         band01_scored = banded.merge(truth_confirm[KEYS + ["y_ret_1d"]], on=KEYS, validate="one_to_one")
         band01_metrics = evaluate_frame(band01_scored)
         # T030 的 2024 band 0.1 诊断层已有官方产物（S003 confirmation）：直接引用冻结值
-        anchor_confirm = frozen_references()[1]["comparison"]["selected_model_band01"]
+        anchor_confirm = read_json(ROOT / "docs/optuna_tuning_S003_confirmation.json")[
+            "comparison"]["selected_model_band01"]
         # ---- Phase B：换手层网格 ----
         scan_tables = {}
         for fold_name in SEARCH_FOLDS + ["confirm2024"]:

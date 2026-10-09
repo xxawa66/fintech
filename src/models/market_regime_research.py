@@ -149,7 +149,7 @@ def build_dataset(cfg: dict, provenance: dict, log) -> tuple[pd.DataFrame, dict]
     audit = {"rows": len(dataset), "days": int(dataset.trade_date.nunique()),
              "market_window": MARKET_WINDOW, "cleaning": cleaning,
              "market_base": MARKET_BASE, "market_interaction": MARKET_INTERACTION}
-    log(f"dataset ready: {len(dataset):,} rows, {1 + len(ARMS['market'])} label/feature groups")
+    log(f"dataset ready: {len(dataset):,} rows, 40 V1 + {len(MARKET_ALL)} market features")
     return dataset, audit
 
 

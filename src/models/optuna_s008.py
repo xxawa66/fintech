@@ -59,7 +59,7 @@ from src.models.market_regime_research import (frozen_references, load_v1_featur
 from src.models.optuna_tuning import save_json
 from src.utils.experiments import append_record, read_records
 from src.utils.project import ROOT, git_state, load_config, project_path, timestamp
-from src.utils.research_cache import digest
+from src.utils.research_cache import contained_path, digest
 
 STUDY_ID = "S008"
 SEARCH_FOLDS = ["wf2021", "wf2022", "wf2023"]

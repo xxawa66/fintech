@@ -99,8 +99,22 @@ def smooth_scores(scored: pd.DataFrame, alpha: float) -> pd.Series:
     return _to_long(scored, pd.DataFrame(out, index=wide.index, columns=wide.columns), "smoothed")
 
 
-def band_scores(scored: pd.DataFrame, keep_q: float = 0.80) -> pd.Series:
+def band_scores(scored: pd.DataFrame, keep_q: float = 0.80,
+                hold_pred: np.ndarray | None = None) -> pd.Series:
     """留仓带：只抑制切线附近的抖动，返回编码后的 pred。
+
+    ``hold_pred`` 只改变**留仓判定与裁剪的参照分数**，``None``（默认）时与历史版本
+    逐位一致：
+
+    - ``None``：判定/裁剪用传入 ``pred`` 在候选集合内的分位，``delta = 1 - keep_q``；
+    - 提供时：判定/裁剪改用 ``hold_pred`` 的候选内分位（例如 S003 的原始 ``H01``
+      预测，而非上层重排映射后的分数），**补足新成员仍按传入 ``pred`` 排序**，从而
+      保留重排对新进名单的决定权。此时 ``delta`` 换成 ``1 - min(留仓股全市场分位)``：
+      判定源与编码源解耦后 ``1 - keep_q`` 不再能保证留仓集合高于落选股。
+
+    注意 ``delta`` 的具体取值不影响官方三项指标——官方用 Spearman IC 且 Top 组只由
+    排序决定，故只要留仓集合严格高于落选候选即可。这带来一个自检点：当
+    ``hold_pred`` 与 ``pred`` 相同时（例如都是 ``H01``），两种路径必须逐位一致。
 
     口径与 ``official_eval`` 的换手组一致：候选集合为当日剔除涨停的股票，规模为
     其前 1/10（不足 ``TOP_MIN_VALID`` 只时不建仓）。首日无历史持仓，直接取当日前
@@ -126,21 +140,33 @@ def band_scores(scored: pd.DataFrame, keep_q: float = 0.80) -> pd.Series:
     dates = rank_elig.index
     rf = rank_full.to_numpy(dtype=float)
     out = rf.copy()
-    delta = 1.0 - keep_q + 1e-9
     vals = rank_elig.to_numpy(dtype=float)
+    # 判定分数：默认与编码源同为传入 pred；提供 hold_pred 时改用它的候选内分位
+    if hold_pred is None:
+        hold_vals = vals
+        fixed_delta: float | None = 1.0 - keep_q + 1e-9
+    else:
+        hold_rank = _wide_rank(
+            scored.assign(pred=np.asarray(hold_pred, dtype="float64")),
+            eligible_only=True).reindex(index=dates, columns=rank_elig.columns)
+        hold_vals = hold_rank.to_numpy(dtype=float)
+        fixed_delta = None
     prev_top: list[int] = []
     for t in range(len(dates)):
         row = vals[t]
+        hrow = hold_vals[t]
         ok = ~np.isnan(row)
         n_elig = int(ok.sum())
         if n_elig < TOP_MIN_VALID:
             prev_top = []
             continue
         n_top = max(n_elig // TOP_FRACTION, 1)
-        keep = [i for i in prev_top if ok[i] and row[i] >= keep_q]
+        # 留仓：昨日在榜 + 今日仍可选 + 判定分数分位不低于 keep_q（NaN 视为不合格）
+        keep = [i for i in prev_top if ok[i] and hrow[i] >= keep_q]
         if len(keep) > n_top:
-            keep = [keep[i] for i in np.argsort(-row[keep])[:n_top]]
+            keep = [keep[i] for i in np.argsort(-hrow[keep])[:n_top]]
         if len(keep) < n_top:
+            # 补足新成员：仍按传入 pred（上层重排结果）排序
             chosen = set(keep)
             for idx in np.argsort(-np.where(ok, row, -np.inf)):
                 if len(keep) >= n_top:
@@ -149,6 +175,11 @@ def band_scores(scored: pd.DataFrame, keep_q: float = 0.80) -> pd.Series:
                     keep.append(int(idx))
                     chosen.add(int(idx))
         drop = np.array([i for i in np.flatnonzero(ok) if i not in set(keep)], dtype=int)
+        if fixed_delta is None:
+            # 判定源与编码源解耦：delta 只要让最弱留仓股仍高于最强落选股即可
+            delta = 1.0 - float(np.nanmin(rf[t, keep])) + 1e-9
+        else:
+            delta = fixed_delta
         out[t, drop] = rf[t, drop] - delta
         prev_top = keep
     return _to_long(scored, pd.DataFrame(out, index=dates, columns=rank_elig.columns), "band")

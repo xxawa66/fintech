@@ -164,15 +164,20 @@ def pool_rerank(pred_primary: np.ndarray, pred_refiner: np.ndarray,
     return out
 
 
-def score_variants(frame: pd.DataFrame, pred: np.ndarray, keep_q: float) -> dict:
-    """返回未加 band（raw）与加 band 后的官方核心指标。"""
+def score_variants(frame: pd.DataFrame, pred: np.ndarray, keep_q: float,
+                   hold_pred: np.ndarray | None = None) -> dict:
+    """返回未加 band（raw）与加 band 后的官方核心指标。
+
+    ``hold_pred`` 透传给 ``band_scores``：提供时留仓判定/裁剪改用它的候选内分位
+    （例如未加工的 S003 ``H01`` 原始预测），而不是 ``pred``（重排映射后的分数）。
+    """
     scored = frame[KEYS + ["y_ret_1d", "flag_limit_up"]].assign(pred=_fill(pred))
     out: dict[str, float] = {}
     raw = evaluate_frame(scored)
     for key in METRIC_KEYS:
         out[f"raw_{key}"] = float(raw[key])
-    banded = scored.assign(
-        pred=_fill(band_scores(scored, keep_q).to_numpy(dtype="float64")))
+    banded = scored.assign(pred=_fill(
+        band_scores(scored, keep_q, hold_pred=hold_pred).to_numpy(dtype="float64")))
     band = evaluate_frame(banded)
     for key in METRIC_KEYS:
         out[key] = float(band[key])
@@ -227,6 +232,10 @@ def main(argv: list[str] | None = None) -> int:
                              "outputs/long_horizon/<out-tag>/")
     parser.add_argument("--keep-q", type=float, default=None,
                         help="留仓带阈值；默认直读 T030 冻结 spec")
+    parser.add_argument("--hold-source", default="mapped",
+                        choices=["mapped", "h01"],
+                        help="留仓判定的参照分数：mapped=重排映射后的 pred（历史行为）；"
+                             "h01=未加工的 S003/H01 原始预测，补足新成员仍按 pred")
     args = parser.parse_args(argv)
 
     cfg, _ = load_config(args.config)
@@ -244,6 +253,9 @@ def main(argv: list[str] | None = None) -> int:
     if not folds:
         raise ValueError(f"未找到折 {wanted}（fold_source={args.fold_source}）")
     models = sorted({m for pair in directions for m in pair})
+    hold_source = args.hold_source
+    fetch = sorted(set(models) | ({"H01"} if hold_source == "h01" else set()))
+    log(f"hold_source = {hold_source}（留仓判定参照；其余折参数不变）")
 
     csv_path = project_path(cfg["paths"]["train"])
     out_root = project_path("outputs/long_horizon") / args.out_tag
@@ -263,17 +275,20 @@ def main(argv: list[str] | None = None) -> int:
         pred_frame = pd.read_parquet(pred_path)
         pred_frame["ts_code"] = pred_frame["ts_code"].astype(str)
         pred_frame["trade_date"] = pred_frame["trade_date"].astype("int64")
-        missing = [m for m in models if m not in pred_frame.columns]
+        missing = [m for m in fetch if m not in pred_frame.columns]
         if missing:
             raise KeyError(f"{pred_path} 缺少模型列 {missing}；"
                            f"现有 {list(pred_frame.columns)}")
-        merged = panel.merge(pred_frame[KEYS + models], on=KEYS, how="left",
+        merged = panel.merge(pred_frame[KEYS + fetch], on=KEYS, how="left",
                              validate="one_to_one")
         del panel, pred_frame
         gc.collect()
 
         dates = merged["trade_date"].to_numpy()
         flag = merged["flag_limit_up"].to_numpy()
+        # 留仓判定参照：h01 时用未加工的原始预测（含 NaN，NaN 视为不可留）
+        hold_arr = (merged["H01"].to_numpy(dtype="float64")
+                    if hold_source == "h01" else None)
         refs[fold.name] = reference_band(fold.name) or {}
 
         # --- 自检 1：q = 0 退化为 primary 原样，raw 指标须与归档逐位一致 ---
@@ -298,7 +313,22 @@ def main(argv: list[str] | None = None) -> int:
                     raise AssertionError(f"自检失败：H01+band 与 S003 归档差 {diff:.3e}")
             rows.append({"study": args.study, "fold": fold.name,
                          "primary": "H01", "refiner": "-", "q": 0.0,
+                         "hold_source": "mapped",
                          "note": "baseline_H01（= T030 监督路径）", **check})
+
+        # --- 自检 3：hold_pred 与 pred 同源时，解耦路径须与默认路径近似一致 ---
+        # 二者 keep 集合完全相同，唯一的差别是 delta：默认用 1-keep_q（近似，留仓股
+        # 全市场分位一旦低于 keep_q 就会有落选股挤进 Top），解耦用 1-min(留仓股分位)
+        # （精确）。故存在 ~1e-6 量级的固有差异，方向恒为解耦路径略高。
+        if hold_source == "h01":
+            plain = score_variants(merged, hold_arr, keep_q)
+            decoupled = score_variants(merged, hold_arr, keep_q, hold_pred=hold_arr)
+            diff = abs(plain["final_score"] - decoupled["final_score"])
+            log(f"  自检 3：H01 作判定源 {decoupled['final_score']:.10f} "
+                f"vs 默认路径 {plain['final_score']:.10f} → 差 {diff:.3e}"
+                f"（{'一致' if diff < 1e-10 else 'delta 近似差异，符合预期'}）")
+            if diff >= 1e-4:
+                raise AssertionError(f"自检失败：解耦路径与默认路径差 {diff:.3e}（>1e-4）")
 
         # --- 主循环：方向 × q ---
         for primary, refiner in directions:
@@ -306,9 +336,10 @@ def main(argv: list[str] | None = None) -> int:
             pb = _fill(merged[refiner].to_numpy(dtype="float64"))
             for q in qs:
                 pred = pool_rerank(pa, pb, flag, dates, q)
-                metrics = score_variants(merged, pred, keep_q)
+                metrics = score_variants(merged, pred, keep_q, hold_pred=hold_arr)
                 rows.append({"study": args.study, "fold": fold.name,
                              "primary": primary, "refiner": refiner, "q": q,
+                             "hold_source": hold_source,
                              "note": "", **metrics})
                 log(f"  {fold.name} {primary}>{refiner} q={q:.2f}："
                     f"band final {metrics['final_score']:.10f} "
@@ -326,7 +357,7 @@ def main(argv: list[str] | None = None) -> int:
     out_root.mkdir(parents=True, exist_ok=True)
     write_json(out_root / "rerank_report.json", json.loads(json.dumps({
         "study": args.study, "keep_q": keep_q, "directions": directions,
-        "qs": qs, "spec_source": settings["spec_source"],
+        "hold_source": hold_source, "qs": qs, "spec_source": settings["spec_source"],
         "fold_notes": {f: "baseline_H01" for f in refs},
         "s003_reference": refs, "rows": rows,
         "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
@@ -335,7 +366,8 @@ def main(argv: list[str] | None = None) -> int:
     pd.set_option("display.width", 240)
     show = ["fold", "primary", "refiner", "q", "ic_mean", "annual_excess",
             "top1_annual_ret", "mean_turnover", "final_score"]
-    print(f"\n===== {args.out_tag} 候选池二次重排（band keep_q={keep_q:.10f}）=====")
+    print(f"\n===== {args.out_tag} 候选池二次重排"
+          f"（band keep_q={keep_q:.10f} · hold_source={hold_source}）=====")
     print(frame[show].round(6).to_string(index=False))
 
     n_fold = len(folds)

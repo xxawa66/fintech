@@ -427,7 +427,7 @@ def main(argv=None) -> int:
             for arm in arms:
                 out_dir = root / arm / fold.name
                 results[(arm, fold.name)] = evaluate_arm_fold(
-                    dataset, columns[arm], fold, spec, out_dir, log)
+                    cfg, dataset, columns[arm], fold, spec, out_dir, log)
             gc.collect()
         if "baseline" in arms:
             verify_baseline({k[1]: v for k, v in results.items() if k[0] == "baseline"}, frozen)

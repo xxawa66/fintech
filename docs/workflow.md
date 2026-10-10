@@ -28,6 +28,8 @@ S007 市场特征与 S008 分离式 Optuna 已归档；S007 的 2024 为 0.40240
 
 ## 当前基础版流程
 
+S010 的有限学习入口现已实现，见[运行协议](top_tail_S010_run.md)。实际结果待从先推送实现的干净 main 执行后填写；S009 与过去阶段的选择清单不改写。
+
 使用 `src.models.baseline` 作为统一入口，具体命令、特征和产物约定见 [baseline_run.md](baseline_run.md)。复用成员 B 的 `validation.py` 和 `official_eval.py`，官方评分附件保持原样。
 
 1. 校验原始训练文件与 `data/manifest.json` 的大小和 SHA-256，记录当前代码提交与环境。

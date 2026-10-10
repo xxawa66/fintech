@@ -10,6 +10,8 @@ S009 的[报告](docs/top_tail_S009.md)与[分流决定](docs/top_tail_S009_deci
 
 ## 项目依据
 
+用户已要求执行 S010，固定五臂 / 时间外 OOF / 18 次拟合预算的入口已实现，见[运行协议](docs/top_tail_S010_run.md)。实现与配置先提交、推送，再执行真实研究；此时尚无 S010 训练结果。S011 继续暂缓。
+
 - [AGENTS.md](AGENTS.md)：后续操作的工作规则。
 - [官方赛题 PDF](docs/赛题五-更新.pdf)、[Python 官方评分器](evaluate.py)、[R 官方评分器](evaluate.R)：正式要求与计算依据。
 - [项目流程](docs/workflow.md)：推进顺序、两人分工和阶段交付。
@@ -17,6 +19,7 @@ S009 的[报告](docs/top_tail_S009.md)与[分流决定](docs/top_tail_S009_deci
 - [S009–S011 计划书](docs/top_tail_research_plan.md)：头部诊断、严格时间 OOF 分类 / 排序与过去数据门控；模型拟合新阶段预算最多 18 次。
 - [S009 运行说明](docs/top_tail_S009_run.md)：38 个冻结预测的零训练诊断入口、来源核对、两种 Top 集合与实际日期块区间。
 - [S009 结果与限制](docs/top_tail_S009.md)：头部边界、候选召回、两种池的并列与收益归因，支持 S010、暂缓 S011。
+- [S010 运行说明](docs/top_tail_S010_run.md)：两次过去 Y4 预热、五臂三折、精确并列编码及唯一合格臂的锁定历史检查。
 - [S007 报告](docs/market_regime_S007.md)与[S008 报告](docs/optuna_s008.md)：市场特征与分离式调参的已归档结果，数值以相应 CSV / JSON 为准。
 - [模型研究计划书](docs/model_research_plan.md)：Day 9–12 已按固定协议完成；Day 13–14 衔接独立审核、最终训练与提交。
 - [S004–S006 计划书](docs/alpha_retention_plan.md)：三阶段与锁定后一次 2024 确认均已完成，按门槛保留 S003。

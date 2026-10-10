@@ -1,6 +1,11 @@
 project:
   name: fintech
-  stage: top_tail_diagnostics_complete
+  stage: top_tail_learning_ready
+  current_head_study: S010
+  current_head_run: docs/top_tail_S010_run.md
+  current_head_report: docs/top_tail_S010.md
+  current_head_selection: docs/top_tail_S010_selection.json
+  current_head_artifacts: docs/top_tail_S010_artifacts.json
   current_diagnostic_study: S009
   current_diagnostic_run: docs/top_tail_S009_run.md
   current_diagnostic_report: docs/top_tail_S009.md
@@ -232,6 +237,45 @@ optuna:
     - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
     - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
   confirm: {name: confirm2024, train: [20180102, 20231231], valid: [20240101, 20241231]}
+
+# S010: fixed temporal OOF head learning; no HPO, no new controller search.
+top_tail_learning:
+  phase: S010
+  diagnostic_artifacts: docs/top_tail_S009_artifacts.json
+  diagnostic_decision: docs/top_tail_S009_decision.json
+  diagnostic_context: outputs/metrics/research_studies/S009/context.json
+  source_selection: docs/optuna_tuning_S003_selection.json
+  model_fit_budget: 18
+  first_stage_rounds: 800
+  first_stage_transform: {transform: daily_winsor_zscore, quantiles: [0.01, 0.99], interpolation: linear, ddof: 0, zero_std: 0.0}
+  second_stage_rounds: 400
+  second_stage_start: 20190101
+  warmup_years: [2019, 2020]
+  features: 41
+  keep_q: 0.0022778298112255263
+  query_truncation: 466
+  label_gain: [0, 1, 2, 3, 4]
+  row_order: [trade_date, ts_code]
+  initial_state: cold_start
+  arms:
+    - {id: B10, pool: 1.0, objective: binary, event: 0.90}
+    - {id: B20, pool: 1.0, objective: binary, event: 0.80}
+    - {id: R20, pool: 0.20, objective: binary, event: 0.90}
+    - {id: R30, pool: 0.30, objective: binary, event: 0.90}
+    - {id: L30, pool: 0.30, objective: lambdarank, cuts: [0.60, 0.80, 0.90, 0.95]}
+  folds:
+    - {name: wf2021, train: [20180102, 20201231], valid: [20210101, 20211231]}
+    - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
+    - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
+  confirm: {name: confirm2024, train: [20180102, 20231231], valid: [20240101, 20241231]}
+  bootstrap: {block_length: 20, repetitions: 1000, seed: 42}
+  gates:
+    mean_score_delta: 0.003
+    mean_excess_delta: 0.01
+    max_excess_loss: 0.02
+    max_worst_score_loss: 0.005
+    ic_retention: 0.95
+    max_turnover_increase: 0.01
 
 # S009 only diagnoses frozen complete predictions; it never fits a model.
 top_tail_diagnostics:

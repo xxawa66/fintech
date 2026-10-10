@@ -242,7 +242,7 @@ B10 / B20 预测全市场有效价格行，缺价保持记录明确的原始 0 �
 |`docs/top_tail_S009.md` / `S010.md` / `regime_gate_S011.md`|真实阶段结论与限制|
 |`docs/*_selection.json` / `*_artifacts.json`|冻结清单、输入 / 源码 / 模型 / 预测 / 图表 SHA|
 
-S009 的六个 evaluation 模块、独立配置、15 类小型表、六图、报告 / 分流 / 审计已实现并实际完成，运行方法见[说明](top_tail_S009_run.md)。S010 的 targets / temporal_oof / top_tail_research 与 S011 的 regime_gate_research **尚未实现**；不能把计划模块当作已有功能。后续实施仍先提交实现与数值配置，再从干净 main 执行；已完成研究拒绝覆盖，变化用新研究身份。
+S009 的六个 evaluation 模块、独立配置、15 类小型表、六图、报告 / 分流 / 审计已实现并实际完成，运行方法见[说明](top_tail_S009_run.md)。用户已要求执行 S010，其 targets / temporal_oof / top_tail_research、top_tail_runs 与 top_tail_learning_handoff **已实现，实际训练结果待执行**，见[运行协议](top_tail_S010_run.md)；S011 的 regime_gate_research 尚未实现且继续暂缓。先提交实现与数值配置，再从干净 main 执行；已完成研究拒绝覆盖，变化用新研究身份。
 
 原始数据与官方附件不变。新模型保存 / 重载差 ≤1e-12；全部正式层的落盘官方八指标差 ≤1e-10；输出全键、无缺失 / 无穷；真实前缀核对包含特征、训练标签、OOF、编码和控制器。实际 X / y 分别留摘要，所有训练与来源缺口记录。执行验收用真实数据产物核对，本计划不新增或运行测试套件；用户另行要求时再安排。
 

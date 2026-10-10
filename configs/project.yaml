@@ -1,9 +1,13 @@
 project:
   name: fintech
-  stage: top_tail_diagnostics_ready
+  stage: top_tail_diagnostics_complete
   current_diagnostic_study: S009
   current_diagnostic_run: docs/top_tail_S009_run.md
   current_diagnostic_report: docs/top_tail_S009.md
+  current_diagnostic_decision: docs/top_tail_S009_decision.json
+  current_diagnostic_artifacts: docs/top_tail_S009_artifacts.json
+  next_supported_research: S010
+  deferred_research: S011
   current_research_plan: docs/top_tail_research_plan.md
   current_input_inventory: docs/top_tail_inputs_S009_inventory.json
   latest_market_study: S007

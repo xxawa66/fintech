@@ -1,0 +1,62 @@
+{
+  "stage": "diagnostic_only",
+  "formal_recommendation": "retain_S003",
+  "advance_S010": true,
+  "advance_S011": false,
+  "Y4_weak_boundary_cv_years": 2,
+  "Y4_limited_candidate_recall_cv_years": 3,
+  "candidate20_recall_floor": 0.5,
+  "candidate30_recall_floor": 0.7,
+  "no_new_model_claim": true,
+  "no_hidden_test_score_claim": true,
+  "gate_evidence": [
+    {
+      "family": "breadth",
+      "state": "high",
+      "supported_years": 3,
+      "positive_years": 0,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    },
+    {
+      "family": "breadth",
+      "state": "low",
+      "supported_years": 3,
+      "positive_years": 1,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    },
+    {
+      "family": "trend",
+      "state": "nonpositive",
+      "supported_years": 3,
+      "positive_years": 1,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    },
+    {
+      "family": "trend",
+      "state": "positive",
+      "supported_years": 3,
+      "positive_years": 0,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    },
+    {
+      "family": "vol",
+      "state": "high",
+      "supported_years": 1,
+      "positive_years": 0,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    },
+    {
+      "family": "vol",
+      "state": "low",
+      "supported_years": 3,
+      "positive_years": 0,
+      "positive_ci_years": 0,
+      "eligible_for_causal_gate_research": false
+    }
+  ]
+}

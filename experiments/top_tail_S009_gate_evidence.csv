@@ -1,0 +1,7 @@
+family,state,supported_years,positive_years,positive_ci_years,eligible_for_causal_gate_research
+breadth,high,3,0,0,False
+breadth,low,3,1,0,False
+trend,nonpositive,3,1,0,False
+trend,positive,3,0,0,False
+vol,high,1,0,0,False
+vol,low,3,0,0,False

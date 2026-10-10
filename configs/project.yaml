@@ -6,6 +6,9 @@ project:
   current_head_report: docs/top_tail_S010.md
   current_head_selection: docs/top_tail_S010_selection.json
   current_head_artifacts: docs/top_tail_S010_artifacts.json
+  latest_test_diagnostic: S010_test_wf2023
+  latest_test_diagnostic_report: docs/S010_test_wf2023.md
+  latest_test_diagnostic_labels: ex_post_close_proxy_not_official
   current_diagnostic_study: S009
   current_diagnostic_run: docs/top_tail_S009_run.md
   current_diagnostic_report: docs/top_tail_S009.md
@@ -63,6 +66,16 @@ paths:
   research_reports: docs
   research_handoff_inputs: s009_inputs_S007market_S008T033
   optuna_cache: data/processed/optuna_cache
+
+# Independent user-authorized extrapolation, not S010 selection or final refit.
+s010_test_replay:
+  run_id: S010_test_wf2023
+  source_study: outputs/metrics/research_studies/S010/study.json
+  source_year: 2023
+  history_start: 20240101
+  keep_q: 0.0022778298112255263
+  summary: docs/S010_test_wf2023_proxy_scores.csv
+  manifest: docs/S010_test_wf2023_manifest.json
 
 data:
   key_columns: [ts_code, trade_date]

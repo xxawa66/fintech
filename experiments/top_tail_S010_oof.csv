@@ -1,0 +1,7 @@
+year,max_training_label_date,native_prediction,source_manifest,new_model_fits
+2019,20181227,outputs/models/S010_Y4_warm2019_raw/native.npy,outputs/models/S010_Y4_warm2019_raw/run.json,1
+2020,20191230,outputs/models/S010_Y4_warm2020_raw/native.npy,outputs/models/S010_Y4_warm2020_raw/run.json,1
+2021,20201230,outputs/metrics/research_studies/S009/native/Y4/wf2021.npy,outputs/models/S005_Y4_wf2021_raw/run.json,0
+2022,20211230,outputs/metrics/research_studies/S009/native/Y4/wf2022.npy,outputs/models/S005_Y4_wf2022_raw/run.json,0
+2023,20221229,outputs/metrics/research_studies/S009/native/Y4/wf2023.npy,outputs/models/S005_Y4_wf2023_raw/run.json,0
+2024,20231228,outputs/metrics/research_studies/S009/native/Y4/confirm2024.npy,outputs/models/S006_confirm2024_Y4_raw/run.json,0

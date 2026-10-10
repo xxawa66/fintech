@@ -1,0 +1,361 @@
+{
+  "study_id": "S010",
+  "created_at": "2026-10-10T18:39:14+08:00",
+  "source_digest": "9658e58c58117dc9f48d63efdf5fe96ae983b85cca791dc419e2cd318230c70d",
+  "protocol_digest": "c32efb820261ee0c37af8d7eb9adc1d20e11cfc8e239b7b8e598a88e446394dd",
+  "winner": null,
+  "status": "no_qualified_arm",
+  "screen_git": {
+    "commit": "9714e72f76bac9f8fb12ebd24af96a68cd998fe6",
+    "branch": "main",
+    "dirty": false
+  },
+  "arms": [
+    {
+      "id": "B10",
+      "pool": 1.0,
+      "objective": "binary",
+      "event": 0.9
+    },
+    {
+      "id": "B20",
+      "pool": 1.0,
+      "objective": "binary",
+      "event": 0.8
+    },
+    {
+      "id": "R20",
+      "pool": 0.2,
+      "objective": "binary",
+      "event": 0.9
+    },
+    {
+      "id": "R30",
+      "pool": 0.3,
+      "objective": "binary",
+      "event": 0.9
+    },
+    {
+      "id": "L30",
+      "pool": 0.3,
+      "objective": "lambdarank",
+      "cuts": [
+        0.6,
+        0.8,
+        0.9,
+        0.95
+      ]
+    }
+  ],
+  "keep_q": 0.0022778298112255263,
+  "gates": [
+    {
+      "model": "B10",
+      "period": "CV2021_2023",
+      "mean_final": 0.23715646828252757,
+      "worst_final": 0.22674985609376927,
+      "mean_delta_final": -0.14011690368174456,
+      "mean_delta_excess": -0.2915519456873718,
+      "excess_positive_years": 0,
+      "positive_excess_months": 14,
+      "worst_month_count": 4,
+      "final_ci_lower": -0.17869635420800525,
+      "excess_ci_lower": -0.4098261792899394,
+      "qualified": false,
+      "failed_gates": "mean_score,mean_excess,positive_excess_years,each_excess,year2023_score,worst_year_score,each_ic,positive_months,worst_months,score_ci,excess_ci",
+      "mean_score": false,
+      "mean_excess": false,
+      "positive_excess_years": false,
+      "each_excess": false,
+      "year2023_score": false,
+      "worst_year_score": false,
+      "each_ic": false,
+      "mean_turnover": true,
+      "positive_months": false,
+      "worst_months": false,
+      "score_ci": false,
+      "excess_ci": false
+    },
+    {
+      "model": "B20",
+      "period": "CV2021_2023",
+      "mean_final": 0.26520543106434974,
+      "worst_final": 0.24538388038702394,
+      "mean_delta_final": -0.11206794089992245,
+      "mean_delta_excess": -0.22460326794909127,
+      "excess_positive_years": 0,
+      "positive_excess_months": 18,
+      "worst_month_count": 4,
+      "final_ci_lower": -0.14303456141335014,
+      "excess_ci_lower": -0.31897254827518257,
+      "qualified": false,
+      "failed_gates": "mean_score,mean_excess,positive_excess_years,each_excess,year2023_score,worst_year_score,each_ic,positive_months,worst_months,score_ci,excess_ci",
+      "mean_score": false,
+      "mean_excess": false,
+      "positive_excess_years": false,
+      "each_excess": false,
+      "year2023_score": false,
+      "worst_year_score": false,
+      "each_ic": false,
+      "mean_turnover": true,
+      "positive_months": false,
+      "worst_months": false,
+      "score_ci": false,
+      "excess_ci": false
+    },
+    {
+      "model": "R20",
+      "period": "CV2021_2023",
+      "mean_final": 0.3823643874718738,
+      "worst_final": 0.3554029081950684,
+      "mean_delta_final": 0.005091015507601604,
+      "mean_delta_excess": -0.02333070260231308,
+      "excess_positive_years": 1,
+      "positive_excess_months": 31,
+      "worst_month_count": 4,
+      "final_ci_lower": -0.00897250464599388,
+      "excess_ci_lower": -0.06892979543881637,
+      "qualified": false,
+      "failed_gates": "mean_excess,positive_excess_years,each_excess,score_ci,excess_ci",
+      "mean_score": true,
+      "mean_excess": false,
+      "positive_excess_years": false,
+      "each_excess": false,
+      "year2023_score": true,
+      "worst_year_score": true,
+      "each_ic": true,
+      "mean_turnover": true,
+      "positive_months": true,
+      "worst_months": true,
+      "score_ci": false,
+      "excess_ci": false
+    },
+    {
+      "model": "R30",
+      "period": "CV2021_2023",
+      "mean_final": 0.37428113070626545,
+      "worst_final": 0.3463860822079514,
+      "mean_delta_final": -0.002992241258006697,
+      "mean_delta_excess": -0.046169565769360675,
+      "excess_positive_years": 1,
+      "positive_excess_months": 27,
+      "worst_month_count": 4,
+      "final_ci_lower": -0.01968267338260942,
+      "excess_ci_lower": -0.09875148217374896,
+      "qualified": false,
+      "failed_gates": "mean_score,mean_excess,positive_excess_years,each_excess,year2023_score,worst_year_score,positive_months,worst_months,score_ci,excess_ci",
+      "mean_score": false,
+      "mean_excess": false,
+      "positive_excess_years": false,
+      "each_excess": false,
+      "year2023_score": false,
+      "worst_year_score": false,
+      "each_ic": true,
+      "mean_turnover": true,
+      "positive_months": false,
+      "worst_months": false,
+      "score_ci": false,
+      "excess_ci": false
+    },
+    {
+      "model": "L30",
+      "period": "CV2021_2023",
+      "mean_final": 0.3731224706837866,
+      "worst_final": 0.3536499050624924,
+      "mean_delta_final": -0.004150901280485471,
+      "mean_delta_excess": -0.04971264421489741,
+      "excess_positive_years": 0,
+      "positive_excess_months": 30,
+      "worst_month_count": 4,
+      "final_ci_lower": -0.018157283538269037,
+      "excess_ci_lower": -0.09677773491224197,
+      "qualified": false,
+      "failed_gates": "mean_score,mean_excess,positive_excess_years,each_excess,worst_months,score_ci,excess_ci",
+      "mean_score": false,
+      "mean_excess": false,
+      "positive_excess_years": false,
+      "each_excess": false,
+      "year2023_score": true,
+      "worst_year_score": true,
+      "each_ic": true,
+      "mean_turnover": true,
+      "positive_months": true,
+      "worst_months": false,
+      "score_ci": false,
+      "excess_ci": false
+    }
+  ],
+  "oof_sources": {
+    "2021": {
+      "native_prediction": "outputs/metrics/research_studies/S009/native/Y4/wf2021.npy",
+      "source_manifest": "outputs/models/S005_Y4_wf2021_raw/run.json",
+      "context": "outputs/metrics/research_studies/S009/context/wf2021.parquet",
+      "split": {
+        "fold": "wf2021",
+        "train_window": [
+          20180102,
+          20201231
+        ],
+        "valid_window": [
+          20210101,
+          20211231
+        ],
+        "n_train_rows": 3394500,
+        "n_valid_rows": 1129950,
+        "last_train_day": 20201231,
+        "next_trading_day": 20210104,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 3853,
+        "n_train_labels_before": 2597901,
+        "n_train_labels_after": 2594048,
+        "n_valid_labels": 975147,
+        "valid_label_coverage": 0.8630001327492367
+      },
+      "new_model_fits": 0,
+      "max_training_label_date": 20201230
+    },
+    "2022": {
+      "native_prediction": "outputs/metrics/research_studies/S009/native/Y4/wf2022.npy",
+      "source_manifest": "outputs/models/S005_Y4_wf2022_raw/run.json",
+      "context": "outputs/metrics/research_studies/S009/context/wf2022.parquet",
+      "split": {
+        "fold": "wf2022",
+        "train_window": [
+          20180102,
+          20211231
+        ],
+        "valid_window": [
+          20220101,
+          20221231
+        ],
+        "n_train_rows": 4524450,
+        "n_valid_rows": 1125300,
+        "last_train_day": 20211231,
+        "next_trading_day": 20220104,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 4170,
+        "n_train_labels_before": 3573048,
+        "n_train_labels_after": 3568878,
+        "n_valid_labels": 1029017,
+        "valid_label_coverage": 0.9144379276637341
+      },
+      "new_model_fits": 0,
+      "max_training_label_date": 20211230
+    },
+    "2023": {
+      "native_prediction": "outputs/metrics/research_studies/S009/native/Y4/wf2023.npy",
+      "source_manifest": "outputs/models/S005_Y4_wf2023_raw/run.json",
+      "context": "outputs/metrics/research_studies/S009/context/wf2023.parquet",
+      "split": {
+        "fold": "wf2023",
+        "train_window": [
+          20180102,
+          20221231
+        ],
+        "valid_window": [
+          20230101,
+          20231231
+        ],
+        "n_train_rows": 5649750,
+        "n_valid_rows": 1125300,
+        "last_train_day": 20221230,
+        "next_trading_day": 20230103,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 4280,
+        "n_train_labels_before": 4602065,
+        "n_train_labels_after": 4597785,
+        "n_valid_labels": 1062411,
+        "valid_label_coverage": 0.9441135697147427
+      },
+      "new_model_fits": 0,
+      "max_training_label_date": 20221229
+    },
+    "2024": {
+      "native_prediction": "outputs/metrics/research_studies/S009/native/Y4/confirm2024.npy",
+      "source_manifest": "outputs/models/S006_confirm2024_Y4_raw/run.json",
+      "context": "outputs/metrics/research_studies/S009/context/confirm2024.parquet",
+      "split": {
+        "fold": "confirm2024",
+        "train_window": [
+          20180102,
+          20231231
+        ],
+        "valid_window": [
+          20240101,
+          20241231
+        ],
+        "n_train_rows": 6775050,
+        "n_valid_rows": 1125300,
+        "last_train_day": 20231229,
+        "next_trading_day": 20240102,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 4522,
+        "n_train_labels_before": 5664476,
+        "n_train_labels_after": 5659954,
+        "n_valid_labels": 1094055,
+        "valid_label_coverage": 0.9722340709144228
+      },
+      "new_model_fits": 0,
+      "max_training_label_date": 20231228
+    },
+    "2019": {
+      "native_prediction": "outputs/models/S010_Y4_warm2019_raw/native.npy",
+      "source_manifest": "outputs/models/S010_Y4_warm2019_raw/run.json",
+      "split": {
+        "fold": "warm2019",
+        "train_window": [
+          20180102,
+          20181231
+        ],
+        "valid_window": [
+          20190101,
+          20191231
+        ],
+        "n_train_rows": 1129950,
+        "n_valid_rows": 1134600,
+        "last_train_day": 20181228,
+        "next_trading_day": 20190102,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 3475,
+        "n_train_labels_before": 833573,
+        "n_train_labels_after": 830098,
+        "n_valid_labels": 864295,
+        "valid_label_coverage": 0.7617618543980257,
+        "supervised_last_day": 20181227
+      },
+      "max_training_label_date": 20181227,
+      "new_model_fits": 1
+    },
+    "2020": {
+      "native_prediction": "outputs/models/S010_Y4_warm2020_raw/native.npy",
+      "source_manifest": "outputs/models/S010_Y4_warm2020_raw/run.json",
+      "split": {
+        "fold": "warm2020",
+        "train_window": [
+          20180102,
+          20191231
+        ],
+        "valid_window": [
+          20200101,
+          20201231
+        ],
+        "n_train_rows": 2264550,
+        "n_valid_rows": 1129950,
+        "last_train_day": 20191231,
+        "next_trading_day": 20200102,
+        "n_boundary_rows": 4650,
+        "n_boundary_labels_dropped": 3609,
+        "n_train_labels_before": 1697868,
+        "n_train_labels_after": 1694259,
+        "n_valid_labels": 900033,
+        "valid_label_coverage": 0.7965246249834064,
+        "supervised_last_day": 20191230
+      },
+      "max_training_label_date": 20191230,
+      "new_model_fits": 1
+    }
+  },
+  "required_confirm_fits": 0,
+  "rule": "predeclared complete qstar gates; mean score, tolerance, worst fold, ID",
+  "selection_digest": "3ed513749e984d6879b84f5ad44382407aae276e6c0f153c067158f024bd78c8"
+}

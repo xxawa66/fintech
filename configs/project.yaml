@@ -1,6 +1,9 @@
 project:
   name: fintech
-  stage: top_tail_plan_ready
+  stage: top_tail_diagnostics_ready
+  current_diagnostic_study: S009
+  current_diagnostic_run: docs/top_tail_S009_run.md
+  current_diagnostic_report: docs/top_tail_S009.md
   current_research_plan: docs/top_tail_research_plan.md
   current_input_inventory: docs/top_tail_inputs_S009_inventory.json
   latest_market_study: S007
@@ -225,6 +228,27 @@ optuna:
     - {name: wf2022, train: [20180102, 20211231], valid: [20220101, 20221231]}
     - {name: wf2023, train: [20180102, 20221231], valid: [20230101, 20231231]}
   confirm: {name: confirm2024, train: [20180102, 20231231], valid: [20240101, 20241231]}
+
+# S009 only diagnoses frozen complete predictions; it never fits a model.
+top_tail_diagnostics:
+  phase: S009
+  model_fit_budget: 0
+  comparison_units: 38
+  models: [T030, Y1, Y4, Market, T033]
+  input_inventory: docs/top_tail_inputs_S009_inventory.json
+  source_artifacts:
+    S003: docs/optuna_tuning_S003_artifacts.json
+    S005: docs/alpha_research_S005_artifacts.json
+    S006: docs/alpha_research_S006_artifacts.json
+  keep_q: 0.0022778298112255263
+  bin_edges: [0.0, 0.05, 0.10, 0.15, 0.20, 0.30, 0.50, 0.70, 1.0]
+  bootstrap: {block_length: 20, repetitions: 1000, seed: 42}
+  row_orders: [canonical, reverse_code, permuted_seed42]
+  advance_rules:
+    minimum_cv_years: 2
+    candidate20_recall_floor: 0.50
+    candidate30_recall_floor: 0.70
+    state_min_days: 60
   search_space:
     learning_rate: {low: 0.01, high: 0.08, log: true}
     num_leaves: {low: 15, high: 128}

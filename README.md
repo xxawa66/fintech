@@ -15,6 +15,7 @@
 - [项目流程](docs/workflow.md)：推进顺序、两人分工和阶段交付。
 - [项目状态](docs/project_status.md)：已完成事项、待办和变更记录。
 - [S009–S011 计划书](docs/top_tail_research_plan.md)：头部诊断、严格时间 OOF 分类 / 排序与过去数据门控；模型拟合新阶段预算最多 18 次。
+- [S009 运行说明](docs/top_tail_S009_run.md)：38 个冻结预测的零训练诊断入口、来源核对、两种 Top 集合与实际日期块区间。
 - [S007 报告](docs/market_regime_S007.md)与[S008 报告](docs/optuna_s008.md)：市场特征与分离式调参的已归档结果，数值以相应 CSV / JSON 为准。
 - [模型研究计划书](docs/model_research_plan.md)：Day 9–12 已按固定协议完成；Day 13–14 衔接独立审核、最终训练与提交。
 - [S004–S006 计划书](docs/alpha_retention_plan.md)：三阶段与锁定后一次 2024 确认均已完成，按门槛保留 S003。

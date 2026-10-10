@@ -25,6 +25,9 @@ outputs/metrics/*
 outputs/predictions/*
 !outputs/predictions/.gitkeep
 
+# Local S007 / S008 handoff package; only its small inventory enters Git.
+/s009_inputs_S007market_S008T033/
+
 # Local temporary files and credentials
 tmp/
 .env

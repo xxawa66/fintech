@@ -1,6 +1,12 @@
 project:
   name: fintech
-  stage: ensemble_research_complete
+  stage: top_tail_plan_ready
+  current_research_plan: docs/top_tail_research_plan.md
+  current_input_inventory: docs/top_tail_inputs_S009_inventory.json
+  latest_market_study: S007
+  latest_market_report: docs/market_regime_S007.md
+  latest_separated_tuning_study: S008
+  latest_separated_tuning_report: docs/optuna_s008.md
   research_recommendation: retain_S003
   reference_selection: docs/optuna_tuning_S003_selection.json
   current_ensemble_study: S006
@@ -43,6 +49,7 @@ paths:
   research_cache: data/processed/research_cache
   research_studies: outputs/metrics/research_studies
   research_reports: docs
+  research_handoff_inputs: s009_inputs_S007market_S008T033
   optuna_cache: data/processed/optuna_cache
 
 data:

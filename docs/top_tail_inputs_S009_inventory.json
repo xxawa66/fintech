@@ -1,0 +1,560 @@
+{
+  "schema": 1,
+  "status": "planning_snapshot_not_full_validation",
+  "received_at": "2026-10-10T14:23:46+08:00",
+  "base_commit": "15afdd2b533f75abb0759b0b2787bd002ea2c15f",
+  "package_path": "s009_inputs_S007market_S008T033",
+  "file_count": 67,
+  "total_bytes": 909628888,
+  "model_files_present": false,
+  "verification_scope": [
+    "file presence/size/SHA-256 at receipt",
+    "raw/band CSV header only",
+    "provided metrics vs repository summary"
+  ],
+  "pending_verification": [
+    "full keys and canonical order",
+    "finite predictions and exact ties",
+    "saved-file official eight metrics",
+    "raw to band replay"
+  ],
+  "files": [
+    {
+      "path": "s009_inputs_S007market_S008T033/docs/market_regime_S007.md",
+      "size_bytes": 5761,
+      "sha256": "71a80f2d3a5303a63806264064669bb9de66e10077b5a831eee03001a73b7f31"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/docs/optuna_s008.md",
+      "size_bytes": 5676,
+      "sha256": "556cc3a6e07bad068a0fe8ad974febe4ded54046cd38c75f01b5c889977b2a3d"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/market_regime_S007_comparison.csv",
+      "size_bytes": 1022,
+      "sha256": "142cc6a7dfb03f74c2b3aa9f1fb7109186095d3751304c8d327d8cc1c14f9125"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/market_regime_S007_folds.csv",
+      "size_bytes": 4439,
+      "sha256": "d34d13a8394c9afcaaf9b81c46deddd6f6758949d9fc91962d4945673f448fd9"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/market_regime_S007_importance.csv",
+      "size_bytes": 2692,
+      "sha256": "e6039c6a010ad5901df3f5740c7add3e417394eca702dc072975ffe697797660"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/market_regime_S007_monthly.csv",
+      "size_bytes": 17762,
+      "sha256": "8e0920457fd1876384a697ac56c93d2745ff8714641347857cdf789899288461"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/market_regime_S007_summary.json",
+      "size_bytes": 15389,
+      "sha256": "423bdee7fa3c0a1aec1292279f5e0ed1ed0076b96c7563cfedbf0220297f7b42"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/optuna_s008_scan.csv",
+      "size_bytes": 7682,
+      "sha256": "13edc8636ac4d892a039f26f8153ccb3bee05ebbe14b35bfbaec83353f77aab9"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/optuna_s008_summary.json",
+      "size_bytes": 23051,
+      "sha256": "ee8986b2e0bcb7d4bca1ae27c9d8dc942cab6bdaaaf81521bfc423dc7711c183"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/experiments/optuna_s008_trials.csv",
+      "size_bytes": 57323,
+      "sha256": "ba6ab0879626ec13405bffd3613e93071cd5407adbc6b6f9278d61fbecaf5ae4"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/MANIFEST.txt",
+      "size_bytes": 1089,
+      "sha256": "a0cfbc8efc5ebe54038650fc63357f3fb94c67d041f1a97f89f47f6f110286ce"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/daily_metrics.csv",
+      "size_bytes": 29821,
+      "sha256": "8eee4a8ac4f68e13354efecd82b6d6bb32aaf487d1af3bfe87534fb3b9cea51f"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/feature_importance.csv",
+      "size_bytes": 1970,
+      "sha256": "733bcc22498c53348d7ed1f3453a3a32ecf41b0d9f55f5c80bd1888c64f7b1bd"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/metrics.json",
+      "size_bytes": 4377,
+      "sha256": "966ef6914e78a6c70f88ad996f8eec228734b7ebfb8834d0755388dc6b5c6c5e"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/monthly_metrics.csv",
+      "size_bytes": 2213,
+      "sha256": "362a8c50b15e54240e0985beecc95bfca5f180e345a82016555e7f9361d73bb7"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/prediction_band_01.csv",
+      "size_bytes": 45147869,
+      "sha256": "ccca574a4135cf324f0d145960265e69535196084b4a5da0adfe2a2771a7c239"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/prediction_band_qstar.csv",
+      "size_bytes": 45125111,
+      "sha256": "21ebdb770a70b138131e76f3d7a01f57d3fd875a4e5dc539b5c101138e7d262a"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/prediction_raw.csv",
+      "size_bytes": 46439418,
+      "sha256": "d8288bca45d01c089d1be34a4139bfe4df29a3a11f526a1f50ced515f56af02c"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/daily_metrics.csv",
+      "size_bytes": 29721,
+      "sha256": "a356b8f44019f94e0e220d606ef89f217bdf1c0405e7d5228749ee69b65ffce5"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/feature_importance.csv",
+      "size_bytes": 1985,
+      "sha256": "5975f1161e09c561dba18357f3526514d12beb43e2b8ccab7045e25772313cc2"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/metrics.json",
+      "size_bytes": 4348,
+      "sha256": "c6c2e361ee4a99a1921a01a908e5211a4c9f01ebae2af3c009187c2ada17982d"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/monthly_metrics.csv",
+      "size_bytes": 2181,
+      "sha256": "d1312380f1de4aaf9f88db70ba91ed7345de96a7049260e10c5a5566e1bf6d77"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/prediction_band_01.csv",
+      "size_bytes": 45346374,
+      "sha256": "73cc859e907dbeb4857657a30ab4a430a5d6ea106eddbfb0f1086f9f4e723031"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/prediction_band_qstar.csv",
+      "size_bytes": 45310098,
+      "sha256": "a1451090639aa277202350b01b693cd843bc80061392a97e1a06f2147d057948"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/prediction_raw.csv",
+      "size_bytes": 44582771,
+      "sha256": "5440ad95e96799ce47d48413b7a00d60a673b6e7d51493eea65246b047b269d8"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/daily_metrics.csv",
+      "size_bytes": 29947,
+      "sha256": "72946aae8870df6117a0784ed9670ab09f96464517365dd12c7715e3edc6cbac"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/feature_importance.csv",
+      "size_bytes": 1978,
+      "sha256": "2eab8e6baebe8388b0ba952587b2def16016a1bfcd60a6f1a63a8183ee78023d"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/metrics.json",
+      "size_bytes": 4353,
+      "sha256": "0e91a29fd409bbd57b5d026b902dd8d4c0eeeff532a4a83fa797022a627274ee"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/monthly_metrics.csv",
+      "size_bytes": 2196,
+      "sha256": "915c5f7bde2d46e8d110de5db630422819435af55f3a9d0471b9c569f44816c1"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/prediction_band_01.csv",
+      "size_bytes": 45150353,
+      "sha256": "7a83c9f2b9ab4262056817b00cd04cfd21244ff4c4c79394b9abdf675ec8c8f9"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/prediction_band_qstar.csv",
+      "size_bytes": 45134763,
+      "sha256": "ea388e4542528abd3be7a1a4f8b808d0a7f224d5c275aea87d74dcd18cdf1a98"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/prediction_raw.csv",
+      "size_bytes": 45430570,
+      "sha256": "aee3c66757329481c1bf9afc40c453fcb8b388e24cea4c91d5dbd05b9f877fc9"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/daily_metrics.csv",
+      "size_bytes": 30126,
+      "sha256": "e82483ab2087e5393e73cb98595136475306c59e67790d67d40d8b1e6a445a4f"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/feature_importance.csv",
+      "size_bytes": 1979,
+      "sha256": "a0279ae4b3b586596fd75ea9107cc67b6ab16dae35c7893fac1d2475ef725af8"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/metrics.json",
+      "size_bytes": 4360,
+      "sha256": "39c2570ffdc5b0ba792a46fcad0c83108fa5b21eb4c5667a9368793798f18215"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/monthly_metrics.csv",
+      "size_bytes": 2196,
+      "sha256": "301cc382823a0ee55ca3bbb0ac053170e5a5e171b723ffa75859723c0aa55b78"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/prediction_band_01.csv",
+      "size_bytes": 45158618,
+      "sha256": "9f067c67beb165f9e20646f26d519f3f6a5268a7281c5672524416b615f0a372"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/prediction_band_qstar.csv",
+      "size_bytes": 45159145,
+      "sha256": "e37a513fa1ce586c5d43fc1b37c4d418ffd807c22058395bf5eb336f88bea619"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/prediction_raw.csv",
+      "size_bytes": 46157540,
+      "sha256": "41db8cbfc52e744aeda918ab03140db47200518a314706907887cf1a113b5728"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/parameter_importance.json",
+      "size_bytes": 359,
+      "sha256": "fc6efe0e8b3cf34c9144646f12b6ebd80621703ea15154666c9e36a91729215d"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/run.log",
+      "size_bytes": 81768,
+      "sha256": "4a90251bd1c8056bac0b534f0d163956ba295317e7c539d3ac5fde6f9643a65d"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/selection.json",
+      "size_bytes": 1300,
+      "sha256": "b36ae702e467f1869dd4eec31586f19b97e4c9d55959e353b4e2266b13764fdc"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/study.db",
+      "size_bytes": 491520,
+      "sha256": "966c9fe096d7e98715141ac8e21f24f53532d06c155be31a5baea2d9120b93d0"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/daily_metrics.csv",
+      "size_bytes": 29953,
+      "sha256": "a97d5c7a326a68ddb9c454728c7464d0418d4623153c53beeb58a4c2619b15f4"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/feature_importance.csv",
+      "size_bytes": 1422,
+      "sha256": "cde4da8dcb161129a8dcdbdb6ff9b015cfe847d329295004232bdd2722419585"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/metrics.json",
+      "size_bytes": 2293,
+      "sha256": "58595af7c997aa67f7b5a5eaf39afa6ab9e9f42921a3308862335c81385ecd1a"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/monthly_metrics.csv",
+      "size_bytes": 2217,
+      "sha256": "beaa4e0972038ac16856971e861ab3f416bcea97854fa1cb099ba18d84794eef"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/prediction_band_qstar.csv",
+      "size_bytes": 45121307,
+      "sha256": "5d4e6464f28fb9df76de505a8a787e875bc2ca65f8715e058e5613fe53088a34"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/prediction_raw.csv",
+      "size_bytes": 46769820,
+      "sha256": "f014b95d958605503e7a26f7b9f74d0b98a3d278243aab95273268f2fa811c38"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/daily_metrics.csv",
+      "size_bytes": 30070,
+      "sha256": "8d19b0fe2177234d2cb2f595f05dd9c5f1a274fbcfb8bbb7ddc7626ca13d4425"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/feature_importance.csv",
+      "size_bytes": 1418,
+      "sha256": "d4587477cf601411c9717ff05291d4cedbd842a5eb45ed376375a6f97f9d355c"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/metrics.json",
+      "size_bytes": 2281,
+      "sha256": "2da515513fc16f5d80f6252b267a6e176e65a9fd9dafc7d74974f3a3fd5430e4"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/monthly_metrics.csv",
+      "size_bytes": 2183,
+      "sha256": "57b5eb78f3222b53d8c07485c5ecd56fabaa53dfc9eabcf125ed12e51d70c3e6"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/prediction_band_qstar.csv",
+      "size_bytes": 45313167,
+      "sha256": "a3aa5940a3698d966e522ff02625dd9e9549d97d2434e412365b7a2701f49cdd"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/prediction_raw.csv",
+      "size_bytes": 44818614,
+      "sha256": "35b8f6909496d277e29888866a4b0bea918af5d79e16a9d07a41911958321d29"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/daily_metrics.csv",
+      "size_bytes": 29938,
+      "sha256": "94c08da4d0a62421bc159a79f086846bc7b5910dea2ee4a5344c6e849cbcfb60"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/feature_importance.csv",
+      "size_bytes": 1419,
+      "sha256": "c3754cac619680f9afbd85dcfefac67b330d5f1bebbdf60cdcbe0f0d7a83696b"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/metrics.json",
+      "size_bytes": 2276,
+      "sha256": "e4e10e761726d2c7a1e80d748243a71445133edf2ff466273e3a5da1ec37b86b"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/monthly_metrics.csv",
+      "size_bytes": 2196,
+      "sha256": "dd5e6889d67cee0946a64a512d292649f08f9b6fa8628e64df20d9e81a8217a6"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/prediction_band_qstar.csv",
+      "size_bytes": 45130156,
+      "sha256": "3f3c77222fb7a34eccc84f5ac971947201e8606962491c92e60f609c1de50d16"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/prediction_raw.csv",
+      "size_bytes": 45624121,
+      "sha256": "27d207679335d821b2e8f90dc137b339a7aaff1d71fe7a5320a81645a6472756"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/daily_metrics.csv",
+      "size_bytes": 30129,
+      "sha256": "ac544ec1ea12d3082ff4d2c0661d19ecd85d3e770ccd50ed50cf0055d394b8fa"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/feature_importance.csv",
+      "size_bytes": 1420,
+      "sha256": "5eb9344156d035053294e37c99b6fc9ccc2b1f944891a56dcd643b7426a24599"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/metrics.json",
+      "size_bytes": 2278,
+      "sha256": "7d8556998d4359c89c90ac1decfa3e971ea841d5587fcd3291e52561a9514bc7"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/monthly_metrics.csv",
+      "size_bytes": 2193,
+      "sha256": "3ce6b17b68b1337a7c64af6f452f5074bbc81865724e402ec3a21d2e7e29c3a8"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/prediction_band_qstar.csv",
+      "size_bytes": 45155769,
+      "sha256": "eff3bb4cb4d93bed6a53da81f0d8b019af45826ad97cf0e9d227312bb25db3aa"
+    },
+    {
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/prediction_raw.csv",
+      "size_bytes": 46539034,
+      "sha256": "adf8d36de4bab40fa09f5e30fa8fd3ede39987d178c7ffdc3c334fa1e7b1e917"
+    }
+  ],
+  "prediction_coverage": [
+    {
+      "model": "S007_market",
+      "fold": "wf2021",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/metrics.json",
+      "expected_rows_from_metadata": 1129950,
+      "official_final_score_from_metadata": 0.21093497752060117,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "wf2021",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2021/metrics.json",
+      "expected_rows_from_metadata": 1129950,
+      "official_final_score_from_metadata": 0.37285771354612074,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "wf2022",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.20809964733450037,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "wf2022",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2022/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.3803332271529031,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "wf2023",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.12942904739982442,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "wf2023",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/wf2023/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.3181858044533176,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "confirm2024",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.22855898144751324,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S007_market",
+      "fold": "confirm2024",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S007/market/confirm2024/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.4024032190786243,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2021",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/metrics.json",
+      "expected_rows_from_metadata": 1129950,
+      "official_final_score_from_metadata": 0.22702969367629292,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2021",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2021/metrics.json",
+      "expected_rows_from_metadata": 1129950,
+      "official_final_score_from_metadata": 0.39778788929310904,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2022",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.22116742423089047,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2022",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2022/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.3828780000246329,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2023",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.131179513916754,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "wf2023",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/wf2023/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.3605118479880789,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "confirm2024",
+      "layer": "raw",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/prediction_raw.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.17518274432056505,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    },
+    {
+      "model": "S008_T033",
+      "fold": "confirm2024",
+      "layer": "band_qstar",
+      "path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/prediction_band_qstar.csv",
+      "metrics_path": "s009_inputs_S007market_S008T033/studies/S008/winner/T033/confirm2024/metrics.json",
+      "expected_rows_from_metadata": 1125300,
+      "official_final_score_from_metadata": 0.37743483964182933,
+      "repository_summary_matches": true,
+      "full_csv_validation_completed": false
+    }
+  ],
+  "local_reference_coverage": {
+    "T030": [
+      "wf2021",
+      "wf2022",
+      "wf2023",
+      "confirm2024"
+    ],
+    "Y1": [
+      "wf2021",
+      "wf2022",
+      "wf2023"
+    ],
+    "Y4": [
+      "wf2021",
+      "wf2022",
+      "wf2023",
+      "confirm2024"
+    ]
+  },
+  "known_limitations": [
+    "S007/S008 models were not saved by producer; model reload unavailable.",
+    "Y1 confirm2024 is absent; do not substitute Y4 or a training-period prediction.",
+    "Receipt SHA values are a new snapshot, not retroactive producer provenance."
+  ]
+}

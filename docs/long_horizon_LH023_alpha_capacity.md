@@ -364,13 +364,21 @@ final 最高的点把 α 从 0.1886 卖到 0.1428（−0.046），换来 profile
 
 ## 11. 产物
 
-| 文件（仓库外 `test_y_2025_2026/`） | 内容 |
+脚本与全部逐折数据已随本报告入库，可直接复现（复现步骤见 `research/LH023/README.md`；
+最优模型的定义与成绩摘要见 `docs/model_card_TS_K40.md`）。
+
+| 文件 | 内容 |
 |---|---|
-| `cv_three_numbers.py` | §4–§6 三轴统一审计（含 `--k-only` 加密对照） |
-| `cv_alpha_lofo.py` | §7–§9 α 目标 LOFO 与容量上界 |
-| `cv_design_audit/three_numbers_grid.csv` | keep_q / F1 轴逐折明细 |
-| `cv_design_audit/k_grid35_45.csv` | K 轴 13 点逐折明细 |
-| `cv_design_audit/lambda_k_lamgrid.csv` | λ 轴逐折明细 |
-| `cv_design_audit/lambda_k_joint_grid.csv` | λ×K 联合 74 组合 |
-| `cv_design_audit/alpha_objective_grid.csv` | α 目标实验 22 点 × 4 held × 4 折 |
-| `cv_design_audit/ic_alpha_frontier.csv` | §9 的 IC/α 前沿 |
+| `research/LH023/cv_three_numbers.py` | §4–§6 三轴统一审计（含 `--k-only` 加密对照） |
+| `research/LH023/cv_alpha_lofo.py` | §7–§9 α 目标 LOFO 与容量上界 |
+| `research/LH023/cv_lambda_k_opt.py` | 核心评测器 + λ/K 联合前沿（§3、§8） |
+| `research/LH023/_probe_*.py` | 底层依赖（面板、DGTW 分解、band、IC 最优权重） |
+| `experiments/LH023/three_numbers_grid.csv` | keep_q / F1 轴逐折明细 |
+| `experiments/LH023/k_grid35_45.csv` | K 轴 13 点逐折明细 |
+| `experiments/LH023/lambda_k_lamgrid.csv` | λ 轴逐折明细 |
+| `experiments/LH023/lambda_k_joint_grid.csv` | λ×K 联合 74 组合 |
+| `experiments/LH023/alpha_objective_grid.csv` | α 目标实验 22 点 × 4 held × 4 折 |
+| `experiments/LH023/ic_alpha_frontier.csv` | §9 的 IC/α 前沿 |
+
+输入数据（原始训练集、LH003 的九套预测、因子面板）体积达 GB 级且不入库，
+需要各自先生成；脚本本身、判定口径与逐折结果全部在库内。
